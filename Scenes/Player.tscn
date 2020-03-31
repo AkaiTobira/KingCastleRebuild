@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assety/robot.png" type="Texture" id=6]
@@ -91,9 +91,10 @@ tracks/1/keys = {
 "values": [ 46.484, 83.9, 83.9, 0.0 ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
-"player",
-]]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 36.1885, 63.61 )
+
+[node name="Player" type="KinematicBody2D"]
 collision_mask = 14
 script = ExtResource( 1 )
 
@@ -121,8 +122,24 @@ position = Vector2( -2.27554, -52.5653 )
 scale = Vector2( 1.59688, 1.59688 )
 texture = ExtResource( 8 )
 
+[node name="AttackBox" type="Area2D" parent="Torso/Torso2"]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso/Torso2/AttackBox"]
+polygon = PoolVector2Array( -11.1733, -11.2873, -7.41018, -23.8309, 2.62472, -36.3745, 11.4052, -36.7926, 20.1858, -28.0121, 19.7676, -14.6322, 11.4052, 3.76509, 3.87907, 30.5248, -9.91889, 31.361, -20.3719, 27.1798, -15.3545, 2.92884 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 8.0
 anims/Attack1 = SubResource( 2 )
 anims/Attack2 = SubResource( 3 )
 anims/Attack3 = SubResource( 4 )
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 5 )
+[connection signal="area_entered" from="Torso/Torso2/AttackBox" to="." method="_on_AttackBox_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

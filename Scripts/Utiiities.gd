@@ -3,10 +3,13 @@ extends Node
 
 var player = null
 var GUI    = null
-var GRAVITY      = 200
-var IN_AIR_SPEED = 500
+var PLAYER_GRAVITY_ENABLER = true
+var PLAYER_IN_AIR_ENABLED  = false
+
+var GRAVITY      = 105
+var IN_AIR_SPEED = 6
 var SPEED        = 1000
-var SPEED_JUMP   = 3000
+var SPEED_JUMP   = 2500
 
 func _ready():
 	pass # Replace with function body.

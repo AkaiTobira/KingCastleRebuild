@@ -11,7 +11,12 @@ func _exit_tree(): #FOR GOD SAKE THIS GODOT SHOULD DO!!!
 		stack.pop_front()
 
 func _process(delta):
-	print( stack )
+	
+	var restr = "["
+	for elem in stack:
+		restr += elem.get_class() + ","
+	restr += "]"
+	print( restr )
 #	if Flow.world_is_paused or Utilities.player.pause: return
 	while stack[0].is_over : stack.pop_front()
 	stack[0].update(delta)
@@ -27,16 +32,19 @@ class State:
 		stack            = s_stack
 
 class Move extends State:
+	var jump_counter = 0
 	
-
+	func get_class():
+		return "Move" + Util.player.dir
+	
 	func _init(s_stack, direction).(s_stack): 
 		Util.player.change_direction(direction)
-	
-	func update(delta):
-	
+
+	func update(_delta):
+		Util.PLAYER_GRAVITY_ENABLER = true
 		if Util.player.dir == "R" : update_move_right()
 		if Util.player.dir == "L" : update_move_left()
-	
+
 	func update_move_left():
 		Util.player.motion.x = -Util.SPEED
 		if !Input.is_action_pressed("ui_left") : is_over = true
@@ -45,29 +53,44 @@ class Move extends State:
 		Util.player.motion.x = Util.SPEED
 		if !Input.is_action_pressed("ui_right") : is_over = true
 
-
 	func handle_input(): 
 		handel_input_left()
 		handel_input_right()
 		if   Input.is_action_just_pressed("mouse_left") : stack.push_front( Attack1.new(stack) )
-		elif Input.is_action_pressed("ui_up") and Util.player.is_on_floor(): stack.push_front( Jump.new(stack) )
+		elif Input.is_action_pressed("ui_up") or jump_counter > 0 : handle_jump()
+
+	func handle_jump():
+		if Input.is_action_pressed("ui_up"): jump_counter = 10
+		if jump_counter > 0:
+			jump_counter -= 1
+			if Util.player.is_on_floor():
+				stack.push_front( Jump.new(stack) )
+				jump_counter = 0
 
 	func handel_input_left(): pass
 	func handel_input_right(): pass
 
-
 class Jump extends State:
+	
+	var start_combo_once = true
+	
+	func get_class():
+		return "Jump"
+	
 	func _init(s_stack).(s_stack):
+		Util.PLAYER_IN_AIR_ENABLED = true
 		Util.player.motion.y -= Util.SPEED_JUMP 
 
-	func update(delta):
+	func update(_delta):
+		Util.PLAYER_GRAVITY_ENABLER = true
 		if Util.player.motion.y < 0 : return
 		if Util.player.is_on_floor() : is_over = true
 
 	func handle_input():
-		if   Input.is_action_pressed("ui_right"): stack.push_front( SlightAirMove.new(stack, "R") )
-		elif Input.is_action_pressed("ui_left") : stack.push_front( SlightAirMove.new(stack, "L") )
-
+		if   Input.is_action_pressed("ui_right"): stack.push_front( SlightAirMove.new(stack, "R", start_combo_once) )
+		elif Input.is_action_pressed("ui_left") : stack.push_front( SlightAirMove.new(stack, "L", start_combo_once) )
+		if   Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
+			stack.push_front( Attack1.new(stack) )
 
 class AttackBase extends State:
 	var dir              = null
@@ -81,19 +104,25 @@ class AttackBase extends State:
 		dir = "L" if mouse_position.x < 0 else "R"
 		Util.player.change_direction(dir)
 	
-	func update(delta):
+	func update(_delta):
 		Util.player.play_anim(animation_name)
 		animation_status = Util.player.get_animation_status()
+		Util.player.motion.x = (-Util.SPEED if dir == "L" else Util.SPEED)  * ((1.0 - animation_status))*0.2
 		if( animation_status > 0.95):
 			is_over = true
 			push_next_attack()
-	
+			Util.PLAYER_GRAVITY_ENABLER = false
+			
 	func push_next_attack(): pass
 	func handle_input(): pass
 
 class Attack1 extends AttackBase:
 
-	func _init(s_stack).(s_stack,"Attack1"): pass
+	func get_class():
+		return "Attack1"
+
+	func _init(s_stack).(s_stack,"Attack1"):
+		Util.PLAYER_GRAVITY_ENABLER = false
 
 	func push_next_attack():
 		match next_key_presed:
@@ -101,13 +130,16 @@ class Attack1 extends AttackBase:
 			_ : return
 	
 	func handle_input():
-		if animation_status > 0.3:
+		if animation_status > 0.2:
 			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
 
-
 class Attack2 extends AttackBase:
-	
-	func _init(s_stack).(s_stack,"Attack2"): pass
+
+	func get_class():
+		return "Attack2"
+
+	func _init(s_stack).(s_stack,"Attack2"):
+		Util.PLAYER_GRAVITY_ENABLER = false
 	
 	func push_next_attack():
 		match next_key_presed:
@@ -115,47 +147,78 @@ class Attack2 extends AttackBase:
 			_ : return
 	
 	func handle_input():
-		if animation_status > 0.3:
+		if animation_status > 0.2:
 			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
 
 class Attack3 extends AttackBase:
-	
-	func _init(s_stack).(s_stack,"Attack3"): pass
-	
+
+	func get_class():
+		return "Attack3"
+
+	func _init(s_stack).(s_stack,"Attack3"):
+		Util.PLAYER_GRAVITY_ENABLER = false
+		
 	func push_next_attack(): pass
-	
 	func handle_input(): pass
 
 class SlightAirMove extends State:
 	var dir = null
+	
+	var start_combo_once = true
 
-	func _init(s_stack, direction).(s_stack): 
+	func get_class():
+		return "SlightAirMove" + dir
+
+	func _init(s_stack, direction, start_combo_once).(s_stack): 
+		start_combo_once = start_combo_once
 		dir = direction
 
-	func update(delta):
-		if Util.player.is_on_floor() : is_over = true
+	func update(_delta):
+		Util.PLAYER_GRAVITY_ENABLER = true
+		if Util.player.is_on_floor():
+			is_over = true
+			return
 		if dir == "R" : update_move_right()
 		if dir == "L" : update_move_left()
 
 	func update_move_left():
-		Util.player.motion.x = -Util.IN_AIR_SPEED
+		Util.player.motion.x = max( -Util.IN_AIR_SPEED*100, Util.player.motion.x -Util.IN_AIR_SPEED )
 		if !Input.is_action_pressed("ui_left") : is_over = true
 
 	func update_move_right():
-		Util.player.motion.x = Util.IN_AIR_SPEED
+		Util.player.motion.x = min( +Util.IN_AIR_SPEED*100, Util.player.motion.x +Util.IN_AIR_SPEED )
 		if !Input.is_action_pressed("ui_right") : is_over = true
 
-	func handle_input(): pass
+	func handle_input(): 
+		if Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
+			Util.PLAYER_IN_AIR_ENABLED = false
+			stack.push_front( Attack1.new(stack) )
 
 class Idle extends State:
 
+	var jump_counter = 0
+	var jump_pressed = false
+
+	func get_class():
+		return "Idle"
+
 	func _init(s_stack).(s_stack): pass
 
-	func update(delta): 
+	func update(_delta): 
+		Util.PLAYER_GRAVITY_ENABLER = true
 		Util.player.motion = Vector2(0,0)
 
 	func handle_input(): 
 		if   Input.is_action_just_pressed("mouse_left") : stack.push_front( Attack1.new(stack) )
 		elif Input.is_action_pressed("ui_right"): stack.push_front( Move.new(stack, "R") )
 		elif Input.is_action_pressed("ui_left") : stack.push_front( Move.new(stack, "L") )
-		elif Input.is_action_pressed("ui_up") and Util.player.is_on_floor(): stack.push_front( Jump.new(stack) )
+		elif Input.is_action_pressed("ui_up") or jump_counter > 0 : handle_jump()
+
+	func handle_jump():
+		if Input.is_action_pressed("ui_up"): jump_counter = 10
+		if jump_counter > 0:
+			jump_counter -= 1
+			if Util.player.is_on_floor():
+				stack.push_front( Jump.new(stack) )
+				jump_counter = 0
+
