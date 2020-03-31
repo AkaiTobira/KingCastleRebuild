@@ -29,56 +29,40 @@ var WALL_HOLDER_ENABLED     = true
 var wall_holding            = false
 var once_jumped             = true
 
+var FSM = preload("res://Scripts/PlayerSFM.gd").new()
+
 func _ready(): pass
 
-func increase_HP( amount ):
-	max_health += amount
-
 # warning-ignore:unused_argument
-func _process(delta): pass
+func _process(delta): 
+	FSM._process(delta)
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	_gravity()
-	_movement()
-	_jump()
+#	_movement()
+#	_jump()
 # warning-ignore:return_value_discarded
 	move_and_slide(motion, UP)
+
+var dir = "R"
+
+func change_direction(new_dir):
+	if dir == new_dir : return
+	dir = new_dir
+	scale.x    *= -1
 
 func _jump():
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		motion.y -= SPEED_JUMP 
 
-func _movement():
-	if wall_holding: return
-
-	if Input.is_action_pressed("ui_left"):
-		play_anim_if_not_played("MoveLeft")
-	#	Music.play_sfx( "Wheels2" )
-		motion.x = -SPEED
-	elif Input.is_action_pressed("ui_right"):
-		play_anim_if_not_played("MoveRight")
-#		Music.play_sfx( "Wheels2" )
-		motion.x = SPEED
-	else:
-#		Music.stop_sfx( "Wheels2" )
-		motion.x = 0
-
 func _gravity():
-	if position.y > WORLD_LIMIT:
-		_endgame()
-	if is_on_floor():
-		motion.y = 0 
-	elif is_on_ceiling():
-		motion.y = 100
-	else:
-		motion.y += GRAVITY/2 if grapling_shooted else  GRAVITY 
-		if wall_holding : motion.y = 80
+	motion.y += GRAVITY/2 if grapling_shooted else  GRAVITY 
 
-func _endgame(): pass
+func get_animation_status():
+	return float($AnimationPlayer.get_current_animation_position())/float($AnimationPlayer.get_current_animation_length())
 
-# warning-ignore:unused_argument
-func play_anim_if_not_played(anim_name): pass
-#	if $AnimationPlayer.current_animation == anim_name : return
-#	$AnimationPlayer.play(anim_name)
+func play_anim(anim_name): 
+	if $AnimationPlayer.current_animation == anim_name : return
+	$AnimationPlayer.play(anim_name)
 
