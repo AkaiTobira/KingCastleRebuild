@@ -1,11 +1,5 @@
 extends KinematicBody2D
 
-export var GRAVITY = 200
-export var SPEED = 1000
-export var SPEED_JUMP = 3000
-var UP = Vector2(0,-1)
-
-
 const WORLD_LIMIT = 6000;
 
 var motion = Vector2(0,0)
@@ -31,19 +25,18 @@ var once_jumped             = true
 
 var FSM = preload("res://Scripts/PlayerSFM.gd").new()
 
-func _ready(): pass
+func _ready(): motion.y += 1000
 
 # warning-ignore:unused_argument
 func _process(delta): 
 	FSM._process(delta)
+	
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
+	#print(motion)
 	_gravity()
-#	_movement()
-#	_jump()
-# warning-ignore:return_value_discarded
-	move_and_slide(motion, UP)
+	move_and_slide(motion, Vector2(0,-1))
 
 var dir = "R"
 
@@ -52,12 +45,13 @@ func change_direction(new_dir):
 	dir = new_dir
 	scale.x    *= -1
 
-func _jump():
-	if Input.is_action_pressed("ui_up") and is_on_floor():
-		motion.y -= SPEED_JUMP 
-
+var saved_gravity = 0
 func _gravity():
-	motion.y += GRAVITY/2 if grapling_shooted else  GRAVITY 
+	if not Util.PLAYER_GRAVITY_ENABLER: 
+		motion.y = 0
+		return 
+	if is_on_floor(): return
+	motion.y += Util.GRAVITY/2 if grapling_shooted else Util.GRAVITY 
 
 func get_animation_status():
 	return float($AnimationPlayer.get_current_animation_position())/float($AnimationPlayer.get_current_animation_length())
@@ -66,3 +60,8 @@ func play_anim(anim_name):
 	if $AnimationPlayer.current_animation == anim_name : return
 	$AnimationPlayer.play(anim_name)
 
+func _on_HitBox_body_entered(body):
+	pass # Replace with function body.
+
+func _on_AttackBox_area_entered(area):
+	pass # Replace with function body.
