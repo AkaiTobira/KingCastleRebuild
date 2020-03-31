@@ -41,6 +41,7 @@ class Move extends State:
 		Util.player.change_direction(direction)
 
 	func update(_delta):
+		Util.player.play_anim("Walk")
 		Util.PLAYER_GRAVITY_ENABLER = true
 		if Util.player.dir == "R" : update_move_right()
 		if Util.player.dir == "L" : update_move_left()
@@ -79,7 +80,7 @@ class Jump extends State:
 	
 	func _init(s_stack).(s_stack):
 		Util.PLAYER_IN_AIR_ENABLED = true
-		Util.player.motion.y -= Util.SPEED_JUMP 
+		Util.player.motion.y = -Util.SPEED_JUMP 
 
 	func update(_delta):
 		Util.PLAYER_GRAVITY_ENABLER = true
@@ -205,8 +206,9 @@ class Idle extends State:
 	func _init(s_stack).(s_stack): pass
 
 	func update(_delta): 
+		Util.player.play_anim("Idle")
 		Util.PLAYER_GRAVITY_ENABLER = true
-		Util.player.motion = Vector2(0,0)
+		Util.player.motion.x = 0
 
 	func handle_input(): 
 		if   Input.is_action_just_pressed("mouse_left") : stack.push_front( Attack1.new(stack) )
