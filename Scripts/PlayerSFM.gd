@@ -83,8 +83,9 @@ class Jump extends State:
 		Util.player.motion.y = -Util.SPEED_JUMP 
 
 	func update(_delta):
+		Util.player.play_anim("Jump")
 		Util.PLAYER_GRAVITY_ENABLER = true
-		if Util.player.motion.y < 0 : return
+		if Util.player.motion.y < 0  : return
 		if Util.player.is_on_floor() : is_over = true
 
 	func handle_input():

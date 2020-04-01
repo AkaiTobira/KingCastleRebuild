@@ -11,7 +11,7 @@ var IN_AIR_SPEED = 20
 var SPEED        = 400
 var SPEED_JUMP   = 1100
 
-var SEGMENT_SIZE = Vector2( 1024,576)
+var SEGMENT_SIZE = Vector2(1024,576)
 
 func _ready():
 	load_segments()

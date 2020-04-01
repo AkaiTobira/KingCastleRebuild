@@ -34,7 +34,7 @@ func is_dir_valid( dir, curr_pos ):
 		"L" : return in_range( step_in_dir("L", curr_pos) )
 		"R" : return in_range( step_in_dir("R", curr_pos) )
 			 
-var MAZE_SIZE = Vector2( 3, 3 )
+var MAZE_SIZE = Vector2( 7, 7 )
 	
 func _init():
 	
@@ -46,7 +46,6 @@ func _init():
 	var direction = get_random_dir()
 	while( !is_dir_valid( direction, Origin )): direction = get_random_dir()
 	var couter    = 1 
-	#lab[str(Origin)] = direction
 
 	while( true ):
 		if couter == (MAZE_SIZE.x * MAZE_SIZE.y): break
@@ -56,7 +55,6 @@ func _init():
 			lab[Origin]     += direction
 			couter += 1
 			lab[new_Origin] += dir_to_op_dir[direction]
-#			print( couter, " : " , direction, " |", Origin ," :: "  , lab[Origin], " ", new_Origin , " :: ",  lab[new_Origin]  )
 
 		Origin = new_Origin
 		direction = get_random_dir()
