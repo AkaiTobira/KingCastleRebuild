@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assety/Knight/idle/idle.png" type="Texture" id=2]
+[ext_resource path="res://Assety/Knight/krol.png" type="Texture" id=2]
 [ext_resource path="res://Assety/Knight/walk/walk.png" type="Texture" id=3]
 [ext_resource path="res://Assety/robot_hand.png" type="Texture" id=8]
 
@@ -128,7 +128,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Idle"
 length = 12.0
 loop = true
@@ -158,7 +158,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "Walk"
 length = 12.0
 step = 1.0
@@ -187,7 +187,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 52.6399, 69.808 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -200,7 +200,6 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.5, 1.5 )
 process_mode = 0
 limit_smoothed = true
 drag_margin_h_enabled = true
@@ -225,10 +224,11 @@ collision_mask = 512
 polygon = PoolVector2Array( -11.1733, -11.2873, -7.41018, -23.8309, 2.62472, -36.3745, 11.4052, -36.7926, 20.1858, -28.0121, 19.7676, -14.6322, 11.4052, 3.76509, 3.87907, 30.5248, -9.91889, 31.361, -20.3719, 27.1798, -15.3545, 2.92884 )
 
 [node name="Torso" type="Sprite" parent="Sprites"]
-position = Vector2( 37, -12 )
+position = Vector2( 22.5956, -37.4848 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
-vframes = 4
-hframes = 3
+vframes = 6
+hframes = 7
 
 [node name="Torso2" type="Sprite" parent="Sprites"]
 position = Vector2( 14, -10 )
@@ -242,8 +242,8 @@ playback_speed = 8.0
 anims/Attack1 = SubResource( 2 )
 anims/Attack2 = SubResource( 3 )
 anims/Attack3 = SubResource( 4 )
-anims/Idle = SubResource( 6 )
-anims/Walk = SubResource( 7 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -251,6 +251,6 @@ collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0.663452, -8.62448 )
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 [connection signal="area_entered" from="Sprites/Torso3/AttackBox" to="." method="_on_AttackBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

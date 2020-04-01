@@ -13,8 +13,8 @@ func _physics_process(delta):
 
 func change_direction(new_dir):
 	if dir == new_dir : return
-	dir = new_dir
-	scale.x    *= -1
+	dir      = new_dir
+	scale.x *= -1
 
 func _gravity():
 	if is_on_floor(): 
