@@ -183,11 +183,13 @@ class SlightAirMove extends State:
 		if dir == "L" : update_move_left()
 
 	func update_move_left():
-		Util.player.motion.x = max( -Util.IN_AIR_SPEED*100, Util.player.motion.x -Util.IN_AIR_SPEED )
+		Util.player.motion.x = max( -Util.SPEED, Util.player.motion.x -Util.IN_AIR_SPEED )
+		if( Util.player.motion.x < 0) : Util.player.change_direction("L")
 		if !Input.is_action_pressed("ui_left") : is_over = true
 
 	func update_move_right():
-		Util.player.motion.x = min( +Util.IN_AIR_SPEED*100, Util.player.motion.x +Util.IN_AIR_SPEED )
+		Util.player.motion.x = min( +Util.SPEED, Util.player.motion.x +Util.IN_AIR_SPEED )
+		if( Util.player.motion.x > 0) : Util.player.change_direction("R")
 		if !Input.is_action_pressed("ui_right") : is_over = true
 
 	func handle_input(): 
