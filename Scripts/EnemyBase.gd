@@ -17,4 +17,7 @@ func change_direction(new_dir):
 	scale.x    *= -1
 
 func _gravity():
+	if is_on_floor(): 
+		motion.y = 0
+		return
 	motion.y += Util.GRAVITY 
