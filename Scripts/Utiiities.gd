@@ -9,9 +9,9 @@ var PLAYER_IN_AIR_ENABLED  = false
 var GRAVITY      = 50
 var IN_AIR_SPEED = 20
 var SPEED        = 400
-var SPEED_JUMP   = 1100
+var SPEED_JUMP   = 1600
 
-var SEGMENT_SIZE = Vector2(1024,576)
+var SEGMENT_SIZE = Vector2(64 * 30, 64 * 18)
 
 func _ready():
 	load_segments()
@@ -77,4 +77,5 @@ func sort_enter(enters):
 
 func get_segment( enters ):
 	var sorted = sort_enter(enters)
+	print( sorted )
 	return segments["angles"][sorted][ randi()%len(segments["angles"][sorted]) ].instance()
