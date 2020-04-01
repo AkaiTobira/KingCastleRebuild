@@ -8,7 +8,6 @@ var dir_to_op_dir ={
 	"D" : "U"
 }
 
-
 var lab        = {}
 
 func get_random_dir():
@@ -34,7 +33,7 @@ func is_dir_valid( dir, curr_pos ):
 		"L" : return in_range( step_in_dir("L", curr_pos) )
 		"R" : return in_range( step_in_dir("R", curr_pos) )
 			 
-var MAZE_SIZE = Vector2( 7, 7 )
+var MAZE_SIZE = Vector2( 2, 2)
 	
 func _init():
 	
@@ -69,8 +68,8 @@ func print_maze():
 		print(sss)
 
 func _ready():
+	randomize()
 	generate()
-#	Util.player.position = Util.SEGMENT_SIZE/2
 	
 func generate(): 
 	for i in range( MAZE_SIZE.y ):
