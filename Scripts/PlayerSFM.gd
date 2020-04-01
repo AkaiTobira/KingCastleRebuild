@@ -16,7 +16,7 @@ func _process(delta):
 	for elem in stack:
 		restr += elem.get_class() + ","
 	restr += "]"
-	print( restr )
+	#print( restr )
 #	if Flow.world_is_paused or Utilities.player.pause: return
 	while stack[0].is_over : stack.pop_front()
 	stack[0].update(delta)
@@ -72,7 +72,6 @@ class Move extends State:
 	func handel_input_right(): pass
 
 class Jump extends State:
-	
 	var start_combo_once = true
 	
 	func get_class():
@@ -83,6 +82,7 @@ class Jump extends State:
 		Util.player.motion.y = -Util.SPEED_JUMP 
 
 	func update(_delta):
+		#if Util.player.should_land() : Util.player.play_anim("Jump2")
 		Util.player.play_anim("Jump")
 		Util.PLAYER_GRAVITY_ENABLER = true
 		if Util.player.motion.y < 0  : return
@@ -102,7 +102,7 @@ class AttackBase extends State:
 
 	func _init(s_stack, a_name).(s_stack):
 		animation_name  = a_name
-		var mouse_position = Util.GUI.get_global_mouse_position()- Util.player.position
+		var mouse_position = Util.GUI.get_global_mouse_position() - Util.player.position
 		dir = "L" if mouse_position.x < 0 else "R"
 		Util.player.change_direction(dir)
 	

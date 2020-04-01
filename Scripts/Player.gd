@@ -38,17 +38,20 @@ func _gravity():
 		return 
 	if is_on_floor(): return
 	motion.y += Util.GRAVITY 
-	print( motion )
 
 func get_animation_status():
 	return float($AnimationPlayer.get_current_animation_position())/float($AnimationPlayer.get_current_animation_length())
 
 func play_anim(anim_name): 
 	if $AnimationPlayer.current_animation == anim_name : return
-	var nodes = $Sprites
-	for node in nodes.get_children():
-		node.visible = false
+	#var nodes = $Sprites
+	#for node in nodes.get_children():
+	#	node.visible = false
 	$AnimationPlayer.play(anim_name)
+
+func should_land():
+	if test_move( get_transform(), Vector2(0, 20) ): return true
+	return false
 
 func _on_HitBox_body_entered(body):
 	pass # Replace with function body.
