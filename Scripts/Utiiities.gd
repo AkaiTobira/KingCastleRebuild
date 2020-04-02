@@ -11,6 +11,10 @@ var IN_AIR_SPEED = 20
 var SPEED        = 400
 var SPEED_JUMP   = 1650
 
+var MAZE_SIZE = Vector2( 5, 5)
+
+var labirynth    = {}
+
 var SEGMENT_SIZE = Vector2(64 * 33, 64 * 19)
 
 func _ready():
@@ -82,3 +86,6 @@ func sort_enter(enters):
 func get_segment( enters ):
 	var sorted = sort_enter(enters)
 	return segments["angles"][sorted][ randi()%len(segments["angles"][sorted]) ].instance()
+
+
+
