@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Generator.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/EnemyTemplate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assety/Minimap.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Minimap.gd" type="Script" id=6]
+[ext_resource path="res://Assety/Placeholder/objects.png" type="Texture" id=7]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Minimap.png 0"
@@ -192,6 +193,14 @@ tile_set = SubResource( 1 )
 format = 1
 tile_data = PoolIntArray( 0, 15, 0 )
 script = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Control/TileMap"]
+position = Vector2( 31.4605, 35.1617 )
+scale = Vector2( 0.421, 0.416 )
+texture = ExtResource( 7 )
+vframes = 3
+hframes = 5
+frame = 1
 
 [node name="LevelStructure" type="Node2D" parent="."]
 script = ExtResource( 1 )
