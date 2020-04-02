@@ -16,7 +16,7 @@ func _process(delta):
 	for elem in stack:
 		restr += elem.get_class() + ","
 	restr += "]"
-	print( restr )
+	#print( restr )
 #	if Flow.world_is_paused or Utilities.player.pause: return
 	while stack[0].is_over : stack.pop_front()
 	stack[0].update(delta)

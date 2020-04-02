@@ -397,22 +397,19 @@ editor_draw_drag_margin = true
 
 [node name="Sprites" type="Node2D" parent="."]
 
+[node name="Torso2" type="Sprite" parent="Sprites"]
+position = Vector2( 29.4969, -70.2001 )
+scale = Vector2( 0.280185, 0.280237 )
+texture = ExtResource( 3 )
+vframes = 6
+hframes = 10
+
 [node name="Torso" type="Sprite" parent="Sprites"]
-position = Vector2( 26.5956, -18.4848 )
+position = Vector2( 27.5956, -18.4848 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 6
-frame = 12
-
-[node name="Torso2" type="Sprite" parent="Sprites"]
-visible = false
-position = Vector2( 30.7617, -74.8204 )
-scale = Vector2( 0.29, 0.29 )
-texture = ExtResource( 3 )
-vframes = 6
-hframes = 10
-frame = 44
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
