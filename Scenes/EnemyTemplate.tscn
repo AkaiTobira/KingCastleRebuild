@@ -3,10 +3,10 @@
 [ext_resource path="res://Assety/red bjuti/redbjuti.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17.9305, 31.0599 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 13.8285, 7.85269 )
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -16,11 +16,11 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0.263519, -4.21634 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.641388, 17.3665 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

@@ -17,7 +17,10 @@ func change_direction(new_dir):
 	scale.x *= -1
 
 func _gravity():
-	if is_on_floor(): 
+	if not Util.PLAYER_GRAVITY_ENABLER: 
 		motion.y = 0
+		return 
+	if is_on_floor(): 
+		motion.y = min( motion.y, Util.SPEED/2 )
 		return
 	motion.y += Util.GRAVITY 

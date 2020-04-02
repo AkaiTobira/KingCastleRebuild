@@ -70,6 +70,10 @@ mouse_rigth={
  ]
 }
 
+[network]
+
+limits/debugger_stdout/max_messages_per_frame=1000
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

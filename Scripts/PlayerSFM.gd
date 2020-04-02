@@ -16,7 +16,7 @@ func _process(delta):
 	for elem in stack:
 		restr += elem.get_class() + ","
 	restr += "]"
-	#print( restr )
+	print( restr )
 #	if Flow.world_is_paused or Utilities.player.pause: return
 	while stack[0].is_over : stack.pop_front()
 	stack[0].update(delta)
@@ -43,6 +43,7 @@ class Move extends State:
 	func update(_delta):
 		Util.player.play_anim("Walk")
 		Util.PLAYER_GRAVITY_ENABLER = true
+		if Util.player.motion.y > Util.SPEED/2: stack.push_front( Fall.new(stack) )
 		if Util.player.dir == "R" : update_move_right()
 		if Util.player.dir == "L" : update_move_left()
 
@@ -82,8 +83,30 @@ class Jump extends State:
 		Util.player.motion.y = -Util.SPEED_JUMP 
 
 	func update(_delta):
-		#if Util.player.should_land() : Util.player.play_anim("Jump2")
 		Util.player.play_anim("Jump")
+		Util.PLAYER_GRAVITY_ENABLER = true
+		if Util.player.is_on_ceiling(): Util.player.motion.y = 0
+		if Util.player.motion.y < 0  : return
+		if Util.player.motion.y > Util.SPEED/2: stack.push_front( Fall.new(stack) )
+		if Util.player.is_on_floor() : is_over = true
+
+	func handle_input():
+		if   Input.is_action_pressed("ui_right"): stack.push_front( SlightAirMove.new(stack, "R", start_combo_once) )
+		elif Input.is_action_pressed("ui_left") : stack.push_front( SlightAirMove.new(stack, "L", start_combo_once) )
+		if   Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
+			stack.push_front( Attack1.new(stack) )
+
+class Fall extends State:
+	var start_combo_once = true
+	
+	func get_class():
+		return "Fall"
+	
+	func _init(s_stack).(s_stack):
+		Util.PLAYER_IN_AIR_ENABLED = true
+
+	func update(_delta):
+		Util.player.play_anim("Fall")
 		Util.PLAYER_GRAVITY_ENABLER = true
 		if Util.player.motion.y < 0  : return
 		if Util.player.is_on_floor() : is_over = true
@@ -99,8 +122,10 @@ class AttackBase extends State:
 	var animation_status = 0
 	var animation_name   = ""
 	var next_key_presed  = ""
+	var change_r         = 1.0
 
-	func _init(s_stack, a_name).(s_stack):
+	func _init(s_stack, a_name, change_rate).(s_stack):
+		change_r = change_rate
 		animation_name  = a_name
 		var mouse_position = Util.GUI.get_global_mouse_position() - Util.player.position
 		dir = "L" if mouse_position.x < 0 else "R"
@@ -110,10 +135,17 @@ class AttackBase extends State:
 		Util.player.play_anim(animation_name)
 		animation_status = Util.player.get_animation_status()
 		Util.player.motion.x = (-Util.SPEED if dir == "L" else Util.SPEED)  * ((1.0 - animation_status))*0.2
-		if( animation_status > 0.95):
+		if( animation_status > 0.95): 
 			is_over = true
-			push_next_attack()
 			Util.PLAYER_GRAVITY_ENABLER = false
+		elif( animation_status > change_r):
+			print(change_r, next_key_presed)
+			if next_key_presed != "":
+				is_over = true
+				push_next_attack()
+				Util.PLAYER_GRAVITY_ENABLER = false
+
+		
 			
 	func push_next_attack(): pass
 	func handle_input(): pass
@@ -123,7 +155,7 @@ class Attack1 extends AttackBase:
 	func get_class():
 		return "Attack1"
 
-	func _init(s_stack).(s_stack,"Attack1"):
+	func _init(s_stack).(s_stack,"Attack1", 3.0/4.0):
 		Util.PLAYER_GRAVITY_ENABLER = false
 
 	func push_next_attack():
@@ -140,7 +172,7 @@ class Attack2 extends AttackBase:
 	func get_class():
 		return "Attack2"
 
-	func _init(s_stack).(s_stack,"Attack2"):
+	func _init(s_stack).(s_stack,"Attack2", 3.0/4.0):
 		Util.PLAYER_GRAVITY_ENABLER = false
 	
 	func push_next_attack():
@@ -157,7 +189,7 @@ class Attack3 extends AttackBase:
 	func get_class():
 		return "Attack3"
 
-	func _init(s_stack).(s_stack,"Attack3"):
+	func _init(s_stack).(s_stack,"Attack3", 0.96):
 		Util.PLAYER_GRAVITY_ENABLER = false
 		
 	func push_next_attack(): pass
@@ -177,6 +209,10 @@ class SlightAirMove extends State:
 
 	func update(_delta):
 		Util.PLAYER_GRAVITY_ENABLER = true
+		if Util.player.is_on_ceiling(): Util.player.motion.y = 0
+		if Util.player.motion.y > Util.SPEED/2: 
+			if stack[1].get_class() != "Fall":
+				stack.push_front( Fall.new(stack) )
 		if Util.player.is_on_floor():
 			is_over = true
 			return
@@ -212,6 +248,7 @@ class Idle extends State:
 		Util.player.play_anim("Idle")
 		Util.PLAYER_GRAVITY_ENABLER = true
 		Util.player.motion.x = 0
+		if Util.player.motion.y > Util.SPEED/2: stack.push_front( Fall.new(stack) )
 
 	func handle_input(): 
 		if   Input.is_action_just_pressed("mouse_left") : stack.push_front( Attack1.new(stack) )
