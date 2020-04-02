@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=1]
+[ext_resource path="res://Assety/devil/devil_walk.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.9305, 31.0599 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25.9646, 7.85269 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Walk"
+length = 4.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 1 )
+patrol_behaviour = false
+MONSTER_SPEED = 0
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( 0.263519, -4.21634 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.09973, 45.9803 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 14.1618, -76.3804 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+flip_h = true
+hframes = 4
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Walk"
+playback_speed = 4.0
+anims/Walk = SubResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 29.1397, 52.5723 )
+enabled = true
+cast_to = Vector2( 0, 29 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 31, 22 )
+enabled = true
+cast_to = Vector2( 5, 0 )
+collide_with_areas = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+visible = false
+margin_left = -167.868
+margin_top = -118.245
+margin_right = -39.8676
+margin_bottom = -97.2453
+rect_scale = Vector2( 3, 3 )
+text = "R"
+__meta__ = {
+"_edit_use_anchors_": false
+}
