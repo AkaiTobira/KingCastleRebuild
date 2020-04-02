@@ -21,8 +21,14 @@ func _ready():
 	load_segments()
 
 var enemies = [
-	"res://Scenes/EnemyTemplate.tscn"
+	preload("res://Scenes/EnemyTemplate.tscn"),
+	preload("res://Scenes/Glut.tscn"),
+	preload("res://Scenes/DevilWalker.tscn"),
+	
 ]
+
+func get_enemy_instance():
+	return enemies[randi()%len(enemies)].instance()
 
 var segments = {
 	"angles" : 
