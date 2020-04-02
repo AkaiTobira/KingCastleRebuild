@@ -17,5 +17,7 @@ position = Vector2( 341.705, 214.94 )
 [node name="GUI" type="Node2D" parent="."]
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 968.067, 206.408 )
-scale = Vector2( 2, 2 )
+position = Vector2( 338.683, 810.616 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 338.683, 12.5579 )

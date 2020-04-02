@@ -9,9 +9,9 @@ var PLAYER_IN_AIR_ENABLED  = false
 var GRAVITY      = 50
 var IN_AIR_SPEED = 20
 var SPEED        = 400
-var SPEED_JUMP   = 1600
+var SPEED_JUMP   = 1650
 
-var SEGMENT_SIZE = Vector2(64 * 30, 64 * 18)
+var SEGMENT_SIZE = Vector2(64 * 33, 64 * 19)
 
 func _ready():
 	load_segments()
