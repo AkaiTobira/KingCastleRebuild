@@ -11,6 +11,7 @@ var dir_to_op_dir ={
 var lab        = {}
 
 func get_random_dir():
+	randomize()
 	var dir = [ "U", "L", "R", "D"]
 	return dir[ randi()%4 ]
 
@@ -36,7 +37,6 @@ func is_dir_valid( dir, curr_pos ):
 var MAZE_SIZE = Vector2( 2, 2)
 	
 func _init():
-	
 	for i in range( MAZE_SIZE.x ):
 		for j in range( MAZE_SIZE.y ):
 			lab[Vector2(i,j)] = ""

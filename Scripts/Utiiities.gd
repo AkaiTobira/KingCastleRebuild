@@ -16,6 +16,10 @@ var SEGMENT_SIZE = Vector2(64 * 33, 64 * 19)
 func _ready():
 	load_segments()
 
+var enemies = [
+	"res://Scenes/EnemyTemplate.tscn"
+]
+
 var segments = {
 	"angles" : 
 	{
@@ -77,5 +81,4 @@ func sort_enter(enters):
 
 func get_segment( enters ):
 	var sorted = sort_enter(enters)
-	print( sorted )
 	return segments["angles"][sorted][ randi()%len(segments["angles"][sorted]) ].instance()
