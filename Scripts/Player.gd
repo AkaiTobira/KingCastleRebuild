@@ -24,8 +24,19 @@ func fit_camera_to_world( world_begin, world_size ):
 	$Camera2D.limit_bottom = world_begin.y + world_size.y
 
 # warning-ignore:unused_argument
-func _process(delta): 
+
+
+func _process(delta):
 	FSM._process(delta)
+	
+	shake_camera()
+	
+func shake_camera():
+	if not Util.SHAKE_CAMERA: return
+	var shake_amount = 10.0
+	$Camera2D.set_offset(Vector2( 
+		rand_range(-1.0, 1.0) * shake_amount, 
+		rand_range(-1.0, 1.0) * shake_amount ))
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -38,7 +49,6 @@ func change_direction(new_dir):
 	if dir == new_dir : return
 	dir      = new_dir
 	scale.x *= -1
-
 
 func _gravity():
 	if not Util.PLAYER_GRAVITY_ENABLER: 

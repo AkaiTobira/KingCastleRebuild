@@ -2,14 +2,66 @@ extends Node2D
 
 
 export var valid_enter = { "U" :false, "D": false, "L":false, "R":false }
+export var is_cleaned  = false
+var gates_open   = true
+var int_position = Vector2(-1,-1)
 
 func close_gates():
+	if not gates_open: return
+	gates_open = false
+	timer = 0.0
 	for child in $Gates.get_children():
 		child.close_gate()
 		
 func open_gates():
+	if gates_open: return
+	gates_open = true
 	for child in $Gates.get_children():
 		child.open_gate()
+
+func player_inside():
+	if is_cleaned : return false
+	var i = int(Util.player.position.x / Util.SEGMENT_SIZE.x)
+	var j = int(Util.player.position.y / Util.SEGMENT_SIZE.y)
+	
+	if Vector2(i,j) == int_position : return true
+	return false
+
+var timer = 0.0
+var open_after = 10.0
+
+func _process(delta):
+	if player_inside() and !is_cleaned: 
+		close_gates()
+		timer += delta
+		if timer > open_after: is_cleaned = true
+	elif is_cleaned   : open_gates() 
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 onready var placeholder_tile_set_id = {
