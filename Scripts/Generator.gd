@@ -51,6 +51,7 @@ func _init():
 		if lab[new_Origin] == "" : 
 			lab[Origin]     += direction
 			couter += 1
+			if couter == (Util.MAZE_SIZE.x * Util.MAZE_SIZE.y): lab[new_Origin] += "A" 
 			lab[new_Origin] += dir_to_op_dir[direction]
 
 		Origin = new_Origin
@@ -96,6 +97,13 @@ func generate():
 				add_child(segment)
 			
 				continue
+			elif "A" in lab[Vector2(i,j)]:
+				var segment = Util.get_Atron_room( lab[Vector2(i,j)] )
+				segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
+				segment.int_position = Vector2(i,j)
+				add_child(segment)
+				continue
+				
 			var segment = Util.get_segment( lab[Vector2(i,j)] )
 			segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
 			segment.int_position = Vector2(i,j)
