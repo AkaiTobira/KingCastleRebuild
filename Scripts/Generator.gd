@@ -39,7 +39,7 @@ func _init():
 		for j in range( Util.MAZE_SIZE.y ):
 			lab[Vector2(i,j)] = ""
 	
-	var Origin    = Vector2( randi()%int(Util.MAZE_SIZE.x), randi()%int(Util.MAZE_SIZE.y) )
+	var Origin    = Vector2( 0,0 )
 	var direction = "D"#get_random_dir()
 	#while( !is_dir_valid( direction, Origin )): direction = get_random_dir()
 	var couter    = 1 
@@ -80,6 +80,7 @@ func _ready():
 	generate()
 	Util.labirynth = lab
 	get_parent().get_node("CanvasLayer/Control/TileMap").fill()
+	
 
 func get_start_point():
 	return Util.SEGMENT_SIZE/4
@@ -87,6 +88,14 @@ func get_start_point():
 func generate(): 
 	for i in range( Util.MAZE_SIZE.y ):
 		for j in range( Util.MAZE_SIZE.x ):
+			if i == 0 and j == 0 :
+				
+				var segment = Util.get_tron_room( lab[Vector2(i,j)] )
+				segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
+				segment.int_position = Vector2(i,j)
+				add_child(segment)
+			
+				continue
 			var segment = Util.get_segment( lab[Vector2(i,j)] )
 			segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
 			segment.int_position = Vector2(i,j)

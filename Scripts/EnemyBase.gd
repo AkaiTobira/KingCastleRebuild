@@ -48,3 +48,8 @@ func patrol_move(delta):
 func _process(delta):
 	if is_waked : pass
 	elif ( patrol_behaviour ): patrol_move(delta)
+	
+
+var is_ready = true
+
+func attack_action_calculate(): return -1
