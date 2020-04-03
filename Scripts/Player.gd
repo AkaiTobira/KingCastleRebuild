@@ -24,8 +24,13 @@ func fit_camera_to_world( world_begin, world_size ):
 	$Camera2D.limit_bottom = world_begin.y + world_size.y
 
 # warning-ignore:unused_argument
-func _process(delta): 
+var shake_amount = 10.0
+
+func _process(delta):
 	FSM._process(delta)
+	$Camera2D.set_offset(Vector2( 
+		rand_range(-1.0, 1.0) * shake_amount, 
+		rand_range(-1.0, 1.0) * shake_amount ))
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
