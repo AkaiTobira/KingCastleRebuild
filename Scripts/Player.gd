@@ -14,7 +14,17 @@ var once_jumped             = true
 
 var FSM = preload("res://Scripts/PlayerSFM.gd").new()
 
-func _ready(): motion.y += 1000
+func _ready(): 
+	fit_camera_to_world()
+	motion.y += 1000
+
+func fit_camera_to_world():
+	var world_size  = Util.get_current_world_value()
+	var world_begin = Vector2(0,0)
+	$Camera2D.limit_left   = 0
+	$Camera2D.limit_top    = 0
+	$Camera2D.limit_right  = world_begin.x + world_size.x  
+	$Camera2D.limit_bottom = world_begin.y + world_size.y
 
 # warning-ignore:unused_argument
 func _process(delta): 
