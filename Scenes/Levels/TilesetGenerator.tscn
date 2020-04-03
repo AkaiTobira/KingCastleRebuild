@@ -1,0 +1,583 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assety/Placeholder/PlaceholderTileset1.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33.1021, 32.2476 )
+
+[node name="TileSetKingRoom" type="Node2D"]
+
+[node name="D5_A_1" type="Sprite" parent="."]
+position = Vector2( 39.7108, 34.3035 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_A_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_A_1/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_A_2" type="Sprite" parent="."]
+position = Vector2( 113.711, 34.3035 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_A_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_A_2/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_A_3" type="Sprite" parent="."]
+position = Vector2( 187.711, 34.3035 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_A_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_A_3/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_A_4" type="Sprite" parent="."]
+position = Vector2( 337.711, 34.3035 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_A_4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_A_4/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_A_5" type="Sprite" parent="."]
+position = Vector2( 262.711, 34.3035 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_A_5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_A_5/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_B_1" type="Sprite" parent="."]
+position = Vector2( 39.7108, 101.304 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 12
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_B_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_B_1/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_B_2" type="Sprite" parent="."]
+position = Vector2( 112.711, 101.304 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 13
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_B_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_B_2/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_B_3" type="Sprite" parent="."]
+position = Vector2( 186.711, 101.304 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 14
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_B_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_B_3/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_B_5" type="Sprite" parent="."]
+position = Vector2( 263.711, 101.304 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 15
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_B_5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_B_5/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_B_4" type="Sprite" parent="."]
+position = Vector2( 337.711, 101.304 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 16
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_B_4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_B_4/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_C_1" type="Sprite" parent="."]
+position = Vector2( 42.7634, 166.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 24
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_C_1"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_C_1/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_C_2" type="Sprite" parent="."]
+position = Vector2( 112.763, 166.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 25
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_C_2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_C_2/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_C_3" type="Sprite" parent="."]
+position = Vector2( 187.763, 166.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 26
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_C_3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_C_3/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_C_4" type="Sprite" parent="."]
+position = Vector2( 263.763, 166.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 27
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_C_4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_C_4/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_C_5" type="Sprite" parent="."]
+position = Vector2( 340.763, 166.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 28
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_C_5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_C_5/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_D_1" type="Sprite" parent="."]
+position = Vector2( 74.4697, 237.649 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 6
+frame = 37
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_D_1"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_D_1/StaticBody2D"]
+polygon = PoolVector2Array( -60.7022, -31.421, 65.3477, -30.7576, 64.6843, 28.2868, -59.3754, -30.7576 )
+
+[node name="D5_D_2" type="Sprite" parent="."]
+position = Vector2( 218.47, 237.649 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 6
+frame = 38
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_D_2"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_D_2/StaticBody2D"]
+polygon = PoolVector2Array( -62.7302, -30.0942, 61.9928, -29.4308, 61.9928, 34.2576 )
+
+[node name="D5_D_3" type="Sprite" parent="."]
+position = Vector2( 359.47, 237.649 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 6
+frame = 42
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_D_3"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_D_3/StaticBody2D"]
+polygon = PoolVector2Array( -57.1143, -28.7673, 62.9649, 31.6039, 63.6283, -29.4308 )
+
+[node name="D5_D_4" type="Sprite" parent="."]
+position = Vector2( 498.47, 237.649 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 6
+frame = 43
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_D_4"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_D_4/StaticBody2D"]
+polygon = PoolVector2Array( -62.7667, -30.0942, 66.6003, 33.5942, 65.9369, -29.4308 )
+
+[node name="D5_D_5" type="Sprite" parent="."]
+position = Vector2( 632.47, 237.649 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 6
+frame = 36
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_D_5"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_D_5/StaticBody2D"]
+polygon = PoolVector2Array( -61.4289, -29.4308, 65.9479, -30.0942, 66.6113, 36.2478 )
+
+[node name="D5_E_1" type="Sprite" parent="."]
+position = Vector2( 42.7634, 312.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 36
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_E_1"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_E_1/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_E_2" type="Sprite" parent="."]
+position = Vector2( 115.763, 312.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 37
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_E_2"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_E_2/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_E_3" type="Sprite" parent="."]
+position = Vector2( 189.763, 312.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 38
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_E_3"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_E_3/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_E_4" type="Sprite" parent="."]
+position = Vector2( 262.763, 312.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 39
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_E_4"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_E_4/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_E_5" type="Sprite" parent="."]
+position = Vector2( 337.763, 312.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 40
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_E_5"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_E_5/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_F_1" type="Sprite" parent="."]
+position = Vector2( 43.7634, 382.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 48
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_F_1"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_F_1/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_F_2" type="Sprite" parent="."]
+position = Vector2( 114.763, 382.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 49
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_F_2"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_F_2/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_F_3" type="Sprite" parent="."]
+position = Vector2( 189.763, 383.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 50
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_F_3"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_F_3/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_F_4" type="Sprite" parent="."]
+position = Vector2( 261.763, 383.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 51
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_F_4"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_F_4/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_F_5" type="Sprite" parent="."]
+position = Vector2( 336.763, 383.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 52
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_F_5"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_F_5/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_G_1" type="Sprite" parent="."]
+position = Vector2( 42.7634, 456.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 60
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_G_1"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_G_1/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_G_2" type="Sprite" parent="."]
+position = Vector2( 111.763, 456.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 61
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_G_2"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_G_2/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_G_3" type="Sprite" parent="."]
+position = Vector2( 183.763, 456.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 62
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_G_3"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_G_3/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_G_4" type="Sprite" parent="."]
+position = Vector2( 260.763, 456.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 63
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_G_4"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_G_4/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_G_5" type="Sprite" parent="."]
+position = Vector2( 338.763, 456.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 64
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_G_5"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D5_G_5/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="D5_H_1" type="Sprite" parent="."]
+position = Vector2( 39.7634, 535.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_H_1"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_H_1/StaticBody2D"]
+polygon = PoolVector2Array( -29.2657, 24.9609, 32.1043, -28.2866, -31.0707, -30.0916 )
+
+[node name="D5_H_2" type="Sprite" parent="."]
+position = Vector2( 113.763, 535.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 17
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_H_2"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_H_2/StaticBody2D"]
+polygon = PoolVector2Array( -30.1632, 32.181, 36.6218, -30.0916, -31.9682, -30.0916 )
+
+[node name="D5_H_3" type="Sprite" parent="."]
+position = Vector2( 189.763, 535.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 29
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_H_3"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_H_3/StaticBody2D"]
+polygon = PoolVector2Array( -31.2556, 28.571, -28.5482, -28.2866, 29.2118, -27.3841 )
+
+[node name="D5_H_4" type="Sprite" parent="."]
+position = Vector2( 261.763, 535.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 41
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_H_4"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_H_4/StaticBody2D"]
+polygon = PoolVector2Array( -28.3481, 30.376, -26.5431, -29.1891, 30.3144, -29.1891 )
+
+[node name="D5_H_5" type="Sprite" parent="."]
+position = Vector2( 335.763, 535.619 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 12
+frame = 53
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_H_5"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_H_5/StaticBody2D"]
+polygon = PoolVector2Array( -30.1481, 28.571, -31.0506, -30.9941, 36.6369, -30.0916 )
+
+[node name="D5_I_1" type="Sprite" parent="."]
+position = Vector2( 104.723, 648.432 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_I_1"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_I_1/StaticBody2D"]
+polygon = PoolVector2Array( 93.5679, 4.05035, 95.7839, -61.3236, -97.0139, 4.05035, -94.7979, 64.9922, -31.64, 64.9922, -27.2078, 1.83429 )
+
+[node name="D5_I_2" type="Sprite" parent="."]
+position = Vector2( 309.723, 648.432 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_I_2"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_I_2/StaticBody2D"]
+polygon = PoolVector2Array( 93.5679, 4.05035, 95.7839, -61.3236, -97.0139, 4.05035, -94.7979, 64.9922, -31.64, 64.9922, -27.2078, 1.83429 )
+
+[node name="D5_I_3" type="Sprite" parent="."]
+position = Vector2( 532.723, 648.432 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 6
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_I_3"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_I_3/StaticBody2D"]
+polygon = PoolVector2Array( 93.5679, 4.05035, 95.7839, -61.3236, -97.0139, 4.05035, -94.7979, 64.9922, -31.64, 64.9922, -27.2078, 1.83429 )
+
+[node name="D5_I_4" type="Sprite" parent="."]
+position = Vector2( 532.723, 533.432 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 7
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_I_4"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_I_4/StaticBody2D"]
+polygon = PoolVector2Array( 93.5679, 4.05035, 95.7839, -61.3236, -97.0139, 4.05035, -94.7979, 64.9922, -31.64, 64.9922, -27.2078, 1.83429 )
+
+[node name="D5_I_5" type="Sprite" parent="."]
+position = Vector2( 532.723, 405.432 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 10
+
+[node name="StaticBody2D" type="StaticBody2D" parent="D5_I_5"]
+position = Vector2( -1, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="D5_I_5/StaticBody2D"]
+polygon = PoolVector2Array( 93.5679, 4.05035, 95.7839, -61.3236, -97.0139, 4.05035, -94.7979, 64.9922, -31.64, 64.9922, -27.2078, 1.83429 )

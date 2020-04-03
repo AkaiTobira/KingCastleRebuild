@@ -9,7 +9,7 @@ var op_dir = { "R" : "L", "L" : "R"}
 func _ready():
 	change_direction("R" if randi()%2 == 0 else "L")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	_gravity()
 	move_and_slide(motion, UP)
 
@@ -44,8 +44,7 @@ func patrol_move(delta):
 	elif not $RayCast2D.is_colliding():
 		timer1 = 0
 		change_direction(op_dir[dir])
-	 
-
+		
 func _process(delta):
 	if is_waked : pass
 	elif ( patrol_behaviour ): patrol_move(delta)

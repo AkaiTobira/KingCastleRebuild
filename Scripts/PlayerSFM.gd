@@ -197,14 +197,11 @@ class Attack3 extends AttackBase:
 
 class SlightAirMove extends State:
 	var dir = null
-	
-	var start_combo_once = true
 
 	func get_class():
 		return "SlightAirMove" + dir
 
 	func _init(s_stack, direction, start_combo_once).(s_stack): 
-		start_combo_once = start_combo_once
 		dir = direction
 
 	func update(_delta):
