@@ -23,9 +23,11 @@ func _ready():
 var enemies = [
 	preload("res://Scenes/EnemyTemplate.tscn"),
 	preload("res://Scenes/Glut.tscn"),
-	preload("res://Scenes/DevilWalker.tscn"),
-	
+	preload("res://Scenes/Krzysiek.tscn"),
 ]
+
+func get_current_world_value():
+	return SEGMENT_SIZE*MAZE_SIZE
 
 func get_enemy_instance():
 	return enemies[randi()%len(enemies)].instance()

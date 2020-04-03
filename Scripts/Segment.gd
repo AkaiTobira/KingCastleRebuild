@@ -9,7 +9,6 @@ func generate_enemies():
 		instance.position = child.position
 		$EnemiesMarker.add_child(instance)
 
-
 func _ready():
 	generate_enemies()
 	pass # Replace with function body.
