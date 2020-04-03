@@ -289,10 +289,10 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 resource_name = "Jump2"
-length = 0.5
-step = 0.25
+length = 100.0
+step = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Torso:frame")
 tracks/0/interp = 1
@@ -300,10 +300,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 24, 25, 26, 27, 28, 29, 30 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Torso:visible")
@@ -316,6 +316,30 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Torso:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Torso2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -374,6 +398,7 @@ tracks/3/keys = {
 extents = Vector2( 52.6399, 69.808 )
 
 [node name="Player" type="KinematicBody2D"]
+z_index = 1
 collision_mask = 14
 collision/safe_margin = 0.05
 script = ExtResource( 1 )
@@ -396,6 +421,7 @@ editor_draw_drag_margin = true
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Torso2" type="Sprite" parent="Sprites"]
+visible = false
 position = Vector2( 29.4969, -70.2001 )
 scale = Vector2( 0.280185, 0.280237 )
 texture = ExtResource( 3 )
@@ -408,6 +434,7 @@ scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 6
+frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
@@ -418,7 +445,7 @@ anims/Attack3 = SubResource( 4 )
 anims/Fall = SubResource( 5 )
 anims/Idle = SubResource( 6 )
 anims/Jump = SubResource( 7 )
-anims/Jump2 = SubResource( 8 )
+anims/Jump2 = SubResource( 11 )
 anims/Walk = SubResource( 9 )
 
 [node name="HitBox" type="Area2D" parent="."]

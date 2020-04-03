@@ -82,12 +82,13 @@ func _ready():
 	get_parent().get_node("CanvasLayer/Control/TileMap").fill()
 
 func get_start_point():
-	return Util.SEGMENT_SIZE/2
+	return Util.SEGMENT_SIZE/4
 
 func generate(): 
 	for i in range( Util.MAZE_SIZE.y ):
 		for j in range( Util.MAZE_SIZE.x ):
 			var segment = Util.get_segment( lab[Vector2(i,j)] )
 			segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
+			segment.int_position = Vector2(i,j)
 			add_child(segment)
 			

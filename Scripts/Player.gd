@@ -39,7 +39,6 @@ func change_direction(new_dir):
 	dir      = new_dir
 	scale.x *= -1
 
-
 func _gravity():
 	if not Util.PLAYER_GRAVITY_ENABLER: 
 		motion.y = 0

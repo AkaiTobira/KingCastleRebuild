@@ -93,6 +93,10 @@ class Jump extends State:
 	func handle_input():
 		if   Input.is_action_pressed("ui_right"): stack.push_front( SlightAirMove.new(stack, "R", start_combo_once) )
 		elif Input.is_action_pressed("ui_left") : stack.push_front( SlightAirMove.new(stack, "L", start_combo_once) )
+		elif Input.is_action_just_pressed("ui_up")      and Util.PLAYER_SECOND_JUMP :  
+			Util.player.play_anim("Fall")
+			Util.PLAYER_SECOND_JUMP = false
+			stack.push_front( Jump.new(stack) )
 		if   Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
 			stack.push_front( Attack1.new(stack) )
 
@@ -114,6 +118,10 @@ class Fall extends State:
 	func handle_input():
 		if   Input.is_action_pressed("ui_right"): stack.push_front( SlightAirMove.new(stack, "R", start_combo_once) )
 		elif Input.is_action_pressed("ui_left") : stack.push_front( SlightAirMove.new(stack, "L", start_combo_once) )
+		elif Input.is_action_just_pressed("ui_up")      and Util.PLAYER_SECOND_JUMP :  
+			Util.PLAYER_SECOND_JUMP = false
+			Util.player.play_anim("Fall")
+			stack.push_front( Jump.new(stack) )
 		if   Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
 			stack.push_front( Attack1.new(stack) )
 
@@ -227,9 +235,14 @@ class SlightAirMove extends State:
 		if !Input.is_action_pressed("ui_right") : is_over = true
 
 	func handle_input(): 
+		
 		if Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
 			Util.PLAYER_IN_AIR_ENABLED = false
 			stack.push_front( Attack1.new(stack) )
+		elif Input.is_action_just_pressed("ui_up")      and Util.PLAYER_SECOND_JUMP :  
+			Util.player.play_anim("Fall")
+			Util.PLAYER_SECOND_JUMP = false
+			stack.push_front( Jump.new(stack) )
 
 class Idle extends State:
 
@@ -244,6 +257,7 @@ class Idle extends State:
 	func update(_delta): 
 		Util.player.play_anim("Idle")
 		Util.PLAYER_GRAVITY_ENABLER = true
+		Util.PLAYER_SECOND_JUMP     = true
 		Util.player.motion.x = 0
 		if Util.player.motion.y > Util.SPEED/2: stack.push_front( Fall.new(stack) )
 

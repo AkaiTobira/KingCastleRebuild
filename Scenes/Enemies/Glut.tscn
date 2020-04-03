@@ -28,6 +28,7 @@ tracks/0/keys = {
 }
 
 [node name="Enemy" type="KinematicBody2D"]
+z_index = 1
 script = ExtResource( 2 )
 patrol_behaviour = false
 MONSTER_SPEED = 0

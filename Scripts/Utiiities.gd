@@ -5,17 +5,18 @@ var player = null
 var GUI    = null
 var PLAYER_GRAVITY_ENABLER = true
 var PLAYER_IN_AIR_ENABLED  = false
+var PLAYER_SECOND_JUMP     = true
 
 var GRAVITY      = 50
 var IN_AIR_SPEED = 20
 var SPEED        = 400
-var SPEED_JUMP   = 1650
+var SPEED_JUMP   = 1050
 
 var MAZE_SIZE = Vector2( 2, 2)
 
 var labirynth    = {}
 
-var SEGMENT_SIZE = Vector2(64 * 33, 64 * 19)
+var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
 
 func _ready():
 	load_segments()
