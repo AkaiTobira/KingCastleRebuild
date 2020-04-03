@@ -14,15 +14,12 @@ var once_jumped             = true
 
 var FSM = preload("res://Scripts/PlayerSFM.gd").new()
 
-func _ready(): 
-	fit_camera_to_world()
+func _ready():
 	motion.y += 1000
 
-func fit_camera_to_world():
-	var world_size  = Util.get_current_world_value()
-	var world_begin = Vector2(0,0)
-	$Camera2D.limit_left   = 0
-	$Camera2D.limit_top    = 0
+func fit_camera_to_world( world_begin, world_size ):
+	$Camera2D.limit_left   = world_begin.x
+	$Camera2D.limit_top    = world_begin.y
 	$Camera2D.limit_right  = world_begin.x + world_size.x  
 	$Camera2D.limit_bottom = world_begin.y + world_size.y
 
@@ -66,8 +63,8 @@ func should_land():
 	if test_move( get_transform(), Vector2(0, 20) ): return true
 	return false
 
-func _on_HitBox_body_entered(body):
+func _on_HitBox_body_entered(_body):
 	pass # Replace with function body.
 
-func _on_AttackBox_area_entered(area):
+func _on_AttackBox_area_entered(_area):
 	pass # Replace with function body.

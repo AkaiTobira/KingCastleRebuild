@@ -40,8 +40,8 @@ func _init():
 			lab[Vector2(i,j)] = ""
 	
 	var Origin    = Vector2( randi()%int(Util.MAZE_SIZE.x), randi()%int(Util.MAZE_SIZE.y) )
-	var direction = get_random_dir()
-	while( !is_dir_valid( direction, Origin )): direction = get_random_dir()
+	var direction = "D"#get_random_dir()
+	#while( !is_dir_valid( direction, Origin )): direction = get_random_dir()
 	var couter    = 1 
 
 	while( true ):
@@ -65,11 +65,24 @@ func print_maze():
 			sss += "\n|"
 		print(sss)
 
+func change_style(): pass
+	#for segment in get_children():
+	#	segment.switch_style("K1")
+
+func get_current_world_begin():
+	return Vector2(0,0)
+
+func get_current_world_value():
+	return Util.SEGMENT_SIZE*Util.MAZE_SIZE
+
 func _ready():
 	randomize()
 	generate()
 	Util.labirynth = lab
 	get_parent().get_node("CanvasLayer/Control/TileMap").fill()
+
+func get_start_point():
+	return Util.SEGMENT_SIZE/2
 
 func generate(): 
 	for i in range( Util.MAZE_SIZE.y ):
@@ -77,4 +90,4 @@ func generate():
 			var segment = Util.get_segment( lab[Vector2(i,j)] )
 			segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
 			add_child(segment)
-	
+			

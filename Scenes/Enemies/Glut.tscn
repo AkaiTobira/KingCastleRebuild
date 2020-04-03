@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=1]
-[ext_resource path="res://Assety/glut/walk.png" type="Texture" id=2]
+[ext_resource path="res://Assety/glut/walk.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17.9305, 31.0599 )
@@ -28,7 +28,7 @@ tracks/0/keys = {
 }
 
 [node name="Enemy" type="KinematicBody2D"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 patrol_behaviour = false
 MONSTER_SPEED = 0
 
@@ -46,7 +46,7 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.487671, 19.0194 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 hframes = 9
 frame = 7
 
