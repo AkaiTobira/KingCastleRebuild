@@ -11,7 +11,7 @@ var IN_AIR_SPEED = 20
 var SPEED        = 400
 var SPEED_JUMP   = 1650
 
-var MAZE_SIZE = Vector2( 5, 5)
+var MAZE_SIZE = Vector2( 2, 2)
 
 var labirynth    = {}
 
@@ -21,13 +21,41 @@ func _ready():
 	load_segments()
 
 var enemies = [
-	preload("res://Scenes/EnemyTemplate.tscn"),
-	preload("res://Scenes/Glut.tscn"),
-	preload("res://Scenes/Krzysiek.tscn"),
+	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
+	preload("res://Scenes/Enemies/Glut.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek.tscn"),
 ]
 
-func get_current_world_value():
-	return SEGMENT_SIZE*MAZE_SIZE
+var tilesets = {
+	"K1" : preload("res://Tilesets/KingRoom1.tres" ),
+	"K2" : preload("res://Tilesets/KingRoom2.tres" ),
+	"K3" : preload("res://Tilesets/KingRoom3.tres" ),
+	"K4" : preload("res://Tilesets/KingRoom4.tres" ),
+	"K5" : preload("res://Tilesets/KingRoom5.tres" ),
+	"D1" : preload("res://Tilesets/Dungeon1.tres" ),
+	"D2" : preload("res://Tilesets/Dungeon2.tres" ),
+	"D3" : preload("res://Tilesets/Dungeon3.tres" ),
+	"D4" : preload("res://Tilesets/Dungeon4.tres" ),
+	"D5" : preload("res://Tilesets/Dungeon5.tres" )
+}
+
+var tileset_info = {}
+
+func parse_tileset( tileset_name ):
+	if tileset_name in tileset_info.keys(): return
+	tileset_info[tileset_name] = { "A":[], "B":[], "C":[], "D":[], "E":[], "F":[],"G":[], "H":[], "I": []}
+	var tileset = get_tileset(tileset_name)
+	for letter in [ "A", "B", "C", "D", "E", "F", "G", "H", "I"]:
+		for i in range(5):
+			tileset_info[tileset_name][letter].append( tileset.find_tile_by_name( "D5_" + letter + "_" + str(i+1)))
+	print(tileset_info[tileset_name])
+
+func get_tileset_info(tileset_name):
+	parse_tileset(tileset_name)
+	return tileset_info[tileset_name]
+
+func get_tileset( tilest_name ):
+	return tilesets[tilest_name]
 
 func get_enemy_instance():
 	return enemies[randi()%len(enemies)].instance()
