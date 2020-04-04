@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assety/red bjuti/redbjuti.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=2]
@@ -8,6 +8,40 @@ extents = Vector2( 17.9305, 31.0599 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 25.9646, 7.85269 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Dead"
+length = 4.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Hit"
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 9 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -48,11 +82,13 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
-frame = 7
+frame = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_speed = 4.0
+anims/Dead = SubResource( 4 )
+anims/Hit = SubResource( 5 )
 anims/Idle = SubResource( 3 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

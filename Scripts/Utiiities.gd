@@ -8,6 +8,18 @@ var PLAYER_IN_AIR_ENABLED  = false
 var PLAYER_SECOND_JUMP     = true
 var SHAKE_CAMERA           = false
 
+var ENABLED_SKILLS = {
+	"Attack1" : true,
+	"Jump"    : true,
+	"Jump2"   : false,
+	"Attack2" : false,
+	"Attack3" : false,
+	"Magic2"  : false,
+	"Magic3"  : false,
+	"Magic4"  : false,
+	"Attack4" : false 
+}
+
 var GRAVITY      = 50
 var IN_AIR_SPEED = 20
 var SPEED        = 400
@@ -26,6 +38,9 @@ var enemies = [
 	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
 	preload("res://Scenes/Enemies/Glut.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek4.tscn")
 ]
 
 var tilesets = {
