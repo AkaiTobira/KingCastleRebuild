@@ -30,7 +30,7 @@ var IN_AIR_SPEED = 60
 var SPEED        = 400
 var SPEED_JUMP   = 1050
 
-var MAZE_SIZE = Vector2( 2, 2)
+var MAZE_SIZE = Vector2( 10, 10)
 
 var labirynth    = {}
 
@@ -48,12 +48,13 @@ func get_project_tile( tile_name ):
 	return project_tiles[tile_name].instance()
 
 var enemies = [
-	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
-	preload("res://Scenes/Enemies/Glut.tscn"),
-	preload("res://Scenes/Enemies/Krzysiek.tscn"),
-	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
-	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
-	preload("res://Scenes/Enemies/Krzysiek4.tscn")
+#	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
+#	preload("res://Scenes/Enemies/Glut.tscn"),
+#	preload("res://Scenes/Enemies/Krzysiek.tscn"),
+#	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
+#	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
+#	preload("res://Scenes/Enemies/Krzysiek4.tscn"),
+	preload("res://Scenes/Enemies/Bat.tscn")
 ]
 
 var tilesets = {
