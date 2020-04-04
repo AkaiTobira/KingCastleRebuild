@@ -26,7 +26,7 @@ var ENABLED_SKILLS = {
 }
 
 var GRAVITY      = 50
-var IN_AIR_SPEED = 50
+var IN_AIR_SPEED = 60
 var SPEED        = 400
 var SPEED_JUMP   = 1050
 
@@ -48,12 +48,12 @@ func get_project_tile( tile_name ):
 	return project_tiles[tile_name].instance()
 
 var enemies = [
-#	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
-#	preload("res://Scenes/Enemies/Glut.tscn"),
+	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
+	preload("res://Scenes/Enemies/Glut.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek.tscn"),
-#	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
-#	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
-#	preload("res://Scenes/Enemies/Krzysiek4.tscn")
+	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek4.tscn")
 ]
 
 var tilesets = {

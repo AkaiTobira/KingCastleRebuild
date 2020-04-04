@@ -1,21 +1,21 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Assety/devil/dev1.png" type="Texture" id=1]
+[ext_resource path="res://Assety/devil/dev4.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.9814, 67.8422 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 38.4049, 24.8312 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 25.9646, 7.85269 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 25.9646, 85.1849 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "Atak"
-length = 6.0
-step = 1.0
+length = 2.6
+step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -23,7 +23,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 7, 8, 9, 10, 11, 12 ]
@@ -35,7 +35,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1, 5 ),
+"times": PoolRealArray( 0.5, 2.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -47,7 +47,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1, 2, 3, 4 ),
+"times": PoolRealArray( 0.5, 1, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 69, -28.2337 ), Vector2( 67.46, -71.8677 ), Vector2( 38.1995, -129.875 ), Vector2( 64.8933, -3.08006 ) ]
@@ -59,7 +59,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1, 2, 3, 4 ),
+"times": PoolRealArray( 0.5, 1, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 2 ) ]
@@ -100,8 +100,7 @@ tracks/0/keys = {
 "values": [ 26, 27 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Walk"
+[sub_resource type="Animation" id=7]
 length = 4.0
 loop = true
 step = 1.0
@@ -129,6 +128,8 @@ MONSTER_SPEED = 250
 [node name="HitBox" type="Area2D" parent="." groups=[
 "Enemy",
 ]]
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" groups=[
 "Enemy",
@@ -137,17 +138,20 @@ position = Vector2( -6.92328, -32.9634 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 69, -28.2337 )
-shape = SubResource( 7 )
+position = Vector2( 64.8933, -3.08006 )
+scale = Vector2( 1, 2 )
+shape = SubResource( 2 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
 "Enemy",
 ]]
-position = Vector2( -1.09973, 45.9803 )
-shape = SubResource( 2 )
+position = Vector2( -6.74649, -24.8609 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.8382, -63.3804 )
@@ -156,7 +160,7 @@ texture = ExtResource( 1 )
 flip_h = true
 vframes = 4
 hframes = 7
-frame = 7
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Walk"
@@ -164,7 +168,7 @@ playback_speed = 4.0
 anims/Atak = SubResource( 4 )
 anims/Dead = SubResource( 5 )
 anims/Hit = SubResource( 6 )
-anims/Walk = SubResource( 3 )
+anims/Walk = SubResource( 7 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 29.1397, 52.5723 )
@@ -178,7 +182,7 @@ cast_to = Vector2( 5, 0 )
 collide_with_areas = true
 
 [node name="RayCast2D3" type="RayCast2D" parent="."]
-position = Vector2( 32.1376, 5.50482 )
+position = Vector2( 29.5709, 39.8987 )
 enabled = true
 cast_to = Vector2( 50, 0 )
 collide_with_areas = true
