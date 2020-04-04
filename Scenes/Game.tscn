@@ -10,7 +10,7 @@
 [ext_resource path="res://Assety/gradient.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Darking.gd" type="Script" id=9]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Darkness"
 length = 3.0
 tracks/0/type = "value"
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=2]
 0/name = "Minimap.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -269,12 +269,12 @@ z_index = 10
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Sprite"]
-anims/Darkness = SubResource( 2 )
+anims/Darkness = SubResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="CanvasLayer/Control"]
 modulate = Color( 1, 1, 1, 0.509804 )
 scale = Vector2( 4, 4 )
-tile_set = SubResource( 1 )
+tile_set = SubResource( 2 )
 format = 1
 tile_data = PoolIntArray( 0, 15, 0 )
 script = ExtResource( 6 )

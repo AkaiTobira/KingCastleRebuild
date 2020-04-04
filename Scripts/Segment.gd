@@ -51,18 +51,18 @@ func _process(delta):
 #	$TileMap.tile_set.find_tile_by_name("I") : "I"
 #}
 #
-#func generate_enemies():
-#	for child in $EnemiesMarker.get_children():
-#		var instance = Util.get_enemy_instance()
-#		instance.position = child.position
-#		$EnemiesMarker.add_child(instance)
+func generate_enemies():
+	for child in $EnemiesMarker.get_children():
+		var instance = Util.get_enemy_instance()
+		instance.position = child.position
+		$EnemiesMarker.add_child(instance)
 #
-#func _ready():
+func _ready():
 #	print(placeholder_tile_set_id)
 #	print($TileMap.tile_set.get_tiles_ids())
-#	generate_enemies()
+	generate_enemies()
 #	var sss = ""
-#
+
 #func switch_style(tilesetName):
 #
 #
