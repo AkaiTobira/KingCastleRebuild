@@ -93,7 +93,7 @@ class Jump extends State:
 	func handle_input():
 		if   Input.is_action_pressed("ui_right"): stack.push_front( SlightAirMove.new(stack, "R", start_combo_once) )
 		elif Input.is_action_pressed("ui_left") : stack.push_front( SlightAirMove.new(stack, "L", start_combo_once) )
-		elif Input.is_action_just_pressed("ui_up")      and Util.PLAYER_SECOND_JUMP :  
+		elif Input.is_action_just_pressed("ui_up") and Util.ENABLED_SKILLS["Jump2"] and Util.PLAYER_SECOND_JUMP :  
 			Util.player.play_anim("Fall")
 			Util.PLAYER_SECOND_JUMP = false
 			stack.push_front( Jump.new(stack) )
@@ -118,7 +118,7 @@ class Fall extends State:
 	func handle_input():
 		if   Input.is_action_pressed("ui_right"): stack.push_front( SlightAirMove.new(stack, "R", start_combo_once) )
 		elif Input.is_action_pressed("ui_left") : stack.push_front( SlightAirMove.new(stack, "L", start_combo_once) )
-		elif Input.is_action_just_pressed("ui_up")      and Util.PLAYER_SECOND_JUMP :  
+		elif Input.is_action_just_pressed("ui_up") and Util.ENABLED_SKILLS["Jump2"] and Util.PLAYER_SECOND_JUMP :   
 			Util.PLAYER_SECOND_JUMP = false
 			Util.player.play_anim("Fall")
 			stack.push_front( Jump.new(stack) )
@@ -173,8 +173,8 @@ class Attack1 extends AttackBase:
 	
 	func handle_input():
 		if animation_status > 0.2:
-			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
-			if Input.is_action_just_pressed("ui_magic")   : next_key_presed = "E"
+			if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["Attack2"] : next_key_presed = "MouseL"
+			if Input.is_action_just_pressed("ui_magic")   and Util.ENABLED_SKILLS["Magic2"]  : next_key_presed = "E"
 
 class Magic2 extends AttackBase:
 
@@ -192,8 +192,8 @@ class Magic2 extends AttackBase:
 	
 	func handle_input():
 		if animation_status > 0.2:
-			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
-			if Input.is_action_just_pressed("ui_magic")   : next_key_presed = "E"
+			if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["Attack4"] : next_key_presed = "MouseL"
+			if Input.is_action_just_pressed("ui_magic")   and Util.ENABLED_SKILLS["Magic4"]  : next_key_presed = "E"
 
 
 class Attack2 extends AttackBase:
@@ -212,8 +212,8 @@ class Attack2 extends AttackBase:
 	
 	func handle_input():
 		if animation_status > 0.2:
-			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
-			if Input.is_action_just_pressed("ui_magic")   : next_key_presed = "E"
+			if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["Attack3"]: next_key_presed = "MouseL"
+			if Input.is_action_just_pressed("ui_magic")   and Util.ENABLED_SKILLS["Magic3"] : next_key_presed = "E"
 
 
 class Magic4 extends AttackBase:
@@ -297,7 +297,7 @@ class SlightAirMove extends State:
 		if Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
 			Util.PLAYER_IN_AIR_ENABLED = false
 			stack.push_front( Attack1.new(stack) )
-		elif Input.is_action_just_pressed("ui_up")      and Util.PLAYER_SECOND_JUMP :  
+		elif Input.is_action_just_pressed("ui_up") and Util.ENABLED_SKILLS["Jump2"] and Util.PLAYER_SECOND_JUMP :  
 			Util.player.play_anim("Fall")
 			Util.PLAYER_SECOND_JUMP = false
 			stack.push_front( Jump.new(stack) )

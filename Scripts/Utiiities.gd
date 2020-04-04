@@ -11,13 +11,13 @@ var SHAKE_CAMERA           = false
 var ENABLED_SKILLS = {
 	"Attack1" : true,
 	"Jump"    : true,
-	"Jump2"   : false,
-	"Attack2" : false,
-	"Attack3" : false,
-	"Magic2"  : false,
-	"Magic3"  : false,
-	"Magic4"  : false,
-	"Attack4" : false 
+	"Jump2"   : true,
+	"Attack2" : true,
+	"Attack3" : true,
+	"Magic2"  : true,
+	"Magic3"  : true,
+	"Magic4"  : true,
+	"Attack4" : true
 }
 
 var GRAVITY      = 50
@@ -33,6 +33,14 @@ var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
 
 func _ready():
 	load_segments()
+
+var project_tiles = {
+	"FBall" : preload("res://Scenes/Fireball.tscn"),
+	"EBall" : preload("res://Scenes/EnegryBall.tscn")
+}
+
+func get_project_tile( tile_name ):
+	return project_tiles[tile_name].instance()
 
 var enemies = [
 	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),

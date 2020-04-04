@@ -63,13 +63,17 @@ func get_animation_status():
 	return float($AnimationPlayer.get_current_animation_position())/float($AnimationPlayer.get_current_animation_length())
 
 func create_fireball():
-	print( "HERE GOES FIREBALL")
+	var instance = Util.get_project_tile("FBall")
+	instance.dir = sign(scale.x)
+	instance.position = position + instance.dir * 50 * Vector2(1, 0)
+	get_parent().add_child(instance)
 	pass
 
 func create_enegrySphere():
-	print( "HERE GOES FIREBALL")
-	pass
-
+	var instance = Util.get_project_tile("EBall")
+	instance.dir = sign(scale.x)
+	instance.position = position + instance.dir * 50 * Vector2(1, 0)
+	get_parent().add_child(instance)
 
 func play_anim(anim_name): 
 	if $AnimationPlayer.current_animation == anim_name : return
