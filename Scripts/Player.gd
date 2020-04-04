@@ -62,6 +62,15 @@ func _gravity():
 func get_animation_status():
 	return float($AnimationPlayer.get_current_animation_position())/float($AnimationPlayer.get_current_animation_length())
 
+func create_fireball():
+	print( "HERE GOES FIREBALL")
+	pass
+
+func create_enegrySphere():
+	print( "HERE GOES FIREBALL")
+	pass
+
+
 func play_anim(anim_name): 
 	if $AnimationPlayer.current_animation == anim_name : return
 	#var nodes = $Sprites
@@ -73,8 +82,17 @@ func should_land():
 	if test_move( get_transform(), Vector2(0, 20) ): return true
 	return false
 
-func _on_HitBox_body_entered(_body):
+func _on_AttackBox_area_entered(_area):
 	pass # Replace with function body.
 
-func _on_AttackBox_area_entered(_area):
+func _on_HitBox1_body_entered():
+	pass # Replace with function body.
+
+func _on_HitBox2_body_entered():
+	pass # Replace with function body.
+
+func _on_HitBox3_body_entered():
+	pass # Replace with function body.
+
+func _on_AttakBox_area_entered(area):
 	pass # Replace with function body.

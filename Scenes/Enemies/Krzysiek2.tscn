@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Assety/devil/dev1.png" type="Texture" id=1]
+[ext_resource path="res://Assety/devil/dev2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -9,7 +9,7 @@ extents = Vector2( 17.9305, 31.0599 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 25.9646, 7.85269 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Atak"
 length = 6.0
 step = 1.0
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ 7, 8, 9, 10, 11, 12 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Dead"
 length = 7.0
 step = 1.0
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Hit"
 length = 2.0
 loop = true
@@ -61,8 +61,7 @@ tracks/0/keys = {
 "values": [ 26, 27 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Walk"
+[sub_resource type="Animation" id=6]
 length = 4.0
 loop = true
 step = 1.0
@@ -107,10 +106,10 @@ frame = 16
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Walk"
 playback_speed = 4.0
-anims/Atak = SubResource( 4 )
-anims/Dead = SubResource( 5 )
-anims/Hit = SubResource( 6 )
-anims/Walk = SubResource( 3 )
+anims/Atak = SubResource( 3 )
+anims/Dead = SubResource( 4 )
+anims/Hit = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 29.1397, 52.5723 )

@@ -16,7 +16,7 @@ func _process(delta):
 	for elem in stack:
 		restr += elem.get_class() + ","
 	restr += "]"
-	#print( restr )
+	print( restr )
 #	if Flow.world_is_paused or Utilities.player.pause: return
 	while stack[0].is_over : stack.pop_front()
 	stack[0].update(delta)
@@ -143,7 +143,7 @@ class AttackBase extends State:
 		Util.player.play_anim(animation_name)
 		animation_status = Util.player.get_animation_status()
 		Util.player.motion.x = (-Util.SPEED if dir == "L" else Util.SPEED)  * ((1.0 - animation_status))*0.2
-		if( animation_status > 0.95): 
+		if( animation_status > 0.9): 
 			is_over = true
 			Util.PLAYER_GRAVITY_ENABLER = false
 		elif( animation_status > change_r):
@@ -153,8 +153,6 @@ class AttackBase extends State:
 				push_next_attack()
 				Util.PLAYER_GRAVITY_ENABLER = false
 
-		
-			
 	func push_next_attack(): pass
 	func handle_input(): pass
 
@@ -167,13 +165,36 @@ class Attack1 extends AttackBase:
 		Util.PLAYER_GRAVITY_ENABLER = false
 
 	func push_next_attack():
+		is_over = true
 		match next_key_presed:
 			"MouseL" : stack.push_front( Attack2.new(stack) )
+			"E"      : stack.push_front( Magic2.new(stack) )
 			_ : return
 	
 	func handle_input():
 		if animation_status > 0.2:
 			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
+			if Input.is_action_just_pressed("ui_magic")   : next_key_presed = "E"
+
+class Magic2 extends AttackBase:
+
+	func get_class():
+		return "Magic2"
+
+	func _init(s_stack).(s_stack,"Magic2", 2.31/3.3):
+		Util.PLAYER_GRAVITY_ENABLER = false
+	
+	func push_next_attack():
+		match next_key_presed:
+			"MouseL" : stack.push_front( Attack4.new(stack) )
+			"E"      : stack.push_front( Magic4.new(stack) )
+			_ : return
+	
+	func handle_input():
+		if animation_status > 0.2:
+			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
+			if Input.is_action_just_pressed("ui_magic")   : next_key_presed = "E"
+
 
 class Attack2 extends AttackBase:
 
@@ -186,11 +207,48 @@ class Attack2 extends AttackBase:
 	func push_next_attack():
 		match next_key_presed:
 			"MouseL" : stack.push_front( Attack3.new(stack) )
+			"E"      : stack.push_front( Magic3.new(stack) )
 			_ : return
 	
 	func handle_input():
 		if animation_status > 0.2:
 			if Input.is_action_just_pressed("mouse_left") : next_key_presed = "MouseL"
+			if Input.is_action_just_pressed("ui_magic")   : next_key_presed = "E"
+
+
+class Magic4 extends AttackBase:
+
+	func get_class():
+		return "Magic4"
+
+	func _init(s_stack).(s_stack, "Magic4", 0.96):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): pass
+	func handle_input(): pass
+
+
+class Attack4 extends AttackBase:
+
+	func get_class():
+		return "Attack4"
+
+	func _init(s_stack).(s_stack, "Attack4", 0.96):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): pass
+	func handle_input(): pass
+
+class Magic3 extends AttackBase:
+
+	func get_class():
+		return "Magic3"
+
+	func _init(s_stack).(s_stack, "Magic3", 0.96):
+		Util.PLAYER_GRAVITY_ENABLER = false
+		
+	func push_next_attack(): pass
+	func handle_input(): pass
 
 class Attack3 extends AttackBase:
 
