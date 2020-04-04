@@ -1,27 +1,32 @@
 extends Node
 
 
-var player = null
-var GUI    = null
+
+var player   = null
+var GUI      = null
+var darkness = null
+
 var PLAYER_GRAVITY_ENABLER = true
 var PLAYER_IN_AIR_ENABLED  = false
 var PLAYER_SECOND_JUMP     = true
 var SHAKE_CAMERA           = false
 
 var ENABLED_SKILLS = {
-	"Attack1" : true,
-	"Jump"    : true,
-	"Jump2"   : true,
-	"Attack2" : true,
-	"Attack3" : true,
-	"Magic2"  : true,
-	"Magic3"  : true,
-	"Magic4"  : true,
-	"Attack4" : true
+	"Attack1"     : true,
+	"Jump"        : true,
+	"JumpAttack1" : true,
+	"JumpAttack2" : true,
+	"Jump2"       : true,
+	"Attack2"     : true,
+	"Attack3"     : true,
+	"Magic2"      : true,
+	"Magic3"      : true,
+	"Magic4"      : true,
+	"Attack4"     : true
 }
 
 var GRAVITY      = 50
-var IN_AIR_SPEED = 20
+var IN_AIR_SPEED = 50
 var SPEED        = 400
 var SPEED_JUMP   = 1050
 
@@ -43,12 +48,12 @@ func get_project_tile( tile_name ):
 	return project_tiles[tile_name].instance()
 
 var enemies = [
-	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
-	preload("res://Scenes/Enemies/Glut.tscn"),
+#	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
+#	preload("res://Scenes/Enemies/Glut.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek.tscn"),
-	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
-	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
-	preload("res://Scenes/Enemies/Krzysiek4.tscn")
+#	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
+#	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
+#	preload("res://Scenes/Enemies/Krzysiek4.tscn")
 ]
 
 var tilesets = {

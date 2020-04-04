@@ -5,6 +5,17 @@ var stack = []
 func _init(): 
 	stack.push_front( Idle.new(stack) )
 
+func _player_get_hit( state ):
+	if stack[0].get_class() == "Dead" : return
+	_exit_tree()
+	stack = []
+	stack.push_front(Idle.new(stack))
+	match (state) :
+		"Hit1"  :  stack.push_front( Hit1.new(stack) )
+		"Hit2"  :  stack.push_front( Hit2.new(stack) )
+		"Hit3"  :  stack.push_front( Hit3.new(stack) )
+		"Dead"  :  stack.push_front( Dead.new(stack) )
+
 func _exit_tree(): #FOR GOD SAKE THIS GODOT SHOULD DO!!!
 	while len(stack):
 		stack[0].stack = null
@@ -16,7 +27,7 @@ func _process(delta):
 	for elem in stack:
 		restr += elem.get_class() + ","
 	restr += "]"
-	print( restr )
+#	print( restr )
 #	if Flow.world_is_paused or Utilities.player.pause: return
 	while stack[0].is_over : stack.pop_front()
 	stack[0].update(delta)
@@ -30,6 +41,50 @@ class State:
 
 	func _init(s_stack): 
 		stack            = s_stack
+
+class Dead extends State:
+	func get_class():
+		return "Dead"
+
+	func _init(s_stack).(s_stack): pass
+	func update(_delta): 
+		Util.player.play_anim("Dead")
+	func handle_input(): pass
+
+class Hit3 extends AttackBase:
+
+	func get_class():
+		return "Hit3"
+
+	func _init(s_stack).(s_stack, "Hit3", 0.90):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): pass
+	func handle_input(): pass
+
+class Hit1 extends AttackBase:
+
+	func get_class():
+		return "Hit1"
+
+	func _init(s_stack).(s_stack, "Hit1", 0.90):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): pass
+
+	func handle_input(): pass
+
+class Hit2 extends AttackBase:
+
+	func get_class():
+		return "Hit2"
+
+	func _init(s_stack).(s_stack, "Hit2", 0.90):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): pass
+
+	func handle_input(): pass
 
 class Move extends State:
 	var jump_counter = 0
@@ -97,8 +152,8 @@ class Jump extends State:
 			Util.player.play_anim("Fall")
 			Util.PLAYER_SECOND_JUMP = false
 			stack.push_front( Jump.new(stack) )
-		if   Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
-			stack.push_front( Attack1.new(stack) )
+		if   Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["JumpAttack1"] and Util.PLAYER_IN_AIR_ENABLED : 
+			stack.push_front( JumpAttack1.new(stack) )
 
 class Fall extends State:
 	var start_combo_once = true
@@ -122,8 +177,8 @@ class Fall extends State:
 			Util.PLAYER_SECOND_JUMP = false
 			Util.player.play_anim("Fall")
 			stack.push_front( Jump.new(stack) )
-		if   Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
-			stack.push_front( Attack1.new(stack) )
+		if   Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["JumpAttack1"] and Util.PLAYER_IN_AIR_ENABLED : 
+			stack.push_front( JumpAttack1.new(stack) )
 
 class AttackBase extends State:
 	var dir              = null
@@ -176,6 +231,36 @@ class Attack1 extends AttackBase:
 			if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["Attack2"] : next_key_presed = "MouseL"
 			if Input.is_action_just_pressed("ui_magic")   and Util.ENABLED_SKILLS["Magic2"]  : next_key_presed = "E"
 
+class JumpAttack1 extends AttackBase:
+
+	func get_class():
+		return "JumpAttack1"
+
+	func _init(s_stack).(s_stack,"JumpAttack1", 0.45):
+		Util.PLAYER_IN_AIR_ENABLED  = false
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack():
+		is_over = true
+		match next_key_presed:
+			"MouseL" : stack.push_front( JumpAttack2.new(stack) )
+			_ : return
+	
+	func handle_input():
+		if animation_status > 0.2:
+			if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["JumpAttack2"] : next_key_presed = "MouseL"
+
+class JumpAttack2 extends AttackBase:
+	func get_class():
+		return "JumpAttack2"
+
+	func _init(s_stack).(s_stack, "JumpAttack2", 0.96):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): pass
+	func handle_input(): pass
+
+
 class Magic2 extends AttackBase:
 
 	func get_class():
@@ -194,7 +279,6 @@ class Magic2 extends AttackBase:
 		if animation_status > 0.2:
 			if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["Attack4"] : next_key_presed = "MouseL"
 			if Input.is_action_just_pressed("ui_magic")   and Util.ENABLED_SKILLS["Magic4"]  : next_key_presed = "E"
-
 
 class Attack2 extends AttackBase:
 
@@ -215,7 +299,6 @@ class Attack2 extends AttackBase:
 			if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["Attack3"]: next_key_presed = "MouseL"
 			if Input.is_action_just_pressed("ui_magic")   and Util.ENABLED_SKILLS["Magic3"] : next_key_presed = "E"
 
-
 class Magic4 extends AttackBase:
 
 	func get_class():
@@ -226,7 +309,6 @@ class Magic4 extends AttackBase:
 
 	func push_next_attack(): pass
 	func handle_input(): pass
-
 
 class Attack4 extends AttackBase:
 
@@ -294,9 +376,8 @@ class SlightAirMove extends State:
 
 	func handle_input(): 
 		
-		if Input.is_action_just_pressed("mouse_left") and Util.PLAYER_IN_AIR_ENABLED : 
-			Util.PLAYER_IN_AIR_ENABLED = false
-			stack.push_front( Attack1.new(stack) )
+		if Input.is_action_just_pressed("mouse_left") and Util.ENABLED_SKILLS["JumpAttack1"] and Util.PLAYER_IN_AIR_ENABLED : 
+			stack.push_front( JumpAttack1.new(stack) )
 		elif Input.is_action_just_pressed("ui_up") and Util.ENABLED_SKILLS["Jump2"] and Util.PLAYER_SECOND_JUMP :  
 			Util.player.play_anim("Fall")
 			Util.PLAYER_SECOND_JUMP = false

@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Tilesets/PlaceholderTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/Segment.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/GateD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assety/pixel.jpg" type="Texture" id=4]
-[ext_resource path="res://Scenes/Enemies/Glut.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemies/Krzysiek.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Enemies/EnemyTemplate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assety/grafiki tła/sala tronowa/tron pełny pixel.png" type="Texture" id=4]
+[ext_resource path="res://Assety/grafiki tła/sala tronowa/tło sala tronowa docięte.png" type="Texture" id=5]
+[ext_resource path="res://Assety/grafiki tła/sala tronowa/drzewko pomniejszone.png" type="Texture" id=6]
+[ext_resource path="res://Assety/grafiki tła/sala tronowa/obraz miecz cacy.png" type="Texture" id=7]
+[ext_resource path="res://Assety/grafiki tła/sala tronowa/sala tronowa okno.png" type="Texture" id=8]
+[ext_resource path="res://Assety/grafiki tła/sala tronowa/kolumna sala tronowa szeroka złota.png" type="Texture" id=9]
+[ext_resource path="res://Assety/grafiki tła/sala tronowa/szarfa pixel pomniejszona.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/DestroyController.gd" type="Script" id=11]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -17,16 +21,104 @@ valid_enter = {
 "U": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 901.143, 588.464 )
-scale = Vector2( 0.528929, 0.603218 )
-texture = ExtResource( 4 )
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+position = Vector2( 410.224, 568.324 )
+texture = ExtResource( 5 )
 hframes = 3
+
+[node name="Sprite5" type="Sprite" parent="Node2D"]
+position = Vector2( 253.129, 350.979 )
+texture = ExtResource( 10 )
+
+[node name="Sprite14" type="Sprite" parent="Node2D"]
+position = Vector2( 573.962, 352.83 )
+texture = ExtResource( 10 )
+
+[node name="Sprite2" type="Sprite" parent="Node2D"]
+position = Vector2( 974.151, 545.666 )
+texture = ExtResource( 5 )
+hframes = 3
+
+[node name="Sprite3" type="Sprite" parent="Node2D"]
+position = Vector2( 1457.52, 545.666 )
+texture = ExtResource( 5 )
+hframes = 3
+
+[node name="Sprite6" type="Sprite" parent="Node2D"]
+position = Vector2( 1532.98, 343.187 )
+texture = ExtResource( 10 )
+
+[node name="Sprite15" type="Sprite" parent="Node2D"]
+position = Vector2( 1236.88, 341.336 )
+texture = ExtResource( 10 )
+
+[node name="Sprite4" type="Sprite" parent="Node2D"]
+position = Vector2( 876.495, 386.043 )
+scale = Vector2( 0.347, 0.347 )
+texture = ExtResource( 4 )
+
+[node name="Sprite7" type="Sprite" parent="Node2D"]
+position = Vector2( 416.692, 390.923 )
+scale = Vector2( 0.625278, 0.493096 )
+texture = ExtResource( 8 )
+
+[node name="Sprite8" type="Sprite" parent="Node2D"]
+position = Vector2( 1381.85, 392.974 )
+scale = Vector2( 0.683253, 0.518605 )
+texture = ExtResource( 8 )
+
+[node name="Sprite9" type="Sprite" parent="Node2D"]
+position = Vector2( 1661.53, 383.765 )
+scale = Vector2( 0.347, 0.169663 )
+texture = ExtResource( 9 )
+
+[node name="Sprite11" type="Sprite" parent="Node2D"]
+position = Vector2( 1090.39, 384.649 )
+scale = Vector2( 0.267108, 0.168892 )
+texture = ExtResource( 9 )
+
+[node name="Sprite12" type="Sprite" parent="Node2D"]
+position = Vector2( 714.392, 384.649 )
+scale = Vector2( 0.267108, 0.168892 )
+texture = ExtResource( 9 )
+
+[node name="Sprite13" type="Sprite" parent="Node2D"]
+position = Vector2( 714.392, 384.649 )
+scale = Vector2( 0.267108, 0.168892 )
+texture = ExtResource( 9 )
+
+[node name="Sprite10" type="Sprite" parent="Node2D"]
+position = Vector2( 140.94, 383.266 )
+scale = Vector2( 0.347, 0.169477 )
+texture = ExtResource( 9 )
+
+[node name="Sprite16" type="Sprite" parent="Node2D"]
+position = Vector2( 139.09, 896.813 )
+scale = Vector2( 0.347, 0.0856912 )
+texture = ExtResource( 9 )
+
+[node name="Sprite18" type="Sprite" parent="Node2D"]
+position = Vector2( 1654.75, 894.997 )
+scale = Vector2( 0.347, 0.0841494 )
+texture = ExtResource( 9 )
+
+[node name="Sprite17" type="Sprite" parent="Node2D"]
+position = Vector2( 894.142, 882.008 )
+scale = Vector2( 0.240972, 0.230671 )
+texture = ExtResource( 7 )
+
+[node name="Sprite19" type="Sprite" parent="Node2D"]
+position = Vector2( 748.499, 539.353 )
+scale = Vector2( 0.83, 0.83 )
+texture = ExtResource( 6 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 0, 15, 3, 0, 16, 3, 0, 17, 3, 0, 18, 3, 0, 19, 3, 0, 20, 3, 0, 21, 3, 0, 22, 3, 0, 23, 3, 0, 24, 3, 0, 25, 3, 0, 26, 3, 0, 27, 3, 0, 65536, 3, 0, 65537, 536870915, 0, 65538, 4, 0, 65539, 5, 0, 65540, 5, 0, 65541, 5, 0, 65542, 5, 0, 65543, 5, 0, 65544, 5, 0, 65545, 5, 0, 65546, 5, 0, 65547, 5, 0, 65548, 5, 0, 65549, 5, 0, 65550, 5, 0, 65551, 5, 0, 65552, 5, 0, 65553, 5, 0, 65554, 5, 0, 65555, 5, 0, 65556, 5, 0, 65557, 5, 0, 65558, 5, 0, 65559, 5, 0, 65560, 5, 0, 65561, 536870916, 0, 65562, 536870915, 0, 65563, 3, 0, 131072, 3, 0, 131073, 536870914, 0, 131098, 2, 0, 131099, 3, 0, 196608, 3, 0, 196609, 536870914, 0, 196634, 2, 0, 196635, 3, 0, 262144, 3, 0, 262145, 536870914, 0, 262170, 2, 0, 262171, 3, 0, 327680, 3, 0, 327681, 536870914, 0, 327706, 2, 0, 327707, 3, 0, 393216, 3, 0, 393217, 536870914, 0, 393242, 2, 0, 393243, 3, 0, 458752, 3, 0, 458753, 536870914, 0, 458778, 2, 0, 458779, 3, 0, 524288, 3, 0, 524289, 536870914, 0, 524314, 2, 0, 524315, 3, 0, 589824, 3, 0, 589825, 536870914, 0, 589850, 2, 0, 589851, 3, 0, 655360, 3, 0, 655361, 536870914, 0, 655386, 2, 0, 655387, 3, 0, 720896, 3, 0, 720897, 536870914, 0, 720922, 2, 0, 720923, 3, 0, 786432, 3, 0, 786433, 536870914, 0, 786458, 2, 0, 786459, 3, 0, 851968, 3, 0, 851969, 536870914, 0, 851994, 2, 0, 851995, 3, 0, 917504, 3, 0, 917505, 536870914, 0, 917530, 2, 0, 917531, 3, 0, 983040, 3, 0, 983041, 536870914, 0, 983049, 536870920, 0, 983056, 8, 0, 983066, 2, 0, 983067, 3, 0, 1048576, 3, 0, 1048577, 536870915, 0, 1048578, 1, 0, 1048579, 1, 0, 1048580, 1, 0, 1048581, 1, 0, 1048582, 1, 0, 1048583, 1, 0, 1048584, 1, 0, 1048585, 3, 0, 1048586, 3, 0, 1048593, 3, 0, 1048594, 3, 0, 1048595, 1, 0, 1048596, 1, 0, 1048597, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1048600, 1, 0, 1048601, 1, 0, 1048602, 536870915, 0, 1048603, 3, 0 )
+tile_data = PoolIntArray( 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 0, 15, 3, 0, 16, 3, 0, 17, 3, 0, 18, 3, 0, 19, 3, 0, 20, 3, 0, 21, 3, 0, 22, 3, 0, 23, 3, 0, 24, 3, 0, 25, 3, 0, 26, 3, 0, 27, 3, 0, 65536, 3, 0, 65537, 536870915, 0, 65538, 4, 0, 65539, 5, 0, 65540, 5, 0, 65541, 5, 0, 65542, 5, 0, 65543, 5, 0, 65544, 5, 0, 65545, 5, 0, 65546, 5, 0, 65547, 5, 0, 65548, 5, 0, 65549, 5, 0, 65550, 5, 0, 65551, 5, 0, 65552, 5, 0, 65553, 5, 0, 65554, 5, 0, 65555, 5, 0, 65556, 5, 0, 65557, 5, 0, 65558, 5, 0, 65559, 5, 0, 65560, 5, 0, 65561, 536870916, 0, 65562, 536870915, 0, 65563, 3, 0, 131072, 3, 0, 131073, 536870914, 0, 131098, 2, 0, 131099, 3, 0, 196608, 3, 0, 196609, 536870914, 0, 196634, 2, 0, 196635, 3, 0, 262144, 3, 0, 262145, 536870914, 0, 262170, 2, 0, 262171, 3, 0, 327680, 3, 0, 327681, 536870914, 0, 327706, 2, 0, 327707, 3, 0, 393216, 3, 0, 393217, 536870914, 0, 393242, 2, 0, 393243, 3, 0, 458752, 3, 0, 458753, 536870914, 0, 458778, 2, 0, 458779, 3, 0, 524288, 3, 0, 524289, 536870914, 0, 524314, 2, 0, 524315, 3, 0, 589824, 3, 0, 589825, 3, 0, 589850, 2, 0, 589851, 3, 0, 655360, 3, 0, 655361, 536870914, 0, 655362, 0, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 1, 0, 655376, 1, 0, 655377, 1, 0, 655378, 1, 0, 655379, 1, 0, 655380, 1, 0, 655381, 536870912, 0, 655384, 0, 0, 655385, 536870912, 0, 655386, 2, 0, 655387, 3, 0, 720896, 3, 0, 720897, 536870914, 0, 720898, 5, 0, 720899, 5, 0, 720900, 5, 0, 720901, 5, 0, 720902, 5, 0, 720903, 5, 0, 720904, 5, 0, 720905, 5, 0, 720906, 5, 0, 720907, 5, 0, 720908, 5, 0, 720909, 5, 0, 720910, 5, 0, 720911, 5, 0, 720912, 5, 0, 720913, 5, 0, 720914, 5, 0, 720915, 5, 0, 720916, 5, 0, 720917, 7, 0, 720920, 536870919, 0, 720921, 5, 0, 720922, 2, 0, 720923, 3, 0, 786432, 3, 0, 786433, 536870914, 0, 786458, 2, 0, 786459, 3, 0, 851968, 3, 0, 851969, 536870914, 0, 851991, 6, 0, 851993, 4, 0, 851994, 2, 0, 851995, 3, 0, 917504, 3, 0, 917505, 536870914, 0, 917530, 2, 0, 917531, 3, 0, 983040, 3, 0, 983041, 536870914, 0, 983047, 6, 0, 983049, 536870920, 0, 983056, 8, 0, 983059, 536870918, 0, 983066, 2, 0, 983067, 3, 0, 1048576, 3, 0, 1048577, 536870915, 0, 1048578, 1, 0, 1048579, 1, 0, 1048580, 1, 0, 1048581, 1, 0, 1048582, 1, 0, 1048583, 1, 0, 1048584, 1, 0, 1048585, 3, 0, 1048586, 3, 0, 1048593, 3, 0, 1048594, 3, 0, 1048595, 1, 0, 1048596, 1, 0, 1048597, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1048600, 1, 0, 1048601, 1, 0, 1048602, 536870915, 0, 1048603, 3, 0 )
 
 [node name="EnemiesMarker" type="Node2D" parent="."]
 
@@ -34,15 +126,3 @@ tile_data = PoolIntArray( 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 
 
 [node name="Gate" parent="Gates" instance=ExtResource( 3 )]
 position = Vector2( 894.875, 1053.64 )
-
-[node name="Enemy" parent="." instance=ExtResource( 7 )]
-position = Vector2( 328.547, 753.788 )
-scale = Vector2( 0.528929, 0.603218 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1472.54, 730.045 )
-scale = Vector2( 0.528929, 0.603218 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 436.47, 354.471 )
-scale = Vector2( 0.528929, 0.603218 )
