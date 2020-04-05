@@ -298,7 +298,7 @@ margin_top = 118.931
 margin_right = 245.054
 margin_bottom = 437.931
 custom_fonts/normal_font = SubResource( 3 )
-text = "Welcome IDIOT"
+text = "Welcome"
 __meta__ = {
 "_edit_use_anchors_": false
 }
