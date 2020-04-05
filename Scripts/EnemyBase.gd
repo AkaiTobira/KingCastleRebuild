@@ -19,9 +19,10 @@ func change_direction(new_dir):
 	scale.x *= -1
 
 func _gravity():
-	if not Util.PLAYER_GRAVITY_ENABLER: 
-		motion.y = 0
-		return 
+	if not gravity_enabled: return
+	#if not Util.PLAYER_GRAVITY_ENABLER: 
+	#	motion.y = 0
+	#	return 
 	if is_on_floor(): 
 		motion.y = min( motion.y, Util.SPEED/2 )
 		return
@@ -31,6 +32,7 @@ var is_waked = false
 export var patrol_behaviour = true
 export var teleport_skill   = false
 export var attack_action    = false
+export var gravity_enabled  = true
 export var MONSTER_SPEED    = 200
 export var damage           = 5
 
