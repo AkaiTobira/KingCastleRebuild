@@ -190,14 +190,11 @@ class AttackBase extends State:
 	func _init(s_stack, a_name, change_rate).(s_stack):
 		change_r = change_rate
 		animation_name  = a_name
-		var mouse_position = Util.GUI.get_global_mouse_position() - Util.player.position
-		dir = "L" if mouse_position.x < 0 else "R"
-		Util.player.change_direction(dir)
 	
 	func update(_delta):
 		Util.player.play_anim(animation_name)
 		animation_status = Util.player.get_animation_status()
-		Util.player.motion.x = (-Util.SPEED if dir == "L" else Util.SPEED)  * ((1.0 - animation_status))*0.2
+		Util.player.motion.x = (-Util.SPEED if Util.player.dir == "L" else Util.SPEED)  * ((1.0 - animation_status))*0.2
 		if( animation_status > 0.9): 
 			is_over = true
 			Util.PLAYER_GRAVITY_ENABLER = false
