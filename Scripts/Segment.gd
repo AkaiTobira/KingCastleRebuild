@@ -30,13 +30,15 @@ var timer = 0.0
 var open_after = 10.0
 
 func _process(delta):
+	
+	
 	if player_inside() and !is_cleaned: 
 		close_gates()
 	elif !player_inside(): open_gates()
 	elif is_cleaned   : open_gates() 
 	if player_inside() and not gates_open :
-		
-		if to_deafeat == deafated: is_cleaned = true
+		print( player_inside(), is_cleaned, gates_open, to_deafeat, deafated )
+		if to_deafeat <= deafated: is_cleaned = true
 		Util.done_segment += 1
 
 func increase_counter():

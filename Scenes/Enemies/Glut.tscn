@@ -62,7 +62,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Run"
+resource_name = "Walk"
 length = 5.0
 step = 1.0
 tracks/0/type = "value"
@@ -128,10 +128,11 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.487671, 19.0194 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 9
-frame = 14
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
@@ -139,7 +140,7 @@ playback_speed = 4.0
 anims/Dead = SubResource( 5 )
 anims/Hit = SubResource( 6 )
 anims/Idle = SubResource( 3 )
-anims/Run = SubResource( 4 )
+anims/Walk = SubResource( 4 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 29.1397, 52.5723 )

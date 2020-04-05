@@ -14,9 +14,12 @@ var once_jumped             = true
 var block_animation         = false
 var last_hit_by             = null
 
+var start_block  = true
+
 var FSM = preload("res://Scripts/PlayerSFM.gd").new()
 
 func _ready():
+	$AnimationPlayer.play("Start")
 	motion.y += 1000
 	$HitBox/CollisionShape2D.disabled  = false
 
@@ -30,6 +33,7 @@ func reload(): pass
 
 # warning-ignore:unused_argument
 func _process(delta):
+	if start_block: return
 	FSM._process(delta)
 	shake_camera()
 
@@ -92,6 +96,8 @@ func _on_AttakBox_area_entered(area):
 	area.get_parent().on_hit( 15 )
 
 func _on_HitBox1_area_entered(area):
+	if "Block" in FSM.stack[0].get_class():
+		FSM.stack.push_front( FSM.BlockBlocked.new(FSM.stack))
 	current_health -= area.get_parent().damage
 	if current_health < 0: FSM._player_get_hit("Dead")
 	else: FSM._player_get_hit("Hit1")
@@ -100,3 +106,4 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Dead" and current_health < 0:
 		block_animation = true
 		Util.darkness.show_game_over()
+	if anim_name == "Start": start_block = false

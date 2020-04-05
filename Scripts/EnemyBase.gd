@@ -104,5 +104,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Dead":
 		call_deferred("queue_free")
 	if anim_name == "Hit":
+		$AnimationPlayer.play("Walk")
 		disable_action = false
 		motion.x = 0

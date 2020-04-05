@@ -22,7 +22,8 @@ var ENABLED_SKILLS = {
 	"Magic2"      : true,
 	"Magic3"      : true,
 	"Magic4"      : true,
-	"Attack4"     : true
+	"Attack4"     : true,
+	"Block"       : false #Don't switch it off is bugged
 }
 
 var GRAVITY      = 50
