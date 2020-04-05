@@ -8,6 +8,7 @@ var game_over = false
 
 func show_game_over():
 	game_over = true
+	position = Util.player.position 
 	$AnimationPlayer.play("Darkness")
 
 func _on_AnimationPlayer_animation_finished(anim_name):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Levels/RandomLevelStructure.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assety/Placeholder/objects.png" type="Texture" id=7]
 [ext_resource path="res://Assety/gradient.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Darking.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Darkness"
@@ -293,10 +294,10 @@ hframes = 5
 frame = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
-margin_left = -532.946
-margin_top = 118.931
-margin_right = 245.054
-margin_bottom = 437.931
+margin_left = -533.0
+margin_top = 119.0
+margin_right = 245.0
+margin_bottom = 643.0
 custom_fonts/normal_font = SubResource( 3 )
 text = "Welcome"
 __meta__ = {
@@ -307,4 +308,7 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 341.705, 214.94 )
+
+[node name="Player2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 555.697, 219.296 )
 [connection signal="animation_finished" from="CanvasLayer/Control/Sprite/AnimationPlayer" to="CanvasLayer/Control/Sprite" method="_on_AnimationPlayer_animation_finished"]

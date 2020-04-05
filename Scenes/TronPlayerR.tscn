@@ -12,8 +12,6 @@
 [ext_resource path="res://Assety/Tlo/sala tronowa/tło sala tronowa docięte.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/GateL.tscn" type="PackedScene" id=12]
 
-
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 valid_enter = {
@@ -26,8 +24,9 @@ valid_enter = {
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource( 9 )
 
-[node name="Sprite" type="Sprite" parent="Node2D"]
-position = Vector2( 410.224, 568.324 )
+[node name="Sprite3" type="Sprite" parent="Node2D"]
+position = Vector2( 933.484, 545.666 )
+scale = Vector2( 2.91374, 1 )
 texture = ExtResource( 11 )
 hframes = 3
 
@@ -39,17 +38,6 @@ texture = ExtResource( 8 )
 position = Vector2( 573.962, 352.83 )
 texture = ExtResource( 8 )
 
-[node name="Sprite2" type="Sprite" parent="Node2D"]
-position = Vector2( 974.151, 545.666 )
-texture = ExtResource( 11 )
-hframes = 3
-
-[node name="Sprite3" type="Sprite" parent="Node2D"]
-position = Vector2( 1476.34, 545.666 )
-scale = Vector2( 1.06415, 1 )
-texture = ExtResource( 11 )
-hframes = 3
-
 [node name="Sprite6" type="Sprite" parent="Node2D"]
 position = Vector2( 1532.98, 343.187 )
 texture = ExtResource( 8 )
@@ -60,17 +48,16 @@ texture = ExtResource( 8 )
 
 [node name="Sprite4" type="Sprite" parent="Node2D"]
 position = Vector2( 876.495, 386.043 )
-scale = Vector2( 0.347, 0.347 )
 texture = ExtResource( 10 )
 
 [node name="Sprite7" type="Sprite" parent="Node2D"]
 position = Vector2( 416.692, 390.923 )
-scale = Vector2( 0.625278, 0.493096 )
+scale = Vector2( 1, 0.8 )
 texture = ExtResource( 6 )
 
 [node name="Sprite8" type="Sprite" parent="Node2D"]
 position = Vector2( 1381.85, 392.974 )
-scale = Vector2( 0.683253, 0.518605 )
+scale = Vector2( 1, 0.8 )
 texture = ExtResource( 6 )
 
 [node name="Sprite9" type="Sprite" parent="Node2D"]
@@ -110,7 +97,6 @@ texture = ExtResource( 7 )
 
 [node name="Sprite17" type="Sprite" parent="Node2D"]
 position = Vector2( 894.142, 882.008 )
-scale = Vector2( 0.240972, 0.230671 )
 texture = ExtResource( 4 )
 
 [node name="Sprite19" type="Sprite" parent="Node2D"]

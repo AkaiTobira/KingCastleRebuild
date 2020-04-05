@@ -25,8 +25,9 @@ valid_enter = {
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource( 9 )
 
-[node name="Sprite" type="Sprite" parent="Node2D"]
-position = Vector2( 410.224, 568.324 )
+[node name="Sprite3" type="Sprite" parent="Node2D"]
+position = Vector2( 902.187, 552.843 )
+scale = Vector2( 3.02038, 1.0138 )
 texture = ExtResource( 11 )
 hframes = 3
 
@@ -37,17 +38,6 @@ texture = ExtResource( 8 )
 [node name="Sprite14" type="Sprite" parent="Node2D"]
 position = Vector2( 573.962, 352.83 )
 texture = ExtResource( 8 )
-
-[node name="Sprite2" type="Sprite" parent="Node2D"]
-position = Vector2( 974.151, 545.666 )
-texture = ExtResource( 11 )
-hframes = 3
-
-[node name="Sprite3" type="Sprite" parent="Node2D"]
-position = Vector2( 1476.34, 545.666 )
-scale = Vector2( 1.06415, 1 )
-texture = ExtResource( 11 )
-hframes = 3
 
 [node name="Sprite6" type="Sprite" parent="Node2D"]
 position = Vector2( 1532.98, 343.187 )
