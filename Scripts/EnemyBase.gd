@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var parent_segment = null
 var motion = Vector2(0,0)
 var UP     = Vector2(0,-1)
 var dir    = "R"
@@ -74,10 +75,11 @@ func _process(delta):
 
 var is_ready = true
 
-func on_hit( val ):
+func on_hit( val, direction ):
 	disable_action = true
 	play_if_n_player("Hit")
-	motion.x = 50 
+	change_direction( "L" if direction == -1 else "R")
+	motion.x = 50 * direction * -1
 	hp -= val
 	if hp < 0 : on_dead()
 
@@ -88,9 +90,9 @@ func on_dead():
 	attack = false
 	patrol_behaviour = false
 	play_if_n_player("Dead")
-	var node = get_parent().get_parent()
-	if node.has_method("increase_counter"): 
-		node.increase_counter()
+
+	if parent_segment.has_method("increase_counter"): 
+		parent_segment.increase_counter()
 
 func play_if_n_player(anim):
 	if $AnimationPlayer.current_animation == anim: return
@@ -105,5 +107,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		call_deferred("queue_free")
 	if anim_name == "Hit":
 		$AnimationPlayer.play("Walk")
+		attack         = false
 		disable_action = false
 		motion.x = 0

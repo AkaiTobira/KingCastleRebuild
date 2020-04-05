@@ -15,7 +15,7 @@ valid_enter = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 884.837, 530.227 )
+position = Vector2( 884.837, 521.227 )
 texture = ExtResource( 6 )
 
 [node name="TileMap" type="TileMap" parent="."]

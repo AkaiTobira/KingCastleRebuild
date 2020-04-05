@@ -56,7 +56,7 @@ func unlock_new_power(i):
 	done_segment += 1
 	if done_segment < total_cleaned: return
 	total_cleaned = done_segment
-	GUI.get_node("RichTextLabel").text = new_power_text[done_segment]
+	#GUI.get_node("RichTextLabel").text = new_power_text[done_segment]
 
 var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
 

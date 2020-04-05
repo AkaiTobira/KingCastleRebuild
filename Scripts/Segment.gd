@@ -37,10 +37,10 @@ func _process(delta):
 	elif !player_inside(): open_gates()
 	elif is_cleaned   : open_gates() 
 	if player_inside() and not gates_open :
-		print( player_inside(), is_cleaned, gates_open, to_deafeat, deafated )
-		if to_deafeat <= deafated: is_cleaned = true
-		Util.unlock_new_power(1)
-
+		#print( player_inside(), is_cleaned, gates_open, to_deafeat, deafated )
+		if to_deafeat <= deafated: 
+			is_cleaned = true
+			Util.unlock_new_power(1)
 
 func increase_counter():
 	deafated += 1
@@ -50,11 +50,18 @@ var deafated   = 0
 var to_deafeat = 0
 
 func cout_enemies():
-	for enemy in enemy_list:
-		if enemy.position.x < 0 and enemy.position.x > Util.SEGMENT_SIZE.x: continue
-		if enemy.position.y < 0 and enemy.position.y > Util.SEGMENT_SIZE.y: continue
-		to_deafeat += 1
-
+	for enemy in len(enemy_list):
+		if is_instance_valid(enemy_list[enemy][0]):
+			
+			enemy_list[enemy][0].position = enemy_list[enemy][1]
+			print( enemy_list[enemy][0].position, Util.player.position , enemy_list[enemy][0].position + $EnemiesMarker.position + position  )
+			to_deafeat += 1
+	
+#	for enemy in enemy_list:
+#		if not is_instance_valid(enemy) : continue
+#		if enemy.position.x < 0 and enemy.position.x > Util.SEGMENT_SIZE.x: continue
+#		if enemy.position.y < 0 and enemy.position.y > Util.SEGMENT_SIZE.y: continue
+#		to_deafeat += 1
 
 
 #JUNK_USUED_CODE
@@ -73,9 +80,10 @@ func cout_enemies():
 func generate_enemies():
 	for child in $EnemiesMarker.get_children():
 		var instance = Util.get_enemy_instance()
-		instance.position = child.position
-		enemy_list.append(instance)
-		$EnemiesMarker.add_child(instance)
+		instance.position      = child.position + position
+		instance.parent_segment = self
+		enemy_list.append([instance, child.position  + position])
+		get_parent().get_parent().call_deferred("add_child", instance)
 
 func _ready():
 #	print(placeholder_tile_set_id)

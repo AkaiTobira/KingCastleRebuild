@@ -97,7 +97,9 @@ func should_land():
 func on_hit( _o): pass
 
 func _on_AttakBox_area_entered(area):
-	area.get_parent().on_hit( 15 )
+	if not "Enemy" in area.get_parent().get_groups(): return
+	var direction = -1 if position.x < area.get_parent().position.x else 1
+	area.get_parent().on_hit( 15, direction )
 
 func _on_HitBox1_area_entered(area):
 	if "Block" in FSM.stack[0].get_class():
