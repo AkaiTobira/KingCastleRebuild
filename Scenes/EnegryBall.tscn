@@ -1,21 +1,69 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assety/Knight/magic.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Fireball.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Fireball.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 208.911
+radius = 98.1328
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 3.0
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32, 1.65, 1.98, 2.31, 2.64, 2.97 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 256, 257, 258, 259, 260, 261, 262, 263, 264, 265 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.97 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.75, 1.5, 2.25, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -12.5, -25 ), Vector2( 5, -50 ), Vector2( 32.5, -25 ), Vector2( 0, 0 ) ]
+}
 
 [node name="Area2D" type="Area2D"]
+scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 2 )
+SPEED = 25
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 vframes = 19
 hframes = 14
-frame = 256
+frame = 265
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 4.90381, -44.1378 )
+position = Vector2( 4.90381, -24.1378 )
 shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Rotate"
+anims/Rotate = SubResource( 2 )
 [connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]

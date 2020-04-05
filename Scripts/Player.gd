@@ -4,18 +4,21 @@ const WORLD_LIMIT = 6000;
 
 var motion = Vector2(0,0)
 
-var max_health = 100
+var max_health     = 100
 var current_health = 100
 var score = 0
 
 var WALL_HOLDER_ENABLED     = true
 var wall_holding            = false
 var once_jumped             = true
+var block_animation         = false
+var last_hit_by             = null
 
 var FSM = preload("res://Scripts/PlayerSFM.gd").new()
 
 func _ready():
 	motion.y += 1000
+	$HitBox/CollisionShape2D.disabled  = false
 
 func fit_camera_to_world( world_begin, world_size ):
 	$Camera2D.limit_left   = world_begin.x
@@ -23,14 +26,13 @@ func fit_camera_to_world( world_begin, world_size ):
 	$Camera2D.limit_right  = world_begin.x + world_size.x  
 	$Camera2D.limit_bottom = world_begin.y + world_size.y
 
+func reload(): pass
+
 # warning-ignore:unused_argument
-
-
 func _process(delta):
 	FSM._process(delta)
-	
 	shake_camera()
-	
+
 func shake_camera():
 	if not Util.SHAKE_CAMERA: return
 	var shake_amount = 10.0
@@ -40,6 +42,7 @@ func shake_camera():
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
+#	get_hit_in_this_frame = false
 	_gravity()
 	move_and_slide(motion, Vector2(0,-1))
 
@@ -64,39 +67,36 @@ func get_animation_status():
 
 func create_fireball():
 	var instance = Util.get_project_tile("FBall")
-	instance.dir = sign(scale.x)
+	instance.dir = -1 if dir == "L" else 1
 	instance.position = position + instance.dir * 50 * Vector2(1, 0)
 	get_parent().add_child(instance)
-	pass
 
 func create_enegrySphere():
 	var instance = Util.get_project_tile("EBall")
-	instance.dir = sign(scale.x)
+	instance.dir = -1 if dir == "L" else 1
 	instance.position = position + instance.dir * 50 * Vector2(1, 0)
 	get_parent().add_child(instance)
 
 func play_anim(anim_name): 
+	if block_animation :
+		$AnimationPlayer.stop()
+		return
 	if $AnimationPlayer.current_animation == anim_name : return
-	#var nodes = $Sprites
-	#for node in nodes.get_children():
-	#	node.visible = false
 	$AnimationPlayer.play(anim_name)
 
 func should_land():
 	if test_move( get_transform(), Vector2(0, 20) ): return true
 	return false
 
-func _on_AttackBox_area_entered(_area):
-	pass # Replace with function body.
-
-func _on_HitBox1_body_entered():
-	pass # Replace with function body.
-
-func _on_HitBox2_body_entered():
-	pass # Replace with function body.
-
-func _on_HitBox3_body_entered():
-	pass # Replace with function body.
-
 func _on_AttakBox_area_entered(area):
 	pass # Replace with function body.
+
+func _on_HitBox1_area_entered(area):
+	current_health -= area.get_parent().damage
+	if current_health < 0: FSM._player_get_hit("Dead")
+	else: FSM._player_get_hit("Hit1")
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Dead" and current_health < 0:
+		block_animation = true
+		Util.darkness.show_game_over()

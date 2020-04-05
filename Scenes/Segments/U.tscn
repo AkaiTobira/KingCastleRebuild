@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tilesets/PlaceholderTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/Segment.gd" type="Script" id=2]
+[ext_resource path="res://Assety/grafiki tła/tło wyrwa w cegle 1.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/GateU.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assety/to_hol_dociete.png" type="Texture" id=6]
 
@@ -14,9 +15,13 @@ valid_enter = {
 "U": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 884.837, 530.227 )
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 900.179, 530.227 )
 texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 900.179, 530.227 )
+texture = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

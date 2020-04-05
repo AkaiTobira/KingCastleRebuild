@@ -84,7 +84,7 @@ func _ready():
 	
 
 func get_start_point():
-	return Util.SEGMENT_SIZE/4
+	return Vector2( 892, 586)
 
 func generate(): 
 	for i in range( Util.MAZE_SIZE.y ):

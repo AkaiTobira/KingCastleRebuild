@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 17.9305, 31.0599 )
+extents = Vector2( 53.0969, 31.0599 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 25.9646, 7.85269 )
@@ -53,33 +53,39 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 2, 2 ), Vector2( 0.1, 0.1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.1, 0.1 ) ]
 }
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=[
+"Enemy",
+]]
 z_index = 1
 script = ExtResource( 2 )
 patrol_behaviour = false
 MONSTER_SPEED = 0
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=[
+"Enemy",
+]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2( 0.263519, -4.21634 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" groups=[
+"Enemy",
+]]
+position = Vector2( 1.58389, 17.79 )
 shape = SubResource( 1 )
-disabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
+"Enemy",
+]]
 position = Vector2( -1.39609, 49.5174 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.487671, 19.0194 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 9
-frame = 9
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
@@ -96,6 +102,12 @@ cast_to = Vector2( 0, 29 )
 position = Vector2( 31, 22 )
 enabled = true
 cast_to = Vector2( 5, 0 )
+collide_with_areas = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2( 33.2006, 10.5567 )
+enabled = true
+cast_to = Vector2( 40, 0 )
 collide_with_areas = true
 
 [node name="TextEdit" type="TextEdit" parent="."]

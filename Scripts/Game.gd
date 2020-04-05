@@ -1,8 +1,10 @@
 extends Node2D
 
 func _ready():
-	Util.player = $Player
-	Util.GUI    = $GUI
+	Util.player   = $Player
+	Util.GUI      = $CanvasLayer/Control
+	Util.darkness = $CanvasLayer/Control/Sprite
+	
 	set_player_in_level()
 
 func set_player_in_level():
