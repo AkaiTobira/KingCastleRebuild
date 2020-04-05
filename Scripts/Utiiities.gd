@@ -57,37 +57,6 @@ var enemies = [
 	preload("res://Scenes/Enemies/Bat.tscn")
 ]
 
-var tilesets = {
-	"K1" : preload("res://Tilesets/KingRoom1.tres" ),
-	"K2" : preload("res://Tilesets/KingRoom2.tres" ),
-	"K3" : preload("res://Tilesets/KingRoom3.tres" ),
-	"K4" : preload("res://Tilesets/KingRoom4.tres" ),
-	"K5" : preload("res://Tilesets/KingRoom5.tres" ),
-	"D1" : preload("res://Tilesets/Dungeon1.tres" ),
-	"D2" : preload("res://Tilesets/Dungeon2.tres" ),
-	"D3" : preload("res://Tilesets/Dungeon3.tres" ),
-	"D4" : preload("res://Tilesets/Dungeon4.tres" ),
-	"D5" : preload("res://Tilesets/Dungeon5.tres" )
-}
-
-var tileset_info = {}
-
-func parse_tileset( tileset_name ):
-	if tileset_name in tileset_info.keys(): return
-	tileset_info[tileset_name] = { "A":[], "B":[], "C":[], "D":[], "E":[], "F":[],"G":[], "H":[], "I": []}
-	var tileset = get_tileset(tileset_name)
-	for letter in [ "A", "B", "C", "D", "E", "F", "G", "H", "I"]:
-		for i in range(5):
-			tileset_info[tileset_name][letter].append( tileset.find_tile_by_name( "D5_" + letter + "_" + str(i+1)))
-	print(tileset_info[tileset_name])
-
-func get_tileset_info(tileset_name):
-	parse_tileset(tileset_name)
-	return tileset_info[tileset_name]
-
-func get_tileset( tilest_name ):
-	return tilesets[tilest_name]
-
 func get_enemy_instance():
 	return enemies[randi()%len(enemies)].instance()
 
@@ -137,8 +106,6 @@ func load_segments():
 	var list_of_segments = get_resource_list("res://Scenes/Segments/")
 	for seg in range(len(list_of_segments)):
 		
-		print( list_of_segments[seg] )
-		
 		var loaded = load(list_of_segments[seg])
 		var instance = loaded.instance()
 		
@@ -166,6 +133,3 @@ func get_tron_room( dir ):
 func get_segment( enters ):
 	var sorted = sort_enter(enters)
 	return segments["angles"][sorted][ randi()%len(segments["angles"][sorted]) ].instance()
-
-
-
