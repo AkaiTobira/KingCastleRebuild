@@ -22,17 +22,41 @@ var ENABLED_SKILLS = {
 	"Magic2"      : true,
 	"Magic3"      : true,
 	"Magic4"      : true,
-	"Attack4"     : true
+	"Attack4"     : true,
+	"Block"       : false #Don't switch it off is bugged
 }
 
 var GRAVITY      = 50
-var IN_AIR_SPEED = 50
+var IN_AIR_SPEED = 60
 var SPEED        = 400
 var SPEED_JUMP   = 1050
 
-var MAZE_SIZE = Vector2( 2, 2)
+var MAZE_SIZE = Vector2(4, 4)
 
 var labirynth    = {}
+var done_segment = 0
+var total_cleaned = 0
+
+var new_power_text = [
+	"",
+	"You have unlocked Double Slash\n press Two Times LMP in Air",
+	"You have unlocked Double Jump",
+	"You have unlocked Combo Slash 2\n press Two Times LMP",
+	"You have unlocked Magic Combo 2\n press LMP, and next E",
+	"You have unlocked Combo Slash 3\n press Three Times LMP",
+	"You have unlocked Magic Combo 3\n press LMP, then 2 Times E",
+	"You have unlocked Magic Combo 4\n press Two Times LMP, then E",
+	"You have unlocked Combo Slash 4\n press LMP, then E, then LMP",
+	"",
+	""
+]
+
+
+func unlock_new_power(i):
+	done_segment += 1
+	if done_segment < total_cleaned: return
+	total_cleaned = done_segment
+	GUI.get_node("RichTextLabel").text = new_power_text[done_segment]
 
 var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
 
@@ -48,44 +72,14 @@ func get_project_tile( tile_name ):
 	return project_tiles[tile_name].instance()
 
 var enemies = [
-#	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
-#	preload("res://Scenes/Enemies/Glut.tscn"),
+	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
+	preload("res://Scenes/Enemies/Glut.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek.tscn"),
-#	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
-#	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
-#	preload("res://Scenes/Enemies/Krzysiek4.tscn")
+	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
+	preload("res://Scenes/Enemies/Krzysiek4.tscn"),
+	preload("res://Scenes/Enemies/Bat.tscn")
 ]
-
-var tilesets = {
-	"K1" : preload("res://Tilesets/KingRoom1.tres" ),
-	"K2" : preload("res://Tilesets/KingRoom2.tres" ),
-	"K3" : preload("res://Tilesets/KingRoom3.tres" ),
-	"K4" : preload("res://Tilesets/KingRoom4.tres" ),
-	"K5" : preload("res://Tilesets/KingRoom5.tres" ),
-	"D1" : preload("res://Tilesets/Dungeon1.tres" ),
-	"D2" : preload("res://Tilesets/Dungeon2.tres" ),
-	"D3" : preload("res://Tilesets/Dungeon3.tres" ),
-	"D4" : preload("res://Tilesets/Dungeon4.tres" ),
-	"D5" : preload("res://Tilesets/Dungeon5.tres" )
-}
-
-var tileset_info = {}
-
-func parse_tileset( tileset_name ):
-	if tileset_name in tileset_info.keys(): return
-	tileset_info[tileset_name] = { "A":[], "B":[], "C":[], "D":[], "E":[], "F":[],"G":[], "H":[], "I": []}
-	var tileset = get_tileset(tileset_name)
-	for letter in [ "A", "B", "C", "D", "E", "F", "G", "H", "I"]:
-		for i in range(5):
-			tileset_info[tileset_name][letter].append( tileset.find_tile_by_name( "D5_" + letter + "_" + str(i+1)))
-	print(tileset_info[tileset_name])
-
-func get_tileset_info(tileset_name):
-	parse_tileset(tileset_name)
-	return tileset_info[tileset_name]
-
-func get_tileset( tilest_name ):
-	return tilesets[tilest_name]
 
 func get_enemy_instance():
 	return enemies[randi()%len(enemies)].instance()
@@ -136,8 +130,6 @@ func load_segments():
 	var list_of_segments = get_resource_list("res://Scenes/Segments/")
 	for seg in range(len(list_of_segments)):
 		
-		print( list_of_segments[seg] )
-		
 		var loaded = load(list_of_segments[seg])
 		var instance = loaded.instance()
 		
@@ -165,6 +157,3 @@ func get_tron_room( dir ):
 func get_segment( enters ):
 	var sorted = sort_enter(enters)
 	return segments["angles"][sorted][ randi()%len(segments["angles"][sorted]) ].instance()
-
-
-

@@ -1,6 +1,5 @@
 extends Node2D
 
-
 export var valid_enter = { "U" :false, "D": false, "L":false, "R":false }
 export var is_cleaned  = false
 var gates_open   = true
@@ -10,9 +9,10 @@ func close_gates():
 	if not gates_open: return
 	gates_open = false
 	timer = 0.0
+	cout_enemies()
 	for child in $Gates.get_children():
 		child.close_gate()
-		
+
 func open_gates():
 	if gates_open: return
 	gates_open = true
@@ -23,7 +23,6 @@ func player_inside():
 	if is_cleaned : return false
 	var i = int(Util.player.position.x / Util.SEGMENT_SIZE.x)
 	var j = int(Util.player.position.y / Util.SEGMENT_SIZE.y)
-	
 	if Vector2(i,j) == int_position : return true
 	return false
 
@@ -31,12 +30,32 @@ var timer = 0.0
 var open_after = 10.0
 
 func _process(delta):
+	
+	
 	if player_inside() and !is_cleaned: 
 		close_gates()
-		timer += delta
-		if timer > open_after: is_cleaned = true
+	elif !player_inside(): open_gates()
 	elif is_cleaned   : open_gates() 
-		
+	if player_inside() and not gates_open :
+		print( player_inside(), is_cleaned, gates_open, to_deafeat, deafated )
+		if to_deafeat <= deafated: is_cleaned = true
+		Util.unlock_new_power(1)
+
+
+func increase_counter():
+	deafated += 1
+
+var enemy_list = []
+var deafated   = 0
+var to_deafeat = 0
+
+func cout_enemies():
+	for enemy in enemy_list:
+		if enemy.position.x < 0 and enemy.position.x > Util.SEGMENT_SIZE.x: continue
+		if enemy.position.y < 0 and enemy.position.y > Util.SEGMENT_SIZE.y: continue
+		to_deafeat += 1
+
+
 
 #JUNK_USUED_CODE
 #onready var placeholder_tile_set_id = {
@@ -50,19 +69,20 @@ func _process(delta):
 #	$TileMap.tile_set.find_tile_by_name("H") : "H",
 #	$TileMap.tile_set.find_tile_by_name("I") : "I"
 #}
-#
-#func generate_enemies():
-#	for child in $EnemiesMarker.get_children():
-#		var instance = Util.get_enemy_instance()
-#		instance.position = child.position
-#		$EnemiesMarker.add_child(instance)
-#
-#func _ready():
+
+func generate_enemies():
+	for child in $EnemiesMarker.get_children():
+		var instance = Util.get_enemy_instance()
+		instance.position = child.position
+		enemy_list.append(instance)
+		$EnemiesMarker.add_child(instance)
+
+func _ready():
 #	print(placeholder_tile_set_id)
 #	print($TileMap.tile_set.get_tiles_ids())
-#	generate_enemies()
+	generate_enemies()
 #	var sss = ""
-#
+
 #func switch_style(tilesetName):
 #
 #
@@ -73,7 +93,7 @@ func _process(delta):
 #	var size  = $TileMap.get_used_rect().size 
 #	var p     = $TileMap.get_used_rect().position
 #	print($TileMap.tile_set.get_tiles_ids())
-##	print(placeholder_tile_set_id)
+#	print(placeholder_tile_set_id)
 #	#print(tilest_info.get_tiles_ids())
 #
 #	var sss = ""
@@ -98,5 +118,5 @@ func _process(delta):
 #			elif cell_id != -1 : print( cell_id )
 #	$TileMap.tile_set = new_tileset
 #		#sss += "\n"
-##	print( sss)
-#
+#	print( sss)
+

@@ -19,9 +19,10 @@ func change_direction(new_dir):
 	scale.x *= -1
 
 func _gravity():
-	if not Util.PLAYER_GRAVITY_ENABLER: 
-		motion.y = 0
-		return 
+	if not gravity_enabled: return
+	#if not Util.PLAYER_GRAVITY_ENABLER: 
+	#	motion.y = 0
+	#	return 
 	if is_on_floor(): 
 		motion.y = min( motion.y, Util.SPEED/2 )
 		return
@@ -31,16 +32,22 @@ var is_waked = false
 export var patrol_behaviour = true
 export var teleport_skill   = false
 export var attack_action    = false
+export var gravity_enabled  = true
 export var MONSTER_SPEED    = 200
 export var damage           = 5
+export var hp               = 100
 
 var timer1 = 1
 var timerl = 0.25
 
 var need_dir_change = false
 var attack          = false
+var disable_action  = false
 
 func patrol_move(delta):
+	if disable_action : return
+	
+	
 	need_dir_change = false
 	motion.x = MONSTER_SPEED * (-1 if dir == "L" else 1)
 	timer1 += delta
@@ -67,10 +74,36 @@ func _process(delta):
 
 var is_ready = true
 
+func on_hit( val ):
+	disable_action = true
+	play_if_n_player("Hit")
+	motion.x = 50 
+	hp -= val
+	if hp < 0 : on_dead()
+
+func on_dead():
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	$HitBox/CollisionShape2D.set_deferred("disabled", true)
+	disable_action = true
+	attack = false
+	patrol_behaviour = false
+	play_if_n_player("Dead")
+	var node = get_parent().get_parent()
+	if node.has_method("increase_counter"): 
+		node.increase_counter()
+
+func play_if_n_player(anim):
+	if $AnimationPlayer.current_animation == anim: return
+	$AnimationPlayer.play(anim)
+
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Atak":
 		attack = false
 		timer1 = 0
 		$AnimationPlayer.play("Walk")
-		
-	pass # Replace with function body.
+	if anim_name == "Dead":
+		call_deferred("queue_free")
+	if anim_name == "Hit":
+		$AnimationPlayer.play("Walk")
+		disable_action = false
+		motion.x = 0

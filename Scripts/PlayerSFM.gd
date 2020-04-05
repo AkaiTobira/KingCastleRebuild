@@ -86,6 +86,68 @@ class Hit2 extends AttackBase:
 
 	func handle_input(): pass
 
+
+class BlockOpen extends AttackBase:
+
+	func get_class():
+		return "BlockOpen"
+
+	func _init(s_stack).(s_stack, "BlokStart", 1):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack():
+		is_over = true
+		stack.push_front( BlockIdle.new(stack))
+
+	func handle_input():
+		if Input.is_action_just_released("mouse_rigth") : 
+			is_over = true
+			stack.push_front( BlockClose.new(stack)) 
+
+
+class BlockBlocked extends AttackBase:
+
+	func get_class():
+		return "BlockBlocked"
+
+	func _init(s_stack).(s_stack, "BlokStartBlock", 0.90):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): 
+		is_over = true
+
+	func handle_input(): pass
+
+class BlockIdle extends AttackBase:
+
+	func get_class():
+		return "BlockClose"
+
+	func _init(s_stack).(s_stack, "BlokStartIdle", 2):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack(): pass
+
+	func handle_input():
+		if Input.is_action_just_released("mouse_rigth") : 
+			is_over = true
+			stack.push_front( BlockClose.new(stack))
+
+
+class BlockClose extends AttackBase:
+
+	func get_class():
+		return "BlockClose"
+
+	func _init(s_stack).(s_stack, "BlokClose", 0.9):
+		Util.PLAYER_GRAVITY_ENABLER = false
+
+	func push_next_attack():
+		is_over = true
+
+	func handle_input(): pass
+
+
 class Move extends State:
 	var jump_counter = 0
 	
@@ -115,6 +177,8 @@ class Move extends State:
 		handel_input_right()
 		if   Input.is_action_just_pressed("mouse_left") : stack.push_front( Attack1.new(stack) )
 		elif Input.is_action_pressed("ui_up") or jump_counter > 0 : handle_jump()
+		elif Input.is_action_just_pressed("mouse_rigth") and Util.ENABLED_SKILLS["Block"] : stack.push_front( BlockOpen.new(stack)) 
+
 
 	func handle_jump():
 		if Input.is_action_pressed("ui_up"): jump_counter = 10
@@ -190,14 +254,11 @@ class AttackBase extends State:
 	func _init(s_stack, a_name, change_rate).(s_stack):
 		change_r = change_rate
 		animation_name  = a_name
-		var mouse_position = Util.GUI.get_global_mouse_position() - Util.player.position
-		dir = "L" if mouse_position.x < 0 else "R"
-		Util.player.change_direction(dir)
 	
 	func update(_delta):
 		Util.player.play_anim(animation_name)
 		animation_status = Util.player.get_animation_status()
-		Util.player.motion.x = (-Util.SPEED if dir == "L" else Util.SPEED)  * ((1.0 - animation_status))*0.2
+		Util.player.motion.x = (-Util.SPEED if Util.player.dir == "L" else Util.SPEED)  * ((1.0 - animation_status))*0.2
 		if( animation_status > 0.9): 
 			is_over = true
 			Util.PLAYER_GRAVITY_ENABLER = false
@@ -405,6 +466,7 @@ class Idle extends State:
 		elif Input.is_action_pressed("ui_right"): stack.push_front( Move.new(stack, "R") )
 		elif Input.is_action_pressed("ui_left") : stack.push_front( Move.new(stack, "L") )
 		elif Input.is_action_pressed("ui_up") or jump_counter > 0 : handle_jump()
+		elif Input.is_action_just_pressed("mouse_rigth") and Util.ENABLED_SKILLS["Block"] : stack.push_front( BlockOpen.new(stack)) 
 
 	func handle_jump():
 		if Input.is_action_pressed("ui_up"): jump_counter = 10

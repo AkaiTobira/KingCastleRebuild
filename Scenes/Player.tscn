@@ -1,7 +1,7 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assety/Knight/krol.png" type="Texture" id=2]
+[ext_resource path="res://Assety/Knight/King.png" type="Texture" id=2]
 [ext_resource path="res://Assety/Knight/combo1.png" type="Texture" id=3]
 [ext_resource path="res://Assety/Knight/magic.png" type="Texture" id=4]
 [ext_resource path="res://Assety/Knight/standatak_i_pysk.png" type="Texture" id=5]
@@ -423,7 +423,7 @@ tracks/10/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=5]
 resource_name = "Attack4"
 length = 4.3
 step = 0.33
@@ -561,6 +561,106 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=25]
+resource_name = "BlokClose"
+step = 0.33
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Torso7:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Torso7:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Torso2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Torso:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/Torso3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/Torso4:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprites/Torso5:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprites/Torso6:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
 resource_name = "BlokStart"
 length = 0.7
 step = 0.33
@@ -661,7 +761,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=7]
 resource_name = "BlokStartBlock"
 length = 0.7
 tracks/0/type = "value"
@@ -761,7 +861,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=8]
 resource_name = "BlokStartIdle"
 step = 0.33
 tracks/0/type = "value"
@@ -861,7 +961,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=9]
 resource_name = "Dead"
 length = 10.0
 step = 0.33
@@ -1000,8 +1100,7 @@ tracks/10/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Fall"
+[sub_resource type="Animation" id=10]
 length = 2.1
 step = 0.3
 tracks/0/type = "value"
@@ -1113,7 +1212,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=11]
 resource_name = "Hit1"
 step = 0.33
 tracks/0/type = "value"
@@ -1213,7 +1312,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=12]
 resource_name = "Hit2"
 step = 0.33
 tracks/0/type = "value"
@@ -1313,7 +1412,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=13]
 resource_name = "Hit3"
 step = 0.33
 tracks/0/type = "value"
@@ -1413,7 +1512,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=14]
 length = 10.0
 loop = true
 step = 1.0
@@ -1526,8 +1625,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "Jump"
+[sub_resource type="Animation" id=15]
 length = 100.0
 step = 0.3
 tracks/0/type = "value"
@@ -1639,8 +1737,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "Jump2"
+[sub_resource type="Animation" id=16]
 length = 100.0
 step = 0.3
 tracks/0/type = "value"
@@ -1752,7 +1849,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=17]
 resource_name = "JumpAttack1"
 length = 2.6
 step = 0.33
@@ -1853,7 +1950,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=18]
 resource_name = "JumpAttack2"
 length = 2.0
 step = 0.33
@@ -1954,8 +2051,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "Magic2"
+[sub_resource type="Animation" id=19]
 length = 3.3
 step = 0.33
 tracks/0/type = "value"
@@ -2069,8 +2165,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=18]
-resource_name = "Magic3"
+[sub_resource type="Animation" id=20]
 length = 3.6
 step = 0.33
 tracks/0/type = "value"
@@ -2184,8 +2279,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=19]
-resource_name = "Magic4"
+[sub_resource type="Animation" id=21]
 length = 7.3
 step = 0.33
 tracks/0/type = "value"
@@ -2321,7 +2415,146 @@ tracks/10/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=26]
+resource_name = "Start"
+length = 6.0
+step = 0.33
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Torso5:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Torso5:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32, 1.65, 1.98, 2.31, 2.64, 2.97, 3.3, 3.63, 3.96, 4.29, 4.62, 4.95, 5.28 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AttakBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/Torso6:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/Torso7:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprites/Torso4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprites/Torso3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprites/Torso:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprites/Torso2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 9.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reload"
+} ]
+}
+
+[sub_resource type="Animation" id=22]
 length = 7.7
 step = 0.7
 tracks/0/type = "value"
@@ -2433,10 +2666,10 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 25.8032, 69.2352 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 47.3553, 36.5706 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -2469,16 +2702,14 @@ editor_draw_drag_margin = true
 [node name="Torso2" type="Sprite" parent="Sprites"]
 visible = false
 position = Vector2( 29.4969, -70.2001 )
-scale = Vector2( 0.280185, 0.280237 )
 texture = ExtResource( 3 )
 vframes = 6
 hframes = 10
-frame = 14
 
 [node name="Torso" type="Sprite" parent="Sprites"]
 visible = false
-position = Vector2( 27.5956, -18.4848 )
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 25.0892, -72.6916 )
+scale = Vector2( 0.28, 0.28 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 6
@@ -2486,49 +2717,39 @@ frame = 12
 
 [node name="Torso3" type="Sprite" parent="Sprites"]
 visible = false
-position = Vector2( 676.942, 287.721 )
-scale = Vector2( 0.28, 0.28 )
+position = Vector2( 26.5551, -71.5818 )
 texture = ExtResource( 4 )
-offset = Vector2( -2311.95, -1279.31 )
 vframes = 9
 hframes = 7
 frame = 24
 
 [node name="Torso4" type="Sprite" parent="Sprites"]
 visible = false
-position = Vector2( 670.663, 277.378 )
-scale = Vector2( 0.275, 0.275 )
+position = Vector2( 35.1974, -64.9799 )
 texture = ExtResource( 5 )
-offset = Vector2( -2311.95, -1279.31 )
 vframes = 6
 hframes = 6
 frame = 30
 
 [node name="Torso5" type="Sprite" parent="Sprites"]
-position = Vector2( 670.663, 277.378 )
-scale = Vector2( 0.275, 0.275 )
+position = Vector2( 27.075, -90.2498 )
 texture = ExtResource( 6 )
-offset = Vector2( -2311.95, -1279.31 )
 vframes = 3
 hframes = 10
-frame = 27
+frame = 10
 
 [node name="Torso6" type="Sprite" parent="Sprites"]
 visible = false
-position = Vector2( 670.663, 277.378 )
-scale = Vector2( 0.280083, 0.260941 )
+position = Vector2( 13.0561, -57.5573 )
 texture = ExtResource( 7 )
-offset = Vector2( -2311.95, -1279.31 )
 vframes = 4
 hframes = 4
 frame = 4
 
 [node name="Torso7" type="Sprite" parent="Sprites"]
 visible = false
-position = Vector2( 670.663, 277.378 )
-scale = Vector2( 0.277446, 0.273229 )
+position = Vector2( 26.1725, -74.9073 )
 texture = ExtResource( 8 )
-offset = Vector2( -2311.95, -1279.31 )
 vframes = 4
 hframes = 4
 frame = 4
@@ -2539,24 +2760,26 @@ playback_speed = 8.0
 anims/Attack1 = SubResource( 2 )
 anims/Attack2 = SubResource( 3 )
 anims/Attack3 = SubResource( 4 )
-anims/Attack4 = SubResource( 13 )
-anims/BlokStart = SubResource( 25 )
-anims/BlokStartBlock = SubResource( 27 )
-anims/BlokStartIdle = SubResource( 26 )
-anims/Dead = SubResource( 22 )
-anims/Fall = SubResource( 5 )
-anims/Hit1 = SubResource( 17 )
-anims/Hit2 = SubResource( 20 )
-anims/Hit3 = SubResource( 21 )
-anims/Idle = SubResource( 6 )
-anims/Jump = SubResource( 7 )
-anims/Jump2 = SubResource( 11 )
-anims/JumpAttack1 = SubResource( 23 )
-anims/JumpAttack2 = SubResource( 24 )
-anims/Magic2 = SubResource( 12 )
-anims/Magic3 = SubResource( 18 )
-anims/Magic4 = SubResource( 19 )
-anims/Walk = SubResource( 9 )
+anims/Attack4 = SubResource( 5 )
+anims/BlokClose = SubResource( 25 )
+anims/BlokStart = SubResource( 6 )
+anims/BlokStartBlock = SubResource( 7 )
+anims/BlokStartIdle = SubResource( 8 )
+anims/Dead = SubResource( 9 )
+anims/Fall = SubResource( 10 )
+anims/Hit1 = SubResource( 11 )
+anims/Hit2 = SubResource( 12 )
+anims/Hit3 = SubResource( 13 )
+anims/Idle = SubResource( 14 )
+anims/Jump = SubResource( 15 )
+anims/Jump2 = SubResource( 16 )
+anims/JumpAttack1 = SubResource( 17 )
+anims/JumpAttack2 = SubResource( 18 )
+anims/Magic2 = SubResource( 19 )
+anims/Magic3 = SubResource( 20 )
+anims/Magic4 = SubResource( 21 )
+anims/Start = SubResource( 26 )
+anims/Walk = SubResource( 22 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "Player",
@@ -2568,7 +2791,7 @@ collision_mask = 256
 "Player",
 ]]
 position = Vector2( -0.506082, -6.84354 )
-shape = SubResource( 14 )
+shape = SubResource( 23 )
 disabled = true
 
 [node name="AttakBox" type="Area2D" parent="."]
@@ -2576,8 +2799,8 @@ collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttakBox"]
-position = Vector2( 1.09014, 1.66189 )
-shape = SubResource( 16 )
+position = Vector2( 100.177, 12.4842 )
+shape = SubResource( 24 )
 disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox1_area_entered"]

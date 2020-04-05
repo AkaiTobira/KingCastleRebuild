@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Segment.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/GateL.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tilesets/PlaceholderTiles.tres" type="TileSet" id=3]
+[ext_resource path="res://Scenes/GateU.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assety/to_hol_dociete.png" type="Texture" id=6]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+valid_enter = {
+"D": false,
+"L": false,
+"R": true,
+"U": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 884.837, 530.227 )
+texture = ExtResource( 6 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+format = 1
+tile_data = PoolIntArray( 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 16, 3, 0, 17, 3, 0, 18, 3, 0, 19, 3, 0, 20, 3, 0, 21, 3, 0, 22, 3, 0, 23, 3, 0, 24, 3, 0, 25, 3, 0, 26, 3, 0, 27, 3, 0, 65536, 536870914, 0, 65563, 2, 0, 131072, 536870914, 0, 131099, 2, 0, 196608, 536870914, 0, 196621, 3, 0, 196622, 3, 0, 196635, 2, 0, 262144, 536870914, 0, 262171, 2, 0, 327680, 536870914, 0, 327707, 2, 0, 393216, 536870914, 0, 393243, 2, 0, 458752, 536870914, 0, 458768, 3, 0, 458769, 3, 0, 458770, 3, 0, 458771, 3, 0, 458772, 3, 0, 458779, 2, 0, 524288, 536870914, 0, 524315, 2, 0, 589824, 536870914, 0, 589851, 2, 0, 655360, 536870914, 0, 655369, 3, 0, 655370, 3, 0, 655371, 3, 0, 655372, 3, 0, 655373, 3, 0, 655387, 2, 0, 720896, 536870914, 0, 720923, 2, 0, 786432, 536870914, 0, 851968, 536870914, 0, 917504, 3, 0, 917505, 0, 0, 917506, 1, 0, 917507, 1, 0, 917508, 1, 0, 917509, 1, 0, 917510, 1, 0, 917511, 536870912, 0, 983040, 3, 0, 983041, 3, 0, 983042, 3, 0, 983043, 3, 0, 983044, 3, 0, 983045, 3, 0, 983046, 3, 0, 983047, 3, 0, 1048576, 3, 0, 1048577, 3, 0, 1048578, 3, 0, 1048579, 3, 0, 1048580, 3, 0, 1048581, 3, 0, 1048582, 3, 0, 1048583, 3, 0, 1048584, 536870913, 0, 1048585, 536870913, 0, 1048586, 536870913, 0, 1048587, 536870913, 0, 1048588, 536870913, 0, 1048589, 536870913, 0, 1048590, 536870913, 0, 1048591, 536870913, 0, 1048592, 536870913, 0, 1048593, 536870913, 0, 1048594, 536870913, 0, 1048595, 536870913, 0, 1048596, 536870913, 0, 1048597, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1048600, 1, 0, 1048601, 536870912, 0, 1048602, 536870915, 0, 1048603, 3, 0 )
+
+[node name="EnemiesMarker" type="Node2D" parent="."]
+
+[node name="1" type="Node2D" parent="EnemiesMarker"]
+position = Vector2( 1185.44, 389.232 )
+
+[node name="2" type="Node2D" parent="EnemiesMarker"]
+position = Vector2( 1401.23, 940.472 )
+
+[node name="3" type="Node2D" parent="EnemiesMarker"]
+position = Vector2( 312.329, 829.753 )
+
+[node name="4" type="Node2D" parent="EnemiesMarker"]
+position = Vector2( 1002.47, 940.061 )
+
+[node name="Gates" type="Node2D" parent="."]
+
+[node name="Gate" parent="Gates" instance=ExtResource( 2 )]
+position = Vector2( 1774.87, 900.349 )
+
+[node name="Gate2" parent="Gates" instance=ExtResource( 5 )]
+position = Vector2( 896.871, 12.6691 )
