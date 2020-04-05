@@ -33,6 +33,7 @@ var SPEED_JUMP   = 1050
 var MAZE_SIZE = Vector2(4, 4)
 
 var labirynth    = {}
+var done_segment = 0
 
 var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
 

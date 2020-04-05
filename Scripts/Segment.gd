@@ -9,6 +9,7 @@ func close_gates():
 	if not gates_open: return
 	gates_open = false
 	timer = 0.0
+	cout_enemies()
 	for child in $Gates.get_children():
 		child.close_gate()
 
@@ -31,9 +32,26 @@ var open_after = 10.0
 func _process(delta):
 	if player_inside() and !is_cleaned: 
 		close_gates()
-		timer += delta
-		if timer > open_after: is_cleaned = true
+		
 	elif is_cleaned   : open_gates() 
+	if player_inside() and not gates_open :
+		
+		if to_deafeat == deafated: is_cleaned = true
+		Util.done_segment += 1
+
+func increase_counter():
+	deafated += 1
+
+var enemy_list = []
+var deafated   = 0
+var to_deafeat = 0
+
+func cout_enemies():
+	for enemy in enemy_list:
+		if enemy.position.x < 0 and enemy.position.x > Util.SEGMENT_SIZE.x: continue
+		if enemy.position.y < 0 and enemy.position.y > Util.SEGMENT_SIZE.y: continue
+		to_deafeat += 1
+
 
 
 #JUNK_USUED_CODE
@@ -53,6 +71,7 @@ func generate_enemies():
 	for child in $EnemiesMarker.get_children():
 		var instance = Util.get_enemy_instance()
 		instance.position = child.position
+		enemy_list.append(instance)
 		$EnemiesMarker.add_child(instance)
 
 func _ready():

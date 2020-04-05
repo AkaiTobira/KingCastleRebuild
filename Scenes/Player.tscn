@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assety/Knight/krol.png" type="Texture" id=2]
+[ext_resource path="res://Assety/Knight/King.png" type="Texture" id=2]
 [ext_resource path="res://Assety/Knight/combo1.png" type="Texture" id=3]
 [ext_resource path="res://Assety/Knight/magic.png" type="Texture" id=4]
 [ext_resource path="res://Assety/Knight/standatak_i_pysk.png" type="Texture" id=5]
@@ -2468,8 +2468,8 @@ hframes = 10
 frame = 14
 
 [node name="Torso" type="Sprite" parent="Sprites"]
-position = Vector2( 27.5956, -18.4848 )
-scale = Vector2( 2, 2 )
+position = Vector2( 25.0892, -72.6916 )
+scale = Vector2( 0.28, 0.28 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 6
@@ -2494,7 +2494,6 @@ position = Vector2( 27.075, -90.2498 )
 texture = ExtResource( 6 )
 vframes = 3
 hframes = 10
-frame = 27
 
 [node name="Torso6" type="Sprite" parent="Sprites"]
 position = Vector2( 13.0561, -57.5573 )
@@ -2508,7 +2507,7 @@ position = Vector2( 26.1725, -74.9073 )
 texture = ExtResource( 8 )
 vframes = 4
 hframes = 4
-frame = 4
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"

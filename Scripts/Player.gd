@@ -89,7 +89,7 @@ func should_land():
 	return false
 
 func _on_AttakBox_area_entered(area):
-	pass # Replace with function body.
+	area.get_parent().on_hit( 15 )
 
 func _on_HitBox1_area_entered(area):
 	current_health -= area.get_parent().damage

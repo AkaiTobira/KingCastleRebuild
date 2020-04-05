@@ -82,6 +82,8 @@ func should_land():
 	if test_move( get_transform(), Vector2(0, 20) ): return true
 	return false
 
+
+
 func _on_AttakBox_area_entered(area):
 	pass # Replace with function body.
 
