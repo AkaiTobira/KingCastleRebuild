@@ -31,6 +31,8 @@ func fit_camera_to_world( world_begin, world_size ):
 
 func reload(): pass
 
+var damage = 15
+
 # warning-ignore:unused_argument
 func _process(delta):
 	if start_block: return
@@ -91,6 +93,8 @@ func play_anim(anim_name):
 func should_land():
 	if test_move( get_transform(), Vector2(0, 20) ): return true
 	return false
+
+func on_hit( _o): pass
 
 func _on_AttakBox_area_entered(area):
 	area.get_parent().on_hit( 15 )

@@ -14,3 +14,5 @@ func set_player_in_level():
 
 func _process(delta): pass
 #	print($Player.position )
+var damage = 20
+func on_hit( va ) : pass

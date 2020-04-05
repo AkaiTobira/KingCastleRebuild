@@ -39,7 +39,8 @@ func _process(delta):
 	if player_inside() and not gates_open :
 		print( player_inside(), is_cleaned, gates_open, to_deafeat, deafated )
 		if to_deafeat <= deafated: is_cleaned = true
-		Util.done_segment += 1
+		Util.unlock_new_power(1)
+
 
 func increase_counter():
 	deafated += 1

@@ -35,6 +35,28 @@ var MAZE_SIZE = Vector2(4, 4)
 
 var labirynth    = {}
 var done_segment = 0
+var total_cleaned = 0
+
+var new_power_text = [
+	"",
+	"You have unlocked Double Slash\n press Two Times LMP in Air",
+	"You have unlocked Double Jump",
+	"You have unlocked Combo Slash 2\n press Two Times LMP",
+	"You have unlocked Magic Combo 2\n press LMP, and next E",
+	"You have unlocked Combo Slash 3\n press Three Times LMP",
+	"You have unlocked Magic Combo 3\n press LMP, then 2 Times E",
+	"You have unlocked Magic Combo 4\n press Two Times LMP, then E",
+	"You have unlocked Combo Slash 4\n press LMP, then E, then LMP",
+	"",
+	""
+]
+
+
+func unlock_new_power(i):
+	done_segment += 1
+	if done_segment < total_cleaned: return
+	total_cleaned = done_segment
+	GUI.get_node("RichTextLabel").text = new_power_text[done_segment]
 
 var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
 
