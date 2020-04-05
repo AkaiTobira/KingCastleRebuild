@@ -6,7 +6,8 @@
 [ext_resource path="res://Scenes/GateD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/GateU.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/GateR.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assety/grafiki tła/tło wyrwa w cegle 2.png" type="Texture" id=7]
+[ext_resource path="res://Assety/Tlo/tło wyrwa w cegle 2.png" type="Texture" id=7]
+
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )

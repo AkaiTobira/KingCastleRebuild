@@ -60,87 +60,70 @@ valid_enter = {
 
 [node name="Sprite" type="Sprite" parent="Node2D"]
 position = Vector2( 899.521, 547.078 )
-scale = Vector2( 0.708482, 0.711656 )
 texture = ExtResource( 5 )
 
 [node name="Sprite3" type="Sprite" parent="Node2D"]
 position = Vector2( 307.873, 260.416 )
-scale = Vector2( 0.167, 0.195 )
 texture = ExtResource( 8 )
 
 [node name="Sprite15" type="Sprite" parent="Node2D"]
 position = Vector2( 635.061, 270.618 )
-scale = Vector2( 0.167, 0.195 )
 texture = ExtResource( 8 )
 
 [node name="Sprite16" type="Sprite" parent="Node2D"]
 position = Vector2( 1203.71, 261.618 )
-scale = Vector2( 0.167, 0.195 )
 texture = ExtResource( 8 )
 
 [node name="Sprite17" type="Sprite" parent="Node2D"]
 position = Vector2( 1510.44, 253.618 )
-scale = Vector2( 0.167, 0.195 )
 texture = ExtResource( 8 )
 
 [node name="Sprite5" type="Sprite" parent="Node2D"]
 position = Vector2( 1199.46, 337.942 )
-scale = Vector2( 0.375, 0.347 )
 texture = ExtResource( 12 )
 
 [node name="Sprite9" type="Sprite" parent="Node2D"]
 position = Vector2( 636.097, 337.942 )
-scale = Vector2( 0.375, 0.347 )
 texture = ExtResource( 12 )
 
 [node name="Sprite6" type="Sprite" parent="Node2D"]
 position = Vector2( 1512.44, 322.833 )
-scale = Vector2( 0.375, 0.347 )
 texture = ExtResource( 12 )
 
 [node name="Sprite8" type="Sprite" parent="Node2D"]
 position = Vector2( 308.009, 331.467 )
-scale = Vector2( 0.375, 0.347 )
 texture = ExtResource( 12 )
 
 [node name="Sprite10" type="Sprite" parent="Node2D"]
 position = Vector2( 210.878, 840.866 )
-scale = Vector2( 0.175, 0.175 )
 texture = ExtResource( 10 )
 
 [node name="Sprite11" type="Sprite" parent="Node2D"]
 position = Vector2( 290.742, 789.062 )
-scale = Vector2( 0.175, 0.175 )
 texture = ExtResource( 10 )
 
 [node name="Sprite12" type="Sprite" parent="Node2D"]
 position = Vector2( 353.337, 836.549 )
-scale = Vector2( 0.175, 0.175 )
 texture = ExtResource( 10 )
 
 [node name="Sprite14" type="Sprite" parent="Node2D"]
 position = Vector2( 909.143, 888.352 )
-scale = Vector2( 0.159948, 0.138347 )
 texture = ExtResource( 7 )
 
 [node name="Sprite13" type="Sprite" parent="Node2D"]
 position = Vector2( 435.359, 823.598 )
-scale = Vector2( 0.175, 0.175 )
 texture = ExtResource( 9 )
 
 [node name="Sprite2" type="Sprite" parent="Node2D"]
 position = Vector2( 901.589, 391.904 )
-scale = Vector2( 0.347, 0.347 )
 texture = ExtResource( 3 )
 
 [node name="Sprite7" type="Sprite" parent="Node2D"]
 position = Vector2( 767.764, 567.174 )
-scale = Vector2( 0.156, 0.156 )
 texture = ExtResource( 11 )
 
 [node name="Sprite18" type="Sprite" parent="Node2D"]
 position = Vector2( 475.83, 371.764 )
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 hframes = 6
 frame = 4
@@ -151,7 +134,6 @@ autoplay = "Nowa animacja"
 
 [node name="Sprite19" type="Sprite" parent="Node2D"]
 position = Vector2( 1361.15, 387.712 )
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 hframes = 6
 frame = 4
