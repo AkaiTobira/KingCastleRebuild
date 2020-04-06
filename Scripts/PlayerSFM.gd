@@ -263,7 +263,7 @@ class AttackBase extends State:
 			is_over = true
 			Util.PLAYER_GRAVITY_ENABLER = false
 		elif( animation_status > change_r):
-			print(change_r, next_key_presed)
+	#		print(change_r, next_key_presed)
 			if next_key_presed != "":
 				is_over = true
 				push_next_attack()

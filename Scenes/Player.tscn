@@ -2456,7 +2456,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprites/Torso6:visible")
@@ -2696,9 +2696,9 @@ position = Vector2( 29.4969, -70.2001 )
 texture = ExtResource( 3 )
 vframes = 6
 hframes = 10
-frame = 54
 
 [node name="Torso" type="Sprite" parent="Sprites"]
+visible = false
 position = Vector2( 25.0892, -72.6916 )
 scale = Vector2( 0.28, 0.28 )
 texture = ExtResource( 2 )
@@ -2723,12 +2723,11 @@ hframes = 6
 frame = 26
 
 [node name="Torso5" type="Sprite" parent="Sprites"]
-visible = false
 position = Vector2( 27.075, -90.2498 )
 texture = ExtResource( 6 )
 vframes = 3
 hframes = 10
-frame = 12
+frame = 27
 
 [node name="Torso6" type="Sprite" parent="Sprites"]
 visible = false
@@ -2783,16 +2782,14 @@ collision_mask = 256
 ]]
 position = Vector2( -0.506082, -6.84354 )
 shape = SubResource( 25 )
-disabled = true
 
 [node name="AttakBox" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttakBox"]
-position = Vector2( 100.84, -29.3113 )
+position = Vector2( 100.177, 12.4842 )
 shape = SubResource( 26 )
-disabled = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox1_area_entered"]
 [connection signal="area_entered" from="AttakBox" to="." method="_on_AttakBox_area_entered"]

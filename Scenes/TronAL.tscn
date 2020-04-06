@@ -55,6 +55,7 @@ valid_enter = {
 "R": true,
 "U": true
 }
+is_boss_room = true
 
 [node name="Node2D" type="Node2D" parent="."]
 

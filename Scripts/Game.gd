@@ -4,6 +4,7 @@ func _ready():
 	Util.player   = $Player
 	Util.GUI      = $CanvasLayer/Control
 	Util.darkness = $CanvasLayer/Control/Sprite
+	Util.info     = $CanvasLayer/Control/Control
 	
 	set_player_in_level()
 

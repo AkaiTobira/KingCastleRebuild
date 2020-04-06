@@ -1,7 +1,8 @@
 extends Node2D
 
-export var valid_enter = { "U" :false, "D": false, "L":false, "R":false }
-export var is_cleaned  = false
+export var valid_enter  = { "U" :false, "D": false, "L":false, "R":false }
+export var is_cleaned   = false
+export var is_boss_room = false
 var gates_open   = true
 var int_position = Vector2(-1,-1)
 
@@ -30,17 +31,23 @@ var timer = 0.0
 var open_after = 10.0
 
 func _process(delta):
-	
+	if is_boss_room and not Util.BOSS_ENABLED : return
 	
 	if player_inside() and !is_cleaned: 
 		close_gates()
 	elif !player_inside(): open_gates()
 	elif is_cleaned   : open_gates() 
 	if player_inside() and not gates_open :
-		#print( player_inside(), is_cleaned, gates_open, to_deafeat, deafated )
-		if to_deafeat <= deafated: 
+		cout_dead()
+		if len(enemy_list) <= deafated: 
 			is_cleaned = true
 			Util.unlock_new_power(1)
+
+func cout_dead():
+	var dead = 0
+	for enemy in len(enemy_list):
+		if not is_instance_valid(enemy_list[enemy][0]): dead += 1
+	deafated = dead
 
 func increase_counter():
 	deafated += 1
@@ -54,8 +61,8 @@ func cout_enemies():
 		if is_instance_valid(enemy_list[enemy][0]):
 			
 			enemy_list[enemy][0].position = enemy_list[enemy][1]
-			print( enemy_list[enemy][0].position, Util.player.position , enemy_list[enemy][0].position + $EnemiesMarker.position + position  )
-			to_deafeat += 1
+	#		print( enemy_list[enemy][0].position, Util.player.position , enemy_list[enemy][0].position + $EnemiesMarker.position + position  )
+	#		to_deafeat += 1
 	
 #	for enemy in enemy_list:
 #		if not is_instance_valid(enemy) : continue
@@ -86,6 +93,7 @@ func generate_enemies():
 		get_parent().get_parent().call_deferred("add_child", instance)
 
 func _ready():
+	if is_boss_room and not Util.BOSS_ENABLED : close_gates()
 #	print(placeholder_tile_set_id)
 #	print($TileMap.tile_set.get_tiles_ids())
 	generate_enemies()

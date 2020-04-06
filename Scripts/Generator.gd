@@ -66,6 +66,12 @@ func print_maze():
 			sss += "\n|"
 		print(sss)
 
+func cout_cleared():
+	var couters = 0
+	for chid in get_children():
+		if chid.is_cleaned : couters += 1
+	return couters
+
 func change_style(): pass
 	#for segment in get_children():
 	#	segment.switch_style("K1")

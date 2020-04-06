@@ -61,6 +61,9 @@ func patrol_move(delta):
 				$AnimationPlayer.play("Atak")
 				attack = true
 				return
+			if "Player" in collider.get_groups() and teleport_skill:
+				$AnimationPlayer.play("Run")
+				return
 			elif "Enemy" in collider.get_groups():
 				need_dir_change = true
 	if $RayCast2D2.is_colliding():    need_dir_change = true
@@ -68,7 +71,17 @@ func patrol_move(delta):
 	if need_dir_change :
 		timer1 = 0
 		change_direction(op_dir[dir])
-		
+
+func teleport():
+	motion.x = 0
+	var node = parent_segment.get_node("TileMap")
+	var used_rect = node.get_used_rect()
+	
+	var new_position = Vector2(randi()% 28, randi()% 7 )
+	while node.get_cell( new_position.x,  new_position.y) != -1 :
+		new_position = Vector2(randi()% 28, randi()% 7 )
+	position = parent_segment.position + new_position * 64
+
 func _process(delta):
 	if attack : return
 	elif ( patrol_behaviour ): patrol_move(delta)
@@ -81,7 +94,10 @@ func on_hit( val, direction ):
 	change_direction( "L" if direction == -1 else "R")
 	motion.x = 50 * direction * -1
 	hp -= val
-	if hp < 0 : on_dead()
+	if hp < 0 :
+		on_dead()
+	else:
+		if teleport_skill : $AnimationPlayer.play("Run")
 
 func on_dead():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
@@ -110,3 +126,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		attack         = false
 		disable_action = false
 		motion.x = 0
+	if anim_name == "Run": 
+		teleport()
+		$AnimationPlayer.play("Show")
