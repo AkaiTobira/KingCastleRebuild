@@ -40,8 +40,8 @@ func _init():
 			lab[Vector2(i,j)] = ""
 	
 	var Origin    = Vector2( 0,0 )
-	var direction = "D"#get_random_dir()
-	#while( !is_dir_valid( direction, Origin )): direction = get_random_dir()
+	var direction = get_random_dir()
+	while( !is_dir_valid( direction, Origin )): direction = get_random_dir()
 	var couter    = 1 
 
 	while( true ):
@@ -88,8 +88,6 @@ func _ready():
 	Util.labirynth = lab
 	get_parent().get_node("CanvasLayer/Control/TileMap").fill()
 
-	
-
 func get_start_point():
 	return Vector2( 892, 586)
 
@@ -107,6 +105,7 @@ func generate():
 				continue
 			elif "A" in lab[Vector2(i,j)]:
 				var segment = Util.get_Atron_room( lab[Vector2(i,j)] )
+				get_parent().get_node("CanvasLayer/Control/TileMap").mark_as_boss(Vector2(i,j))
 				segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
 				segment.int_position = Vector2(i,j)
 				add_child(segment)

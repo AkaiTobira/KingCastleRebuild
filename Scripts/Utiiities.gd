@@ -40,8 +40,8 @@ var destroy_level = 5
 var king_room     = null
 
 var new_power_text = {
-	1  : [ "",            false, false ],
-	2  : [ "Jump2",       false, false ],
+	1  : [ "Jump2",      false, false ],
+	2  : [ "",           false, false ],
 	3  : [ "JumpAttack1", false, false ],
 	4  : [ "Attack2",     false, true ],
 	5  : [ "Magic2",      false, false  ],
@@ -109,7 +109,9 @@ var enemies = [
 	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek4.tscn"),
 	preload("res://Scenes/Enemies/Skrzynia.tscn"),
-	preload("res://Scenes/Enemies/Skrzynia.tscn")
+	preload("res://Scenes/Enemies/Skrzynia.tscn"),
+	preload("res://Scenes/Enemies/Skrzynia.tscn"),
+	preload("res://Scenes/Enemies/Skrzynia.tscn"),
 ]
 
 func get_enemy_instance():

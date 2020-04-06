@@ -48,7 +48,6 @@ var disable_action  = false
 func patrol_move(delta):
 	if disable_action : return
 	
-	
 	need_dir_change = false
 	motion.x = MONSTER_SPEED * (-1 if dir == "L" else 1)
 	timer1 += delta
@@ -82,9 +81,9 @@ func teleport():
 		new_position = Vector2(randi()% 28, randi()% 7 )
 	position = parent_segment.position + new_position * 64
 
-func _process(delta):
-	if attack : return
-	elif ( patrol_behaviour ): patrol_move(delta)
+func _process(delta): pass
+	#if attack : return
+	#elif ( patrol_behaviour ): patrol_move(delta)
 
 var is_ready = true
 
@@ -133,3 +132,58 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		teleport()
 		$AnimationPlayer.play("Show")
 	if anim_name == "Show": $AnimationPlayer.play("Idle")
+
+
+var max_health     = 100
+var current_health = 100
+var score = 0
+
+var WALL_HOLDER_ENABLED     = true
+var wall_holding            = false
+var once_jumped             = true
+var block_animation         = false
+var last_hit_by             = null
+
+var FSM = preload("res://Scripts/PlayerSFM.gd").new()
+
+func reload(): pass
+
+
+func shake_camera():
+	if not Util.SHAKE_CAMERA: return
+	var shake_amount = 10.0
+	$Camera2D.set_offset(Vector2( 
+		rand_range(-1.0, 1.0) * shake_amount, 
+		rand_range(-1.0, 1.0) * shake_amount ))
+
+
+func get_animation_status():
+	return float($AnimationPlayer.get_current_animation_position())/float($AnimationPlayer.get_current_animation_length())
+
+func create_fireball():
+	var instance = Util.get_project_tile("FBall")
+	instance.dir = -1 if dir == "L" else 1
+	instance.position = position + instance.dir * 50 * Vector2(1, 0)
+	get_parent().add_child(instance)
+
+func create_enegrySphere():
+	var instance = Util.get_project_tile("EBall")
+	instance.dir = -1 if dir == "L" else 1
+	instance.position = position + instance.dir * 50 * Vector2(1, 0)
+	get_parent().add_child(instance)
+
+func play_anim(anim_name): 
+	if block_animation :
+		$AnimationPlayer.stop()
+		return
+	if $AnimationPlayer.current_animation == anim_name : return
+	$AnimationPlayer.play(anim_name)
+
+
+func _on_AttakBox_area_entered(area):
+	pass # Replace with function body.
+
+func _on_HitBox1_area_entered(area):
+	current_health -= area.get_parent().damage
+	if current_health < 0: FSM._player_get_hit("Dead")
+	else: FSM._player_get_hit("Hit1")

@@ -79,6 +79,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=8]
+resource_name = "Walk"
 length = 4.0
 loop = true
 step = 1.0
@@ -92,7 +93,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2, 3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 21, 22, 23, 24 ]
 }
 
 [node name="Enemy" type="KinematicBody2D" groups=[
@@ -101,6 +102,9 @@ tracks/0/keys = {
 z_index = 1
 collision_layer = 0
 script = ExtResource( 2 )
+MONSTER_SPEED = 250
+damage = 1
+hp = 45
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "Enemy",
@@ -139,7 +143,7 @@ texture = ExtResource( 1 )
 flip_h = true
 vframes = 4
 hframes = 7
-frame = 7
+frame = 21
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"

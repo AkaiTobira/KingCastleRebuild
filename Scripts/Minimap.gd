@@ -24,7 +24,11 @@ var base_image = Vector2(0,0)
 func _ready():
 	base_image = $Sprite.position
 
+func mark_as_boss( N_position ):
+	$Sprite3.position = N_position * 64 + base_image
+
 func fill():
+	$Sprite2.position = base_image
 	scale = Vector2(4 / Util.MAZE_SIZE.x,4/ Util.MAZE_SIZE.x)
 	for key in Util.labirynth.keys():
 		set_cell(key.x, key.y, tileset[ Util.sort_enter(Util.labirynth[key]) ])

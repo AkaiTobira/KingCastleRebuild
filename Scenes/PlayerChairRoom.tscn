@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/DestroyController.gd" type="Script" id=1]
 [ext_resource path="res://Assety/Tlo/sala tronowa/sala tronowa okno.png" type="Texture" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://Assety/tlo2/ee/F.png" type="Texture" id=18]
 [ext_resource path="res://Assety/tlo2/ee/G.png" type="Texture" id=19]
 [ext_resource path="res://Assety/Tlo/cegla/sala tronowa/C.png" type="Texture" id=20]
-[ext_resource path="res://Assety/tlo2/ee/tron pełny zniszczenie 5.png" type="Texture" id=21]
 [ext_resource path="res://Assety/tlo2/ee/Bez nazwy.png" type="Texture" id=22]
 [ext_resource path="res://Assety/tlo2/ee/afsfs.png" type="Texture" id=23]
 [ext_resource path="res://Assety/tlo2/ee/uszkdzenie 2.png" type="Texture" id=24]
@@ -219,7 +218,7 @@ texture = ExtResource( 9 )
 [node name="Sprite4" type="Sprite" parent="Node2D3"]
 position = Vector2( 892.058, 383.472 )
 scale = Vector2( 0.508354, 0.482735 )
-texture = ExtResource( 21 )
+texture = ExtResource( 23 )
 
 [node name="Sprite9" type="Sprite" parent="Node2D3"]
 position = Vector2( 1661.53, 383.765 )
@@ -281,7 +280,7 @@ texture = ExtResource( 9 )
 [node name="Sprite4" type="Sprite" parent="Node2D4"]
 position = Vector2( 892.058, 383.472 )
 scale = Vector2( 0.508354, 0.482735 )
-texture = ExtResource( 21 )
+texture = ExtResource( 23 )
 
 [node name="Sprite9" type="Sprite" parent="Node2D4"]
 position = Vector2( 1661.53, 383.765 )

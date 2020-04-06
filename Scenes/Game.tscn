@@ -447,6 +447,40 @@ texture = ExtResource( 7 )
 [node name="Sprite5" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite"]
 texture = ExtResource( 7 )
 
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/TileMap"]
+position = Vector2( 31.7115, 30.1143 )
+scale = Vector2( 0.378048, 0.369866 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
+texture = ExtResource( 7 )
+
+[node name="Sprite5" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/TileMap"]
+position = Vector2( 31.7115, 30.1143 )
+scale = Vector2( 0.378048, 0.369866 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
+texture = ExtResource( 7 )
+
+[node name="Sprite5" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
+texture = ExtResource( 7 )
+
 [node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Control"]
 margin_left = -921.427
 margin_top = -1.60748
@@ -1727,4 +1761,7 @@ position = Vector2( 341.705, 214.94 )
 
 [node name="Player2" parent="." instance=ExtResource( 10 )]
 position = Vector2( -619.268, -490.194 )
+
+[node name="Player3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 659.469, 256.752 )
 [connection signal="animation_finished" from="CanvasLayer/Control/Sprite/AnimationPlayer" to="CanvasLayer/Control/Sprite" method="_on_AnimationPlayer_animation_finished"]
