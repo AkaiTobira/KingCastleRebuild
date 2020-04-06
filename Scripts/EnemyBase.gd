@@ -75,7 +75,7 @@ func patrol_move(delta):
 func teleport():
 	motion.x = 0
 	var node = parent_segment.get_node("TileMap")
-	var used_rect = node.get_used_rect()
+#	var used_rect = node.get_used_rect()
 	
 	var new_position = Vector2(randi()% 28, randi()% 7 )
 	while node.get_cell( new_position.x,  new_position.y) != -1 :
