@@ -5,24 +5,26 @@ extends Node
 var player   = null
 var GUI      = null
 var darkness = null
+var info     = null
 
 var PLAYER_GRAVITY_ENABLER = true
 var PLAYER_IN_AIR_ENABLED  = false
 var PLAYER_SECOND_JUMP     = true
 var SHAKE_CAMERA           = false
+var BOSS_ENABLED           = false
 
 var ENABLED_SKILLS = {
 	"Attack1"     : true,
 	"Jump"        : true,
 	"JumpAttack1" : true,
-	"JumpAttack2" : true,
-	"Jump2"       : true,
-	"Attack2"     : true,
-	"Attack3"     : true,
-	"Magic2"      : true,
-	"Magic3"      : true,
-	"Magic4"      : true,
-	"Attack4"     : true,
+	"JumpAttack2" : false,
+	"Jump2"       : false,
+	"Attack2"     : false,
+	"Attack3"     : false,
+	"Magic2"      : false,
+	"Magic3"      : false,
+	"Magic4"      : false,
+	"Attack4"     : false,
 	"Block"       : false #Don't switch it off is bugged
 }
 
@@ -37,27 +39,43 @@ var labirynth    = {}
 var done_segment = 0
 var total_cleaned = 0
 
-var new_power_text = [
-	"",
-	"You have unlocked Double Slash\n press Two Times LMP in Air",
-	"You have unlocked Double Jump",
-	"You have unlocked Combo Slash 2\n press Two Times LMP",
-	"You have unlocked Magic Combo 2\n press LMP, and next E",
-	"You have unlocked Combo Slash 3\n press Three Times LMP",
-	"You have unlocked Magic Combo 3\n press LMP, then 2 Times E",
-	"You have unlocked Magic Combo 4\n press Two Times LMP, then E",
-	"You have unlocked Combo Slash 4\n press LMP, then E, then LMP",
-	"",
-	""
-]
+var new_power_text = {
+	1 : [ "",            false, false ],
+	2  : [ "JumpAttack1", false, false ],
+	3  : [ "Attack2",     false, false ],
+	4  : [ "Magic2",      false, true  ],
+	5  : [ "Jump2",       false, false ],
+	6  : [ "",             true, false ],
+	7  : [ "Attack3",     false, true  ],
+	8  : [ "Magic3",      false, false ],
+	9  : [ "JumpAttack2", false, false ],
+	10  : [ "",             true, true  ],
+	11 : [ "Attack4",     false, false ],
+	12 : [ "Magic4",      false, false ],
+	13 : [ "",             true, true  ],
+	14 : [ "BossOpen",    false, false ],
+}
 
+func show_info( ):
+	pass
 
 func unlock_new_power(i):
-	done_segment += 1
+	#print( "Unclod")
+	#done_segment += 1
+	
+	done_segment = Util.player.get_parent().get_node("LevelStructure").cout_cleared()
+	print( "SegmentCleared ", done_segment )
 	if done_segment < total_cleaned: return
 	total_cleaned = done_segment
-	GUI.get_node("RichTextLabel").text = new_power_text[done_segment]
-
+	print( new_power_text[total_cleaned] )
+	info.show_info(new_power_text[total_cleaned])
+	if done_segment > 13: 
+		BOSS_ENABLED = true
+		return
+	ENABLED_SKILLS[ new_power_text[total_cleaned][0]] = true
+	if new_power_text[total_cleaned][1] : player.increase_max_hp()
+	#IMPROVECASTLE
+	
 var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
 
 func _ready():

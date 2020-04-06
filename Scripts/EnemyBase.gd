@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var parent_segment = null
 var motion = Vector2(0,0)
 var UP     = Vector2(0,-1)
 var dir    = "R"
@@ -60,6 +61,9 @@ func patrol_move(delta):
 				$AnimationPlayer.play("Atak")
 				attack = true
 				return
+			if "Player" in collider.get_groups() and teleport_skill:
+				$AnimationPlayer.play("Run")
+				return
 			elif "Enemy" in collider.get_groups():
 				need_dir_change = true
 	if $RayCast2D2.is_colliding():    need_dir_change = true
@@ -67,19 +71,33 @@ func patrol_move(delta):
 	if need_dir_change :
 		timer1 = 0
 		change_direction(op_dir[dir])
-		
+
+func teleport():
+	motion.x = 0
+	var node = parent_segment.get_node("TileMap")
+	var used_rect = node.get_used_rect()
+	
+	var new_position = Vector2(randi()% 28, randi()% 7 )
+	while node.get_cell( new_position.x,  new_position.y) != -1 :
+		new_position = Vector2(randi()% 28, randi()% 7 )
+	position = parent_segment.position + new_position * 64
+
 func _process(delta):
 	if attack : return
 	elif ( patrol_behaviour ): patrol_move(delta)
 
 var is_ready = true
 
-func on_hit( val ):
+func on_hit( val, direction ):
 	disable_action = true
 	play_if_n_player("Hit")
-	motion.x = 50 
+	change_direction( "L" if direction == -1 else "R")
+	motion.x = 50 * direction * -1
 	hp -= val
-	if hp < 0 : on_dead()
+	if hp < 0 :
+		on_dead()
+	else:
+		if teleport_skill : $AnimationPlayer.play("Run")
 
 func on_dead():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
@@ -88,9 +106,9 @@ func on_dead():
 	attack = false
 	patrol_behaviour = false
 	play_if_n_player("Dead")
-	var node = get_parent().get_parent()
-	if node.has_method("increase_counter"): 
-		node.increase_counter()
+
+	if parent_segment.has_method("increase_counter"): 
+		parent_segment.increase_counter()
 
 func play_if_n_player(anim):
 	if $AnimationPlayer.current_animation == anim: return
@@ -105,5 +123,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		call_deferred("queue_free")
 	if anim_name == "Hit":
 		$AnimationPlayer.play("Walk")
+		attack         = false
 		disable_action = false
 		motion.x = 0
+	if anim_name == "Run": 
+		teleport()
+		$AnimationPlayer.play("Show")

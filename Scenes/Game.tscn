@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Levels/RandomLevelStructure.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=2]
@@ -6,10 +6,15 @@
 [ext_resource path="res://Assety/west_england.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assety/Minimap.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Minimap.gd" type="Script" id=6]
-[ext_resource path="res://Assety/Placeholder/objects.png" type="Texture" id=7]
+[ext_resource path="res://Assety/icon.png" type="Texture" id=7]
 [ext_resource path="res://Assety/gradient.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Darking.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assety/BarFull.png" type="Texture" id=11]
+[ext_resource path="res://Assety/BarEmpty.png" type="Texture" id=12]
+[ext_resource path="res://Assety/rama.png" type="Texture" id=13]
+[ext_resource path="res://Assety/lewy_przycisk_myszki.png" type="Texture" id=14]
+[ext_resource path="res://Assety/przycisk_klawiatury_e_bez_obramowki.png" type="Texture" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Darkness"
@@ -253,9 +258,44 @@ tracks/0/keys = {
 15/shapes = [  ]
 15/z_index = 0
 
+[sub_resource type="GDScript" id=5]
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func show_info( info ): pass
+
+"
+
 [sub_resource type="DynamicFont" id=3]
-size = 100
+size = 75
+outline_size = 1
+outline_color = Color( 0.0117647, 0.00392157, 0.00392157, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Show"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 5.5, 6.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1233.03, 50 ), Vector2( -701.17, 50 ), Vector2( -701.17, 50 ), Vector2( -1233.03, 50 ) ]
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -274,8 +314,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/Control"]
-visible = false
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 0, 0, 0, 0 )
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -200, 250 )
 scale = Vector2( 0.221807, 0.263333 )
@@ -334,7 +373,7 @@ texture = ExtResource( 8 )
 [node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/Sprite"]
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 0, -18.6234 )
+position = Vector2( -8.78247, -18.6234 )
 z_index = 10
 texture = ExtResource( 8 )
 
@@ -350,23 +389,196 @@ tile_data = PoolIntArray( 0, 15, 0 )
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/Control/TileMap"]
-position = Vector2( 31.4605, 35.1617 )
-scale = Vector2( 0.421, 0.416 )
+position = Vector2( 31.7115, 30.1143 )
+scale = Vector2( 0.378048, 0.369866 )
 texture = ExtResource( 7 )
-vframes = 3
-hframes = 5
-frame = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
-margin_left = -533.0
-margin_top = 119.0
-margin_right = 245.0
-margin_bottom = 643.0
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 7 )
+
+[node name="Sprite5" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 7 )
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Control"]
+margin_left = -921.427
+margin_top = -1.60748
+margin_right = -294.427
+margin_bottom = 59.3925
+max_value = 600.0
+texture_under = ExtResource( 12 )
+texture_progress = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Control"]
+margin_left = -1233.03
+margin_top = 50.0
+margin_right = -732.025
+margin_bottom = 378.0
+texture = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Welcomer" type="Control" parent="CanvasLayer/Control/Control/TextureRect"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 71.9999
+margin_top = 64.0
+margin_right = 547.0
+margin_bottom = 579.0
 custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Welcome"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 86.1425
+margin_top = 183.721
+margin_right = 561.142
+margin_bottom = 698.721
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 277.587
+margin_top = 182.209
+margin_right = 752.587
+margin_bottom = 697.209
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Attack"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 60.05
+margin_top = 226.469
+margin_right = 864.05
+margin_bottom = 741.469
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Kill to open door !"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A" type="TextureRect" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 72.0
+margin_top = 136.0
+margin_right = 120.0
+margin_bottom = 187.0
+texture = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control/Control/TextureRect/Welcomer/A"]
+margin_left = 8.94128
+margin_top = 7.96457
+margin_right = 152.941
+margin_bottom = 136.965
+rect_scale = Vector2( 0.3, 0.3 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "A"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W" type="TextureRect" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 111.0
+margin_top = 136.0
+margin_right = 159.0
+margin_bottom = 187.0
+texture = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control/Control/TextureRect/Welcomer/W"]
+margin_left = 8.94128
+margin_top = 7.96457
+margin_right = 152.941
+margin_bottom = 136.965
+rect_scale = Vector2( 0.3, 0.3 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "W"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="TextureRect" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 150.0
+margin_top = 136.0
+margin_right = 198.0
+margin_bottom = 187.0
+texture = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control/Control/TextureRect/Welcomer/D"]
+margin_left = 8.94128
+margin_top = 7.96457
+margin_right = 152.941
+margin_bottom = 136.965
+rect_scale = Vector2( 0.3, 0.3 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Control/TextureRect/Welcomer"]
+margin_left = 342.54
+margin_top = 134.195
+margin_right = 371.54
+margin_bottom = 177.195
+texture = ExtResource( 14 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Control"]
+anims/Show = SubResource( 4 )
 
 [node name="LevelStructure" parent="." instance=ExtResource( 1 )]
 

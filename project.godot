@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="KingCastleRebuild"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://Scenes/VideoPlayer.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -83,5 +83,4 @@ limits/debugger_stdout/max_messages_per_frame=1000
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

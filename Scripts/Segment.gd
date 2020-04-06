@@ -1,7 +1,8 @@
 extends Node2D
 
-export var valid_enter = { "U" :false, "D": false, "L":false, "R":false }
-export var is_cleaned  = false
+export var valid_enter  = { "U" :false, "D": false, "L":false, "R":false }
+export var is_cleaned   = false
+export var is_boss_room = false
 var gates_open   = true
 var int_position = Vector2(-1,-1)
 
@@ -30,17 +31,23 @@ var timer = 0.0
 var open_after = 10.0
 
 func _process(delta):
-	
+	if is_boss_room and not Util.BOSS_ENABLED : return
 	
 	if player_inside() and !is_cleaned: 
 		close_gates()
 	elif !player_inside(): open_gates()
 	elif is_cleaned   : open_gates() 
 	if player_inside() and not gates_open :
-		print( player_inside(), is_cleaned, gates_open, to_deafeat, deafated )
-		if to_deafeat <= deafated: is_cleaned = true
-		Util.unlock_new_power(1)
+		cout_dead()
+		if len(enemy_list) <= deafated: 
+			is_cleaned = true
+			Util.unlock_new_power(1)
 
+func cout_dead():
+	var dead = 0
+	for enemy in len(enemy_list):
+		if not is_instance_valid(enemy_list[enemy][0]): dead += 1
+	deafated = dead
 
 func increase_counter():
 	deafated += 1
@@ -50,11 +57,18 @@ var deafated   = 0
 var to_deafeat = 0
 
 func cout_enemies():
-	for enemy in enemy_list:
-		if enemy.position.x < 0 and enemy.position.x > Util.SEGMENT_SIZE.x: continue
-		if enemy.position.y < 0 and enemy.position.y > Util.SEGMENT_SIZE.y: continue
-		to_deafeat += 1
-
+	for enemy in len(enemy_list):
+		if is_instance_valid(enemy_list[enemy][0]):
+			
+			enemy_list[enemy][0].position = enemy_list[enemy][1]
+	#		print( enemy_list[enemy][0].position, Util.player.position , enemy_list[enemy][0].position + $EnemiesMarker.position + position  )
+	#		to_deafeat += 1
+	
+#	for enemy in enemy_list:
+#		if not is_instance_valid(enemy) : continue
+#		if enemy.position.x < 0 and enemy.position.x > Util.SEGMENT_SIZE.x: continue
+#		if enemy.position.y < 0 and enemy.position.y > Util.SEGMENT_SIZE.y: continue
+#		to_deafeat += 1
 
 
 #JUNK_USUED_CODE
@@ -73,11 +87,13 @@ func cout_enemies():
 func generate_enemies():
 	for child in $EnemiesMarker.get_children():
 		var instance = Util.get_enemy_instance()
-		instance.position = child.position
-		enemy_list.append(instance)
-		$EnemiesMarker.add_child(instance)
+		instance.position      = child.position + position
+		instance.parent_segment = self
+		enemy_list.append([instance, child.position  + position])
+		get_parent().get_parent().call_deferred("add_child", instance)
 
 func _ready():
+	if is_boss_room and not Util.BOSS_ENABLED : close_gates()
 #	print(placeholder_tile_set_id)
 #	print($TileMap.tile_set.get_tiles_ids())
 	generate_enemies()

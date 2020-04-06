@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/VideoPlayer.gd" type="Script" id=1]
+[ext_resource path="res://Assety/film/intro.ogv" type="VideoStream" id=2]
+
+[node name="VideoPlayer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_right = -44.0
+margin_bottom = 852.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+anchor_right = 1.049
+anchor_bottom = 0.414
+margin_left = -5.0
+margin_top = -5.0
+margin_right = -0.118042
+margin_bottom = -0.192078
+stream = ExtResource( 2 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

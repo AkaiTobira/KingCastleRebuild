@@ -31,12 +31,21 @@ func fit_camera_to_world( world_begin, world_size ):
 
 func reload(): pass
 
-var damage = 15
+var damage         = 15
+var heart_unlocked = 0
+
+func increase_max_hp():
+	if heart_unlocked == 3: return
+	Util.GUI.get_node("TextureProgress").rect_position.x += 65
+	heart_unlocked = min(   3, heart_unlocked + 1 )
+	max_health     = min( 200, max_health     + 33.4)
+	current_health = min( 200, current_health + 33.4)
 
 # warning-ignore:unused_argument
 func _process(delta):
 	if start_block: return
 	FSM._process(delta)
+	Util.GUI.get_node("TextureProgress").value = current_health * 3 + 100 * (3 - heart_unlocked)
 	shake_camera()
 
 func shake_camera():
@@ -97,11 +106,13 @@ func should_land():
 func on_hit( _o): pass
 
 func _on_AttakBox_area_entered(area):
-	area.get_parent().on_hit( 15 )
+	if not "Enemy" in area.get_parent().get_groups(): return
+	var direction = -1 if position.x < area.get_parent().position.x else 1
+	area.get_parent().on_hit( 15, direction )
 
 func _on_HitBox1_area_entered(area):
-	if "Block" in FSM.stack[0].get_class():
-		FSM.stack.push_front( FSM.BlockBlocked.new(FSM.stack))
+	#if "Block" in FSM.stack[0].get_class():
+	#	FSM.stack.push_front( FSM.BlockBlocked.new(FSM.stack))
 	current_health -= area.get_parent().damage
 	if current_health < 0: FSM._player_get_hit("Dead")
 	else: FSM._player_get_hit("Hit1")
@@ -110,4 +121,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Dead" and current_health < 0:
 		block_animation = true
 		Util.darkness.show_game_over()
-	if anim_name == "Start": start_block = false
+	if anim_name == "Start": 
+	#	Util.info.get_node("TextureRect/Welcomer")
+		Util.info.get_node("AnimationPlayer").play("Show")
+		start_block = false
