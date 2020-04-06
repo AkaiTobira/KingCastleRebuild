@@ -88,6 +88,9 @@ func _process(delta):
 
 var is_ready = true
 
+func add_player_hp():
+	Util.player.current_health = min( Util.player.current_health + 33, Util.player.max_health)
+
 func on_hit( val, direction ):
 	disable_action = true
 	play_if_n_player("Hit")

@@ -87,6 +87,7 @@ func _ready():
 	generate()
 	Util.labirynth = lab
 	get_parent().get_node("CanvasLayer/Control/TileMap").fill()
+
 	
 
 func get_start_point():
@@ -98,6 +99,7 @@ func generate():
 			if i == 0 and j == 0 :
 				
 				var segment = Util.get_tron_room( lab[Vector2(i,j)] )
+				Util.king_room = segment
 				segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
 				segment.int_position = Vector2(i,j)
 				add_child(segment)

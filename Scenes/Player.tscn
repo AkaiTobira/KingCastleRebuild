@@ -2699,8 +2699,7 @@ hframes = 10
 
 [node name="Torso" type="Sprite" parent="Sprites"]
 visible = false
-position = Vector2( 25.0892, -72.6916 )
-scale = Vector2( 0.28, 0.28 )
+position = Vector2( 7.98928, -12.842 )
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 6
@@ -2723,6 +2722,7 @@ hframes = 6
 frame = 26
 
 [node name="Torso5" type="Sprite" parent="Sprites"]
+visible = false
 position = Vector2( 27.075, -90.2498 )
 texture = ExtResource( 6 )
 vframes = 3

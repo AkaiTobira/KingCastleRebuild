@@ -1,7 +1,5 @@
 extends Node
 
-
-
 var player   = null
 var GUI      = null
 var darkness = null
@@ -16,7 +14,7 @@ var BOSS_ENABLED           = false
 var ENABLED_SKILLS = {
 	"Attack1"     : true,
 	"Jump"        : true,
-	"JumpAttack1" : true,
+	"JumpAttack1" : false,
 	"JumpAttack2" : false,
 	"Jump2"       : false,
 	"Attack2"     : false,
@@ -31,25 +29,27 @@ var ENABLED_SKILLS = {
 var GRAVITY      = 50
 var IN_AIR_SPEED = 60
 var SPEED        = 400
-var SPEED_JUMP   = 1050
+var SPEED_JUMP   = 1100
 
 var MAZE_SIZE = Vector2(4, 4)
 
 var labirynth    = {}
 var done_segment = 0
 var total_cleaned = 0
+var destroy_level = 5
+var king_room     = null
 
 var new_power_text = {
-	1 : [ "",            false, false ],
-	2  : [ "JumpAttack1", false, false ],
-	3  : [ "Attack2",     false, false ],
-	4  : [ "Magic2",      false, true  ],
-	5  : [ "Jump2",       false, false ],
+	1  : [ "",            false, true ],
+	2  : [ "Jump2",       false, true ],
+	3  : [ "JumpAttack1", false, true ],
+	4  : [ "Attack2",     false, true ],
+	5  : [ "Magic2",      false, false  ],
 	6  : [ "",             true, false ],
 	7  : [ "Attack3",     false, true  ],
 	8  : [ "Magic3",      false, false ],
 	9  : [ "JumpAttack2", false, false ],
-	10  : [ "",             true, true  ],
+	10 : [ "",             true, true  ],
 	11 : [ "Attack4",     false, false ],
 	12 : [ "Magic4",      false, false ],
 	13 : [ "",             true, true  ],
@@ -65,7 +65,9 @@ func unlock_new_power(i):
 	
 	done_segment = Util.player.get_parent().get_node("LevelStructure").cout_cleared()
 	print( "SegmentCleared ", done_segment )
-	if done_segment < total_cleaned: return
+	if done_segment < total_cleaned and done_segment != 0: 
+		info.show_info(["RoomCleared", false, false])
+		return
 	total_cleaned = done_segment
 	print( new_power_text[total_cleaned] )
 	info.show_info(new_power_text[total_cleaned])
@@ -74,6 +76,9 @@ func unlock_new_power(i):
 		return
 	ENABLED_SKILLS[ new_power_text[total_cleaned][0]] = true
 	if new_power_text[total_cleaned][1] : player.increase_max_hp()
+	if new_power_text[total_cleaned][2] : 
+		destroy_level -= 1
+		king_room.update()
 	#IMPROVECASTLE
 	
 var SEGMENT_SIZE = Vector2(64 * 28, 64 * 17)
@@ -92,11 +97,19 @@ func get_project_tile( tile_name ):
 var enemies = [
 	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
 	preload("res://Scenes/Enemies/Glut.tscn"),
+	preload("res://Scenes/Enemies/Bat.tscn"),
+	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
+	preload("res://Scenes/Enemies/Glut.tscn"),
+	preload("res://Scenes/Enemies/Bat.tscn"),
+	preload("res://Scenes/Enemies/EnemyTemplate.tscn"),
+	preload("res://Scenes/Enemies/Glut.tscn"),
+	preload("res://Scenes/Enemies/Bat.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek2.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek3.tscn"),
 	preload("res://Scenes/Enemies/Krzysiek4.tscn"),
-	preload("res://Scenes/Enemies/Bat.tscn")
+	preload("res://Scenes/Enemies/Skrzynia.tscn"),
+	preload("res://Scenes/Enemies/Skrzynia.tscn")
 ]
 
 func get_enemy_instance():

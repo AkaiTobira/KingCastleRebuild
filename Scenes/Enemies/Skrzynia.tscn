@@ -1,0 +1,250 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/EnemyBase.gd" type="Script" id=1]
+[ext_resource path="res://Assety/skrzynia.png" type="Texture" id=2]
+[ext_resource path="res://Assety/heath.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.2843, 26.8263 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25.9646, 7.85269 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Dead"
+length = 10.0
+step = 0.33
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32, 1.65, 1.98, 2.31, 2.64, 2.97, 3.3, 3.63, 3.96, 4.29, 4.62 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3.3, 6.93 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 23 ), Vector2( 0.000275, -50 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3.3, 6.93 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6.93 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "add_player_hp"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite2:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 6.93, 7.26, 7.59, 7.92 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 8.25, 9.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Hit"
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 9 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Idle"
+length = 4.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Walk"
+length = 4.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="Enemy" type="KinematicBody2D" groups=[
+"Enemy",
+]]
+z_index = 1
+collision_layer = 0
+script = ExtResource( 1 )
+patrol_behaviour = false
+MONSTER_SPEED = 0
+damage = 0
+hp = 1
+
+[node name="HitBox" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+position = Vector2( -54, 0 )
+collision_layer = 129
+collision_mask = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" groups=[
+"Enemy",
+]]
+position = Vector2( 54.8271, 24.3089 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+position = Vector2( -54, 0 )
+collision_layer = 385
+collision_mask = 385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=[
+"Enemy",
+]]
+position = Vector2( 54.8271, 22.2556 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
+"Enemy",
+]]
+position = Vector2( -1.39609, 49.5174 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1.54001, 24.127 )
+scale = Vector2( 1.091, 1.193 )
+texture = ExtResource( 2 )
+hframes = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+playback_speed = 4.0
+anims/Dead = SubResource( 3 )
+anims/Hit = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 29.1397, 52.5723 )
+enabled = true
+cast_to = Vector2( 0, 29 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 31, 22 )
+enabled = true
+cast_to = Vector2( 5, 0 )
+collide_with_areas = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2( 31, 32.8072 )
+enabled = true
+cast_to = Vector2( 25, 0 )
+collide_with_areas = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+visible = false
+margin_left = -167.868
+margin_top = -118.245
+margin_right = -39.8676
+margin_bottom = -97.2453
+rect_scale = Vector2( 3, 3 )
+text = "R"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 2.5e-05, 16.3636 )
+scale = Vector2( 0.0909182, 0.0909182 )
+texture = ExtResource( 3 )
+hframes = 4
+frame = 1
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

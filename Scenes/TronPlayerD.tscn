@@ -1,16 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tilesets/PlaceholderTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/Segment.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/GateD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assety/Tlo/sala tronowa/tron.png" type="Texture" id=4]
-[ext_resource path="res://Assety/Tlo/sala tronowa/tło sala tronowa docięte.png" type="Texture" id=5]
-[ext_resource path="res://Assety/Tlo/sala tronowa/drzewko pomniejszone.png" type="Texture" id=6]
-[ext_resource path="res://Assety/Tlo/sala tronowa/obraz miecz cacy.png" type="Texture" id=7]
-[ext_resource path="res://Assety/Tlo/sala tronowa/sala tronowa okno.png" type="Texture" id=8]
-[ext_resource path="res://Assety/Tlo/sala tronowa/kolumna sala tronowa szeroka złota.png" type="Texture" id=9]
-[ext_resource path="res://Assety/Tlo/sala tronowa/szarfa pixel pomniejszona.png" type="Texture" id=10]
-[ext_resource path="res://Scenes/DestroyController.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/PlayerChairRoom.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -21,85 +14,7 @@ valid_enter = {
 "U": false
 }
 
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource( 11 )
-
-[node name="Sprite3" type="Sprite" parent="Node2D"]
-position = Vector2( 849.739, 541.77 )
-texture = ExtResource( 5 )
-
-[node name="Sprite5" type="Sprite" parent="Node2D"]
-position = Vector2( 253.129, 350.979 )
-texture = ExtResource( 10 )
-
-[node name="Sprite14" type="Sprite" parent="Node2D"]
-position = Vector2( 573.962, 352.83 )
-texture = ExtResource( 10 )
-
-[node name="Sprite6" type="Sprite" parent="Node2D"]
-position = Vector2( 1532.98, 343.187 )
-texture = ExtResource( 10 )
-
-[node name="Sprite15" type="Sprite" parent="Node2D"]
-position = Vector2( 1236.88, 341.336 )
-texture = ExtResource( 10 )
-
-[node name="Sprite4" type="Sprite" parent="Node2D"]
-position = Vector2( 876.495, 386.043 )
-texture = ExtResource( 4 )
-
-[node name="Sprite7" type="Sprite" parent="Node2D"]
-position = Vector2( 416.692, 390.923 )
-scale = Vector2( 1, 0.8 )
-texture = ExtResource( 8 )
-
-[node name="Sprite8" type="Sprite" parent="Node2D"]
-position = Vector2( 1381.85, 392.974 )
-scale = Vector2( 1, 0.8 )
-texture = ExtResource( 8 )
-
-[node name="Sprite9" type="Sprite" parent="Node2D"]
-position = Vector2( 1661.53, 383.765 )
-scale = Vector2( 0.347, 0.169663 )
-texture = ExtResource( 9 )
-
-[node name="Sprite11" type="Sprite" parent="Node2D"]
-position = Vector2( 1090.39, 384.649 )
-scale = Vector2( 0.267108, 0.168892 )
-texture = ExtResource( 9 )
-
-[node name="Sprite12" type="Sprite" parent="Node2D"]
-position = Vector2( 714.392, 384.649 )
-scale = Vector2( 0.267108, 0.168892 )
-texture = ExtResource( 9 )
-
-[node name="Sprite13" type="Sprite" parent="Node2D"]
-position = Vector2( 714.392, 384.649 )
-scale = Vector2( 0.267108, 0.168892 )
-texture = ExtResource( 9 )
-
-[node name="Sprite10" type="Sprite" parent="Node2D"]
-position = Vector2( 140.94, 383.266 )
-scale = Vector2( 0.347, 0.169477 )
-texture = ExtResource( 9 )
-
-[node name="Sprite16" type="Sprite" parent="Node2D"]
-position = Vector2( 139.09, 896.813 )
-scale = Vector2( 0.347, 0.0856912 )
-texture = ExtResource( 9 )
-
-[node name="Sprite18" type="Sprite" parent="Node2D"]
-position = Vector2( 1654.75, 894.997 )
-scale = Vector2( 0.347, 0.0841494 )
-texture = ExtResource( 9 )
-
-[node name="Sprite17" type="Sprite" parent="Node2D"]
-position = Vector2( 894.142, 882.008 )
-texture = ExtResource( 7 )
-
-[node name="Sprite19" type="Sprite" parent="Node2D"]
-position = Vector2( 748.499, 539.353 )
-texture = ExtResource( 6 )
+[node name="Node2D" parent="." instance=ExtResource( 4 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

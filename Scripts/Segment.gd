@@ -43,6 +43,9 @@ func _process(delta):
 			is_cleaned = true
 			Util.unlock_new_power(1)
 
+func update():
+	$Node2D.update_D()
+
 func cout_dead():
 	var dead = 0
 	for enemy in len(enemy_list):
