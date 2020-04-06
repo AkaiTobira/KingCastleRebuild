@@ -1,6 +1,7 @@
 extends Area2D
 
 export var SPEED = 0
+export var damage   = 15.0
 var dir = 1
 
 func _process(delta):
@@ -8,7 +9,7 @@ func _process(delta):
 	position.x += dir * SPEED * delta
 
 func _on_Area2D_area_entered(area):
-	if "Player" in area.get_parent().get_groups(): return
-	if "Enemy"  in area.get_parent().get_groups():
-		area.get_parent().on_hit(20, dir)
+	#if "Player" in area.get_parent().get_groups(): return
+	#if "Enemy"  in area.get_parent().get_groups():
+		area.get_parent().on_hit(damage, dir)
 		call_deferred("queue_free")

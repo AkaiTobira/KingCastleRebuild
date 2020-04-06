@@ -123,6 +123,7 @@ z_index = 1
 script = ExtResource( 2 )
 attack_action = true
 MONSTER_SPEED = 250
+damage = 2
 hp = 75
 
 [node name="HitBox" type="Area2D" parent="." groups=[
