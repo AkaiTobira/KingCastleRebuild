@@ -59,7 +59,7 @@ var new_power_text = {
 func show_info( ):
 	pass
 
-func unlock_new_power(i):
+func unlock_new_power(_i):
 	#print( "Unclod")
 	#done_segment += 1
 	

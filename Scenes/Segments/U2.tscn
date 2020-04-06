@@ -2,9 +2,8 @@
 
 [ext_resource path="res://Tilesets/PlaceholderTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/Segment.gd" type="Script" id=2]
-[ext_resource path="res://Assety/Tlo/cegla/hol/tło wyrwa w cegle 6.png" type="Texture" id=3]
+[ext_resource path="res://Assety/Tlo/cegla/hol/J.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/GateU.tscn" type="PackedScene" id=5]
-
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )

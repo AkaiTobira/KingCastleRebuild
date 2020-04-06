@@ -30,7 +30,7 @@ func player_inside():
 var timer = 0.0
 var open_after = 10.0
 
-func _process(delta):
+func _process(_delta):
 	if is_boss_room and not Util.BOSS_ENABLED : return
 	
 	if player_inside() and !is_cleaned: 

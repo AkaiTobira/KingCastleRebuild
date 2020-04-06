@@ -23,10 +23,10 @@ func _exit_tree(): #FOR GOD SAKE THIS GODOT SHOULD DO!!!
 
 func _process(delta):
 	
-	var restr = "["
-	for elem in stack:
-		restr += elem.get_class() + ","
-	restr += "]"
+#	var restr = "["
+#	for elem in stack:
+#		restr += elem.get_class() + ","
+#	restr += "]"
 #	print( restr )
 #	if Flow.world_is_paused or Utilities.player.pause: return
 	while stack[0].is_over : stack.pop_front()
