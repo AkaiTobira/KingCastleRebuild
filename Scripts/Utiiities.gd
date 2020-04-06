@@ -40,9 +40,9 @@ var destroy_level = 5
 var king_room     = null
 
 var new_power_text = {
-	1  : [ "",            false, true ],
-	2  : [ "Jump2",       false, true ],
-	3  : [ "JumpAttack1", false, true ],
+	1  : [ "",            false, false ],
+	2  : [ "Jump2",       false, false ],
+	3  : [ "JumpAttack1", false, false ],
 	4  : [ "Attack2",     false, true ],
 	5  : [ "Magic2",      false, false  ],
 	6  : [ "",             true, false ],
