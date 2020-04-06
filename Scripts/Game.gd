@@ -20,7 +20,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
 		get_tree().quit()
 		
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_end"):
 		$Player.position = Util.player2_position
 
 var damage = 20

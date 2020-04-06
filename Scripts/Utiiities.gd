@@ -16,15 +16,15 @@ var BOSS_ENABLED           = false
 var ENABLED_SKILLS = {
 	"Attack1"     : true,
 	"Jump"        : true,
-	"JumpAttack1" : true,
-	"JumpAttack2" : true,
-	"Jump2"       : true,
-	"Attack2"     : true,
-	"Attack3"     : true,
-	"Magic2"      : true,
-	"Magic3"      : true,
-	"Magic4"      : true,
-	"Attack4"     : true,
+	"JumpAttack1" : false,
+	"JumpAttack2" : false,
+	"Jump2"       : false,
+	"Attack2"     : false,
+	"Attack3"     : false,
+	"Magic2"      : false,
+	"Magic3"      : false,
+	"Magic4"      : false,
+	"Attack4"     : false,
 	"Block"       : false #Don't switch it off is bugged
 }
 
