@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/Levels/RandomLevelStructure.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://Assety/lewy_przycisk_myszki.png" type="Texture" id=14]
 [ext_resource path="res://Assety/przycisk_klawiatury_e_bez_obramowki.png" type="Texture" id=15]
 [ext_resource path="res://Assety/serduszko.png" type="Texture" id=16]
+[ext_resource path="res://Assety/symbol.png" type="Texture" id=17]
+[ext_resource path="res://Assety/zlykorona.png" type="Texture" id=18]
+[ext_resource path="res://Assety/Placeholder/back4.png" type="Texture" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Darkness"
@@ -32,6 +35,50 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
+
+[sub_resource type="Animation" id=12]
+resource_name = "Darkness"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Sprite3:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="DynamicFont" id=13]
+size = 30
+font_data = ExtResource( 4 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "Minimap.png 0"
@@ -422,8 +469,103 @@ texture = ExtResource( 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Sprite"]
 anims/Darkness = SubResource( 1 )
 
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control"]
+visible = false
+modulate = Color( 0, 0, 0, 0 )
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -200, 250 )
+scale = Vector2( 0.221807, 0.263333 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite4" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite7" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite8" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite9" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite10" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/Sprite2"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -0.216311, -38.5285 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Sprite2"]
+anims/Darkness = SubResource( 12 )
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control"]
+visible = false
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -153.248, 296.753 )
+scale = Vector2( 2.02982, 1.47111 )
+z_index = 500
+texture = ExtResource( 19 )
+
+[node name="RichTextLabel" type="Label" parent="CanvasLayer/Control/Sprite3"]
+margin_left = -253.607
+margin_top = -123.688
+margin_right = 5652.39
+margin_bottom = 2396.31
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "I pokoj powrocil na wieki ....
+
+                     THE END
+
+Gratuluje samozaparcia :D
+
+nacisnij escape zeby wyjsc"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TileMap" type="TileMap" parent="CanvasLayer/Control"]
-modulate = Color( 1, 1, 1, 0.509804 )
+modulate = Color( 1, 1, 1, 0.239216 )
 scale = Vector2( 4, 4 )
 tile_set = SubResource( 2 )
 format = 1
@@ -449,37 +591,53 @@ texture = ExtResource( 7 )
 
 [node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/TileMap"]
 position = Vector2( 31.7115, 30.1143 )
-scale = Vector2( 0.378048, 0.369866 )
-texture = ExtResource( 7 )
-
-[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
-texture = ExtResource( 7 )
-
-[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
-texture = ExtResource( 7 )
+scale = Vector2( 0.155, 0.155 )
+texture = ExtResource( 17 )
 
 [node name="Sprite4" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
-texture = ExtResource( 7 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 17 )
 
 [node name="Sprite5" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
-texture = ExtResource( 7 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 17 )
+
+[node name="Sprite6" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 17 )
+
+[node name="Sprite7" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 17 )
+
+[node name="Sprite8" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite2"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 17 )
 
 [node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/TileMap"]
 position = Vector2( 31.7115, 30.1143 )
 scale = Vector2( 0.378048, 0.369866 )
-texture = ExtResource( 7 )
-
-[node name="Sprite2" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
-texture = ExtResource( 7 )
-
-[node name="Sprite3" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
-texture = ExtResource( 7 )
+texture = ExtResource( 18 )
 
 [node name="Sprite4" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
-texture = ExtResource( 7 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 18 )
+
+[node name="Sprite8" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 18 )
 
 [node name="Sprite5" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
-texture = ExtResource( 7 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 18 )
+
+[node name="Sprite6" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 18 )
+
+[node name="Sprite7" type="Sprite" parent="CanvasLayer/Control/TileMap/Sprite3"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 18 )
 
 [node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Control"]
 margin_left = -921.427
@@ -1757,11 +1915,9 @@ anims/Show = SubResource( 11 )
 [node name="LevelStructure" parent="." instance=ExtResource( 1 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 341.705, 214.94 )
-
-[node name="Player2" parent="." instance=ExtResource( 10 )]
-position = Vector2( -619.268, -490.194 )
+position = Vector2( 361.155, 235.84 )
 
 [node name="Player3" parent="." instance=ExtResource( 10 )]
-position = Vector2( 659.469, 256.752 )
+position = Vector2( 602.238, 86.6669 )
 [connection signal="animation_finished" from="CanvasLayer/Control/Sprite/AnimationPlayer" to="CanvasLayer/Control/Sprite" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="CanvasLayer/Control/Sprite2/AnimationPlayer" to="CanvasLayer/Control/Sprite2" method="_on_AnimationPlayer_animation_finished"]

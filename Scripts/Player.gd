@@ -31,7 +31,7 @@ func fit_camera_to_world( world_begin, world_size ):
 
 func reload(): pass
 
-var damage         = 15
+var damage         = 100
 var heart_unlocked = 0
 
 func increase_max_hp():
@@ -103,7 +103,7 @@ func should_land():
 	if test_move( get_transform(), Vector2(0, 20) ): return true
 	return false
 
-func on_hit( _o): pass
+func on_hit( _o, dir): pass
 
 func _on_AttakBox_area_entered(area):
 	if not "Enemy" in area.get_parent().get_groups(): return

@@ -45,8 +45,12 @@ var need_dir_change = false
 var attack          = false
 var disable_action  = false
 
+var animation_queue = []
+
 func patrol_move(delta):
 	if disable_action : return
+	
+	play_anim("Walk")
 	
 	need_dir_change = false
 	motion.x = MONSTER_SPEED * (-1 if dir == "L" else 1)
@@ -56,34 +60,48 @@ func patrol_move(delta):
 		var collider = $RayCast2D3.get_collider()
 		if len(collider.get_groups()) != 0 : 
 			if "Player" in collider.get_groups() and attack_action: 
-				motion.x = 0
-				$AnimationPlayer.play("Atak")
 				attack = true
-				return
-			if "Player" in collider.get_groups() and teleport_skill:
-				$AnimationPlayer.play("Run")
-				return
-			elif "Enemy" in collider.get_groups():
-				need_dir_change = true
+				generate_animation_queue()
 	if $RayCast2D2.is_colliding():    need_dir_change = true
-	if not $RayCast2D.is_colliding(): need_dir_change = true
+	if not $RayCast2D.is_colliding():  need_dir_change = true
 	if need_dir_change :
 		timer1 = 0
 		change_direction(op_dir[dir])
 
-func teleport():
-	motion.x = 0
-	var node = parent_segment.get_node("TileMap")
-#	var used_rect = node.get_used_rect()
+func generate_animation_queue():
+	var iiii = 3#randi()%5
 	
-	var new_position = Vector2(randi()% 28, randi()% 7 )
-	while node.get_cell( new_position.x,  new_position.y) != -1 :
-		new_position = Vector2(randi()% 28, randi()% 7 )
-	position = parent_segment.position + new_position * 64
+	match(iiii):
+		0 : 
+			animation_queue.push_back("Jump")
+			animation_queue.push_back("JumpAttack1")
+			animation_queue.push_back("JumpAttack2")
+		1 :
+			animation_queue.push_back("Attack1")
+			animation_queue.push_back("Attack2")
+			animation_queue.push_back("Attack3")
+		2  :
+			animation_queue.push_back("Attack1")
+			animation_queue.push_back("Magic2")
+			animation_queue.push_back("Attack4")
+		3  : 
+			animation_queue.push_back("Attack1")
+			animation_queue.push_back("Magic2")
+			animation_queue.push_back("Magic3")
+		4  :
+			animation_queue.push_back("Attack1")
+			animation_queue.push_back("Attack2")
+			animation_queue.push_back("Attack4")
+	
+	animation_queue.push_back("Idle")
+	animation_queue.push_back("Idle")
+	motion.x = 50 * (-1 if dir == "L" else 1)
+	play_anim(animation_queue[0])
+	animation_queue.remove(0)
 
-func _process(delta): pass
-	#if attack : return
-	#elif ( patrol_behaviour ): patrol_move(delta)
+func _process(delta):
+	if attack : return
+	elif ( patrol_behaviour ): patrol_move(delta)
 
 var is_ready = true
 
@@ -91,15 +109,26 @@ func add_player_hp():
 	Util.player.current_health = min( Util.player.current_health + 33, Util.player.max_health)
 
 func on_hit( val, direction ):
-	disable_action = true
-	play_if_n_player("Hit")
-	change_direction( "L" if direction == -1 else "R")
-	motion.x = 50 * direction * -1
-	hp -= val
-	if hp < 0 :
-		on_dead()
-	else:
-		if teleport_skill : $AnimationPlayer.play("Run")
+	current_health -= val
+	
+	#change_direction( ("R" if direction == 1 else "L"))
+	
+	#disable_action = true
+
+	if current_health < 0 :
+		attack = true
+		motion.x = 0
+		play_anim("Dead")
+		return
+	
+#	if $AnimationPlayer.current_animation != "Idle" or $AnimationPlayer.current_animation != "Walk" : return
+	#var iii = randi()%3
+	#if iii == 0: play_anim("Hit1")
+#	if iii == 1: play_anim("Hit3")
+	#if iii == 2: play_anim("Hit2")
+	#animation_queue = []
+	#attack = false
+
 
 func on_dead():
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
@@ -117,34 +146,25 @@ func play_if_n_player(anim):
 	$AnimationPlayer.play(anim)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "Atak":
-		attack = false
-		timer1 = 0
-		$AnimationPlayer.play("Walk")
-	if anim_name == "Dead":
-		call_deferred("queue_free")
-	if anim_name == "Hit":
-		$AnimationPlayer.play("Walk")
-		attack         = false
+	if anim_name == "Dead": 
+		Util.darknesse.play( "Darkness")
+		return
+	if "Hit" in anim_name: 
 		disable_action = false
-		motion.x = 0
-	if anim_name == "Run": 
-		teleport()
-		$AnimationPlayer.play("Show")
-	if anim_name == "Show": $AnimationPlayer.play("Idle")
+	if len(animation_queue) != 0:
+		if animation_queue[0] == "Idle" : motion.x = 0
+		play_anim(animation_queue[0])
+		animation_queue.remove(0)
+	else : attack = false
 
 
-var max_health     = 100
-var current_health = 100
+var max_health     = 300
+var current_health = 400
 var score = 0
 
-var WALL_HOLDER_ENABLED     = true
-var wall_holding            = false
 var once_jumped             = true
 var block_animation         = false
 var last_hit_by             = null
-
-var FSM = preload("res://Scripts/PlayerSFM.gd").new()
 
 func reload(): pass
 
@@ -167,7 +187,7 @@ func create_fireball():
 	get_parent().add_child(instance)
 
 func create_enegrySphere():
-	var instance = Util.get_project_tile("EBall")
+	var instance = Util.get_project_tile("DBall")
 	instance.dir = -1 if dir == "L" else 1
 	instance.position = position + instance.dir * 50 * Vector2(1, 0)
 	get_parent().add_child(instance)
@@ -184,6 +204,18 @@ func _on_AttakBox_area_entered(area):
 	pass # Replace with function body.
 
 func _on_HitBox1_area_entered(area):
-	current_health -= area.get_parent().damage
-	if current_health < 0: FSM._player_get_hit("Dead")
-	else: FSM._player_get_hit("Hit1")
+	if not area.get("damage") == null:
+		current_health -= area.damage
+	elif not area.get_parent().get("damage") == null:
+		current_health -= area.get_parent().damage
+	if current_health < 0 : 
+		motion.x = 0
+		play_anim("Dead")
+	if $AnimationPlayer.current_animation != "Idle" or $AnimationPlayer.current_animation != "Walk" : return
+	var iii = randi()%3
+	if iii == 0: play_anim("Hit1")
+	if iii == 1: play_anim("Hit3")
+	if iii == 2: play_anim("Hit2")
+	animation_queue = []
+	attack = false
+#	print( current_health )

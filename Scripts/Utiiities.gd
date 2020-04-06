@@ -1,8 +1,10 @@
 extends Node
 
 var player   = null
+var player2_position  = null
 var GUI      = null
 var darkness = null
+var darknesse = null
 var info     = null
 
 var PLAYER_GRAVITY_ENABLER = true
@@ -14,15 +16,15 @@ var BOSS_ENABLED           = false
 var ENABLED_SKILLS = {
 	"Attack1"     : true,
 	"Jump"        : true,
-	"JumpAttack1" : false,
-	"JumpAttack2" : false,
-	"Jump2"       : false,
-	"Attack2"     : false,
-	"Attack3"     : false,
-	"Magic2"      : false,
-	"Magic3"      : false,
-	"Magic4"      : false,
-	"Attack4"     : false,
+	"JumpAttack1" : true,
+	"JumpAttack2" : true,
+	"Jump2"       : true,
+	"Attack2"     : true,
+	"Attack3"     : true,
+	"Magic2"      : true,
+	"Magic3"      : true,
+	"Magic4"      : true,
+	"Attack4"     : true,
 	"Block"       : false #Don't switch it off is bugged
 }
 
@@ -40,8 +42,8 @@ var destroy_level = 5
 var king_room     = null
 
 var new_power_text = {
-	1  : [ "Jump2",      false, false ],
-	2  : [ "",           false, false ],
+	1  : [ "Jump2",       false, false ],
+	2  : [ "",            false, false ],
 	3  : [ "JumpAttack1", false, false ],
 	4  : [ "Attack2",     false, true ],
 	5  : [ "Magic2",      false, false  ],
@@ -88,7 +90,8 @@ func _ready():
 
 var project_tiles = {
 	"FBall" : preload("res://Scenes/Fireball.tscn"),
-	"EBall" : preload("res://Scenes/EnegryBall.tscn")
+	"EBall" : preload("res://Scenes/EnegryBall.tscn"),
+	"DBall" : preload("res://Scenes/DarkEnegryBall.tscn")
 }
 
 func get_project_tile( tile_name ):
@@ -111,7 +114,7 @@ var enemies = [
 	preload("res://Scenes/Enemies/Skrzynia.tscn"),
 	preload("res://Scenes/Enemies/Skrzynia.tscn"),
 	preload("res://Scenes/Enemies/Skrzynia.tscn"),
-	preload("res://Scenes/Enemies/Skrzynia.tscn"),
+	preload("res://Scenes/Enemies/Skrzynia.tscn")
 ]
 
 func get_enemy_instance():

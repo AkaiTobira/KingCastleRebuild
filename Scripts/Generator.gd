@@ -107,6 +107,7 @@ func generate():
 				var segment = Util.get_Atron_room( lab[Vector2(i,j)] )
 				get_parent().get_node("CanvasLayer/Control/TileMap").mark_as_boss(Vector2(i,j))
 				segment.position = Vector2(i,j) * Util.SEGMENT_SIZE
+				Util.player2_position = Vector2(i,j) * Util.SEGMENT_SIZE + Vector2(600,600)
 				segment.int_position = Vector2(i,j)
 				add_child(segment)
 				continue

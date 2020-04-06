@@ -80,7 +80,7 @@ func teleport():
 	var new_position = Vector2(randi()% 28, randi()% 7 )
 	while node.get_cell( new_position.x,  new_position.y) != -1 :
 		new_position = Vector2(randi()% 28, randi()% 7 )
-	position = parent_segment.position + new_position * 64
+	position = parent_segment.position + new_position * 64 + Vector2(32, 32)
 
 func _process(delta):
 	if attack : return
