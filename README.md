@@ -1,7 +1,7 @@
 # King's Castle Rebuild - retro platformer game
 
 King's Castle Rebuild is platformer game, created in Godot Engine.
-Game is published on itch.io : https://tempacount.itch.io/kings-castle-rebuild
+* Game is published on itch.io : https://tempacount.itch.io/kings-castle-rebuild
 
 ## Table of Contents
 * [General info](#general-info)
@@ -19,11 +19,11 @@ If King didn't accomplish his mission he will return to the throne Hall, saving 
 A lot of graphics left unused, we misscalculated the amount of time we had and any of us has experience with online game jams. We prepared sounds for the game but becouse of lack of time it's not in the game.
 
 ## Screenshots
-![Alt text](/images/0.png?raw=true "Optional Title")
-![Alt text](/images/1.png?raw=true "Optional Title")
-![Alt text](/images/2.png?raw=true "Optional Title")
-![Alt text](/images/3.png?raw=true "Optional Title")
-![Alt text](/images/4.png?raw=true "Optional Title")
+![Alt text](/images/S0.png?raw=true "Optional Title")
+![Alt text](/images/S1.png?raw=true "Optional Title")
+![Alt text](/images/S2.png?raw=true "Optional Title")
+![Alt text](/images/S3.png?raw=true "Optional Title")
+![Alt text](/images/S4.png?raw=true "Optional Title")
 
 ## Game Description
 ​Warning: Game is in polish language
