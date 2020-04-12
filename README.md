@@ -28,7 +28,7 @@ A lot of graphics left unused, we misscalculated the amount of time we had and a
 ## Game Description
 ​Warning: Game is in polish language
 
-Thousands years ago, there was a good and loved king. On the time of dying he concluded a pact with a wizzard : "You will live as long as your kingdom exsist". He quickly recovered and returned to taking care of the kingdom. But ... he wasn't the only one with pact like this. Betrayed, has been forgoted for many years. Now he returned to receive what is his and banish the evil forever.
+Thousands years ago, there was a good and loved king. On the time of dying he concluded a pact with a wizzard : "You will live as long as your kingdom exsist". He quickly recovered and returned to taking care of the kingdom. But ... he wasn't the only one with pact like this. Betrayed, has been forgotten for many years. Now he returned to receive what is his and banish the evil forever.
 
 ## Project status
 
